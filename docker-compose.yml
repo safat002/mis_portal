@@ -1,30 +1,29 @@
 version: '3.8'
 
 services:
-  web:
-    build: .
-    command: sh -c "python manage.py migrate && python manage.py create_superuser && python manage.py runserver 0.0.0.0:8000"
-    volumes:
-      - .:/app
-    ports:
-      - "8313:8000"
-    env_file:
-      - .env
-    depends_on:
-      - db
-      - redis
-
-  db:
-    image: postgres:13
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-
   redis:
     image: redis:6.2-alpine
+
+  web:
+    build: .
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             gunicorn django_mis_project.wsgi:application --bind 0.0.0.0:8000"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - sqlite_data:/app/db
+      - staticfiles:/app/staticfiles
+      - mediafiles:/app/media
+    depends_on:
+      - redis
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mis-portal.rule=Host(`mis-portal.traefik.me`)"
+      - "traefik.http.routers.mis-portal.entrypoints=web"
+      - "traefik.http.services.mis-portal.loadbalancer.server.port=8000"
 
   celery:
     build: .
@@ -34,8 +33,9 @@ services:
     env_file:
       - .env
     depends_on:
-      - db
       - redis
 
 volumes:
-  postgres_data:
+  sqlite_data:
+  staticfiles:
+  mediafiles:
