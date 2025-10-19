@@ -11,7 +11,7 @@ from datetime import timedelta
 
 from .models import Dashboard, SavedReport, ExternalConnection, Notification
 from .services.report_builder import ReportBuilderService
-from .services.dashboard_service import DashboardService
+from .services.dashboard import DashboardService
 from .services.notification_service import notification_service
 from .services.external_db import ExternalDBService
 from .utils import log_user_action
