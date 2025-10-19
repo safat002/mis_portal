@@ -1,0 +1,1256 @@
+{% extends "base.html" %}
+
+{% block title %}Database Management{% endblock %}
+{% block page_title %}Database Management{% endblock %}
+
+{% block extra_css %}
+<style>
+    .connection-card {
+        transition: all 0.3s ease;
+        border: 1px solid #e3e6f0;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+    
+    .connection-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border-color: #4e73df;
+    }
+    
+    .connection-card.active {
+        border-color: #4e73df;
+        background-color: #f8f9fc;
+    }
+    
+    .connection-status {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid white;
+    }
+    
+    .connection-status.healthy { background-color: #1cc88a; }
+    .connection-status.error { background-color: #e74a3b; }
+    .connection-status.unknown { background-color: #f6c23e; }
+    
+    .form-section {
+        display: none;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    .form-section.active {
+        display: block;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .loading-spinner {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 2px solid #f3f3f3;
+        border-top: 2px solid #4e73df;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: #6c757d;
+    }
+    
+    .empty-state i {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        opacity: 0.3;
+    }
+    
+    .connection-type-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+    }
+    
+    .table-visibility-section {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+    
+    .alert-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1050;
+        width: 350px;
+    }
+    
+    .connection-actions {
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+    
+    .connection-card:hover .connection-actions {
+        opacity: 1;
+    }
+    
+    #server-fields, #sqlite-fields {
+        border: 1px solid #e3e6f0;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #f8f9fc;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" data-default-connection-id="{{ default_connection_id|default_if_none:'' }}">
+    <!-- Page Header -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <div>
+            <!-- <h1 class="h3 mb-0 text-gray-800">
+                <i class="fas fa-database me-2 text-primary"></i>Database Management
+            </h1> -->
+            <p class="mb-0 text-muted">Manage your database connections and configure data sources</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Connections Sidebar -->
+        <div class="col-md-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary">Connections</h6>
+                    <div>
+                        <button class="btn btn-primary btn-sm me-2" id="addNewBtn">
+                            <i class="fas fa-plus me-1"></i>Add New
+                        </button>
+                        <button class="btn btn-secondary btn-sm" id="refreshBtn">
+                            <i class="fas fa-sync-alt me-1"></i>Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div id="connectionsList" class="p-3">
+                        <div class="text-center">
+                            <div class="loading-spinner me-2"></div>
+                            Loading connections...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="col-md-8">
+            <!-- Welcome Message -->
+            <div class="card shadow mb-4" id="welcomeCard">
+                <div class="card-body text-center py-5">
+                    <i class="fas fa-database text-primary mb-3" style="font-size: 4rem; opacity: 0.3;"></i>
+                    <h4 class="text-muted mb-3">Database Connection Manager</h4>
+                    <p class="text-muted mb-4">
+                        Select a connection on the left to edit, or add a new one.
+                    </p>
+                    <button class="btn btn-primary" onclick="showAddNewForm()">
+                        <i class="fas fa-plus me-2"></i>Add Your First Connection
+                    </button>
+                </div>
+            </div>
+
+            <!-- Connection Form -->
+            <div class="card shadow mb-4" id="connectionFormCard" style="display: none;">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary" id="formTitle">
+                        <i class="fas fa-cog me-2"></i>Connection Details
+                    </h6>
+                    <div>
+                        <button class="btn btn-success btn-sm me-2" id="testConnectionBtn">
+                            <i class="fas fa-heartbeat me-1"></i>Test Connection
+                        </button>
+                        <button class="btn btn-danger btn-sm" id="deleteConnectionBtn" style="display: none;">
+                            <i class="fas fa-trash me-1"></i>Delete
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form id="connectionForm">
+                        {% csrf_token %}
+                        <input type="hidden" id="connectionId" />
+
+                        <!-- Basic Information -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="nickname" class="form-label">
+                                    Connection Name <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="nickname" required 
+                                       placeholder="e.g., Production Database" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="db_type" class="form-label">
+                                    Database Type <span class="text-danger">*</span>
+                                </label>
+                                <select class="form-select" id="db_type" required>
+                                    <option value="">Select Database Type</option>
+                                    <option value="postgresql">PostgreSQL</option>
+                                    <option value="mysql">MySQL</option>
+                                    <option value="sqlite">SQLite</option>
+                                    <option value="mssql">Microsoft SQL Server</option>
+                                    <option value="oracle">Oracle</option>
+                                    <option value="snowflake">Snowflake</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Server-based Database Fields -->
+                        <div id="server-fields" class="form-section">
+                            <h6 class="text-primary mb-3">
+                                <i class="fas fa-server me-2"></i>Server Connection Details
+                            </h6>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="host" class="form-label">Host/Server <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="host" 
+                                           placeholder="localhost or IP address" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="port" class="form-label">Port</label>
+                                    <input type="text" class="form-control" id="port" 
+                                           placeholder="Default port if empty" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="username" 
+                                           placeholder="Database username" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="password" 
+                                               placeholder="Database password" />
+                                        <button class="btn btn-outline-secondary" type="button" id="togglePasswordBtn">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="db_name" class="form-label">Database Name</label>
+                                    <input type="text" class="form-control" id="db_name" 
+                                           placeholder="Name of the database" />
+                                </div>
+                                <div class="col-md-6 mb-3" id="schema-container">
+                                    <label for="schema" class="form-label">Schema (PostgreSQL)</label>
+                                    <input type="text" class="form-control" id="schema" 
+                                           placeholder="public (default)" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SQLite Fields -->
+                        <div id="sqlite-fields" class="form-section">
+                            <h6 class="text-primary mb-3">
+                                <i class="fas fa-file-alt me-2"></i>SQLite Database File
+                            </h6>
+                            <div class="mb-3">
+                                <label for="filepath" class="form-label">Database File Path <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="filepath" 
+                                           placeholder="/path/to/database.db or relative/path/database.db" />
+                                    <button class="btn btn-outline-secondary" type="button" id="browseFileBtn">
+                                        <i class="fas fa-folder-open me-1"></i>Browse
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-secondary" id="cancelFormBtn">
+                                <i class="fas fa-times me-2"></i>Cancel
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="saveConnectionBtn">
+                                <i class="fas fa-save me-2"></i>Save Connection
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Table Visibility Management -->
+            <div class="card shadow mb-4" id="tableVisibilityCard" style="display:none;">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-table me-2"></i>Table Visibility</h6>
+  </div>
+  <div class="card-body">
+    <div id="tablesCheckboxList" style="max-height: 300px; overflow-y: auto;">
+      <p>Select a connection to see tables</p>
+    </div>
+  </div>
+</div>
+        </div>
+    </div>
+</div>
+
+<!-- Success/Error Alerts Container -->
+<div class="alert-container" id="alertContainer"></div>
+
+<!-- Confirmation Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalTitle">Confirm Action</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="confirmModalBody">
+                Are you sure you want to perform this action?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmActionBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+console.log('Database management script loaded');
+
+// Global variables
+let currentConnectionId = null;
+let connections = [];
+let allTables = [];
+let defaultConnectionId = null;
+
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing database management page...');
+    defaultConnectionId = document.querySelector('.container-fluid').dataset.defaultConnectionId;
+    // Initialize event listeners
+    initializeEventListeners();
+    
+    // Load initial data
+    loadConnections();
+    
+    console.log('Database management page initialized successfully');
+});
+
+// Initialize all event listeners
+function initializeEventListeners() {
+    console.log('Setting up event listeners...');
+    
+    try {
+        // Main buttons
+        const addNewBtn = document.getElementById('addNewBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
+        
+        if (addNewBtn) {
+            addNewBtn.addEventListener('click', showAddNewForm);
+            console.log('Add New button listener attached');
+        } else {
+            console.error('Add New button not found!');
+        }
+        
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', loadConnections);
+            console.log('Refresh button listener attached');
+        }
+        
+        // Form handlers
+        const connectionForm = document.getElementById('connectionForm');
+        if (connectionForm) {
+            connectionForm.addEventListener('submit', saveConnection);
+            console.log('Connection form listener attached');
+        }
+        
+        const cancelFormBtn = document.getElementById('cancelFormBtn');
+        if (cancelFormBtn) {
+            cancelFormBtn.addEventListener('click', hideConnectionForm);
+        }
+        
+        const testConnectionBtn = document.getElementById('testConnectionBtn');
+        if (testConnectionBtn) {
+            testConnectionBtn.addEventListener('click', testCurrentConnection);
+        }
+        
+        const deleteConnectionBtn = document.getElementById('deleteConnectionBtn');
+        if (deleteConnectionBtn) {
+            deleteConnectionBtn.addEventListener('click', deleteCurrentConnection);
+        }
+        
+        // Database type change handler
+        const dbType = document.getElementById('db_type');
+        if (dbType) {
+            dbType.addEventListener('change', toggleDatabaseFields);
+            console.log('Database type change listener attached');
+        }
+        
+        // Password visibility toggle
+        const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+        if (togglePasswordBtn) {
+            togglePasswordBtn.addEventListener('click', togglePasswordVisibility);
+        }
+        
+        // File browser
+        const browseFileBtn = document.getElementById('browseFileBtn');
+        if (browseFileBtn) {
+            browseFileBtn.addEventListener('click', browseSqliteFile);
+        }
+        
+        // Table visibility
+        const selectAllTablesBtn = document.getElementById('selectAllTablesBtn');
+        const deselectAllTablesBtn = document.getElementById('deselectAllTablesBtn');
+        
+        if (selectAllTablesBtn) {
+            selectAllTablesBtn.addEventListener('click', selectAllTables);
+        }
+        
+        if (deselectAllTablesBtn) {
+            deselectAllTablesBtn.addEventListener('click', deselectAllTables);
+        }
+        
+        console.log('All event listeners set up successfully');
+        
+    } catch (error) {
+        console.error('Error setting up event listeners:', error);
+        showAlert('Error initializing page: ' + error.message, 'danger');
+    }
+}
+
+// Show add new form
+function showAddNewForm() {
+    console.log('Showing add new form...');
+    
+    try {
+        currentConnectionId = null;
+        resetConnectionForm();
+        
+        document.getElementById('formTitle').innerHTML = '<i class="fas fa-plus me-2"></i>Add New Connection';
+        document.getElementById('deleteConnectionBtn').style.display = 'none';
+        
+        showConnectionForm();
+        
+        // Remove active class from all connection cards
+        document.querySelectorAll('.connection-card').forEach(card => {
+            card.classList.remove('active');
+        });
+        
+        console.log('Add new form displayed successfully');
+        showAlert('Ready to add new connection', 'info', 3000);
+        
+    } catch (error) {
+        console.error('Error showing add new form:', error);
+        showAlert('Error showing form: ' + error.message, 'danger');
+    }
+}
+
+// Load all connections from the server
+async function loadConnections() {
+  console.log('Loading connections.');
+  try {
+    showAlert('Loading connections...', 'info', 2000);
+
+    const response = await fetch('{% url "mis_app:api_connections" %}');
+    console.log('Response status:', response.status);
+    if (!response.ok) throw new Error(`Server returned ${response.status}: ${response.statusText}`);
+
+    let data = await response.json();
+
+    // Normalize to array: support either [ ... ] or { connections: [ ... ] }
+    const normalized = Array.isArray(data) ? data : (data && Array.isArray(data.connections) ? data.connections : []);
+    console.log('Loaded connections:', normalized.length);
+
+    connections = normalized;
+    renderConnectionsList(connections);
+    showAlert('Connections loaded successfully', 'success', 2000);
+
+  } catch (error) {
+    console.error('Error loading connections:', error);
+    showAlert('Error loading connections: ' + error.message, 'danger');
+
+    const listEl = document.getElementById('connectionsList');
+    if (listEl) {
+      listEl.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-exclamation-triangle text-danger"></i>
+          <h6>Error Loading Connections</h6>
+          <p class="text-muted">${error.message}</p>
+          <button class="btn btn-primary btn-sm" onclick="loadConnections()">
+            <i class="fas fa-sync-alt me-1"></i>Retry
+          </button>
+        </div>`;
+    }
+  }
+}
+
+// Render the connections list
+function renderConnectionsList(connectionsData) {
+    console.log('Rendering connections list...', connectionsData.length, 'connections');
+    
+    const listEl = document.getElementById('connectionsList');
+    if (!listEl) {
+        console.error('Connections list element not found!');
+        return;
+    }
+    
+    if (connectionsData.length === 0) {
+        listEl.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-database"></i>
+                <h6>No Connections Found</h6>
+                <p class="text-muted">Click "Add New" to create your first database connection</p>
+                <button class="btn btn-primary btn-sm" onclick="showAddNewForm()">
+                    <i class="fas fa-plus me-1"></i>Add Connection
+                </button>
+            </div>
+        `;
+        return;
+    }
+    
+    listEl.innerHTML = '';
+    
+    connectionsData.forEach((conn, index) => {
+        console.log('Rendering connection:', conn.nickname);
+        const connectionCard = createConnectionCard(conn, index);
+        listEl.appendChild(connectionCard);
+    });
+}
+
+// Create a connection card element
+function createConnectionCard(conn, index) {
+    const card = document.createElement('div');
+    card.className = 'connection-card p-3 position-relative';
+    card.dataset.id = conn.id;
+    card.dataset.dbType = conn.db_type;
+    if (conn.id === defaultConnectionId) {
+        card.classList.add('active');
+    }
+    
+    const dbTypeIcons = {
+        'postgresql': 'fas fa-elephant',
+        'mysql': 'fas fa-database',
+        'sqlite': 'fas fa-file-alt',
+        'oracle': 'fas fa-database',
+        'mssql': 'fab fa-microsoft'
+    };
+    
+    const isDefault = conn.id === defaultConnectionId;
+
+    card.innerHTML = `
+        <div class="d-flex align-items-center">
+            <i class="${dbTypeIcons[conn.db_type] || 'fas fa-database'} connection-type-icon text-primary"></i>
+            <div class="flex-grow-1">
+                <h6 class="mb-1 fw-bold">${conn.nickname}</h6>
+                <small class="text-muted d-block">${conn.db_type ? conn.db_type.toUpperCase() : 'Unknown'}</small>
+                ${conn.host ? `<small class="text-muted">${conn.host}${conn.port ? ':' + conn.port : ''}</small>` : ''}
+            </div>
+            <div class="connection-actions ms-2">
+                <button class="btn btn-sm btn-outline-primary me-1" onclick="loadConnectionDetails('${conn.id}')" title="Edit">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-success me-1" onclick="testConnection('${conn.id}')" title="Test">
+                    <i class="fas fa-heartbeat"></i>
+                </button>
+                <button class="btn btn-sm ${isDefault ? 'btn-warning' : 'btn-outline-warning'}" onclick="setDefaultConnection('${conn.id}')" title="Set as default">
+                    <i class="fas fa-star"></i>
+                </button>
+            </div>
+        </div>
+        <div class="connection-status ${conn.health_status || 'unknown'}" title="Connection status"></div>
+    `;
+    
+    // Add click event to select connection
+    card.addEventListener('click', (e) => {
+        if (!e.target.matches('button, .btn *, i')) {
+            loadConnectionDetails(conn.id);
+        }
+    });
+    
+    return card;
+}
+
+async function setDefaultConnection(connectionId) {
+    try {
+        const response = await fetch('{% url "mis_app:set_default_connection" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCsrfToken()
+            },
+            body: JSON.stringify({ connection_id: connectionId })
+        });
+        if (response.ok) {
+            defaultConnectionId = connectionId;
+            showAlert('Default connection updated successfully', 'success');
+            loadConnections();
+        } else {
+            const error = await response.json();
+            showAlert(`Failed to set default connection: ${error.error}`, 'danger');
+        }
+    } catch (error) {
+        showAlert(`Failed to set default connection: ${error.message}`, 'danger');
+    }
+}
+
+// Load connection details for editing
+async function loadConnectionDetails(connectionId) {
+    console.log('Loading connection details for:', connectionId);
+    
+    try {
+        currentConnectionId = connectionId;
+        
+        const response = await fetch(`{% url "mis_app:api_connection_detail" "00000000-0000-0000-0000-000000000000" %}`.replace('00000000-0000-0000-0000-000000000000', connectionId));
+        if (!response.ok) {
+            throw new Error(`Server returned ${response.status}: ${response.statusText}`);
+        }
+        
+        const connection = await response.json();
+        console.log('Connection details loaded:', connection);
+        
+        populateConnectionForm(connection);
+        
+        document.getElementById('formTitle').innerHTML = '<i class="fas fa-edit me-2"></i>Edit Connection';
+        document.getElementById('deleteConnectionBtn').style.display = 'block';
+        showConnectionForm();
+        
+        // Highlight active connection
+        document.querySelectorAll('.connection-card').forEach(card => {
+            card.classList.toggle('active', card.dataset.id === connectionId);
+        });
+        
+        // Load table visibility if connection exists
+        loadTableVisibility();
+        
+        showAlert('Connection details loaded', 'success', 2000);
+        
+    } catch (error) {
+        console.error('Error loading connection details:', error);
+        showAlert('Error loading connection details: ' + error.message, 'danger');
+    }
+}
+
+// Populate the connection form with data
+function populateConnectionForm(connection) {
+    console.log('Populating form with connection data:', connection);
+    
+    try {
+        document.getElementById('connectionId').value = connection.id || '';
+        document.getElementById('nickname').value = connection.nickname || '';
+        document.getElementById('db_type').value = connection.db_type || '';
+        document.getElementById('host').value = connection.host || '';
+        document.getElementById('port').value = connection.port || '';
+        document.getElementById('username').value = connection.username || '';
+        document.getElementById('db_name').value = connection.db_name || '';
+        document.getElementById('schema').value = connection.schema || '';
+        document.getElementById('filepath').value = connection.filepath || '';
+        
+        // Trigger database type change to show appropriate fields
+        toggleDatabaseFields();
+        
+        console.log('Form populated successfully');
+        
+    } catch (error) {
+        console.error('Error populating form:', error);
+        showAlert('Error populating form: ' + error.message, 'danger');
+    }
+}
+
+// Reset the connection form
+function resetConnectionForm() {
+    console.log('Resetting connection form...');
+    
+    try {
+        document.getElementById('connectionForm').reset();
+        document.getElementById('connectionId').value = '';
+        
+        // Reset visibility of form sections
+        toggleDatabaseFields();
+        
+        console.log('Form reset successfully');
+        
+    } catch (error) {
+        console.error('Error resetting form:', error);
+    }
+}
+
+// Show the connection form
+function showConnectionForm() {
+    console.log('Showing connection form...');
+    
+    try {
+        document.getElementById('welcomeCard').style.display = 'none';
+        document.getElementById('connectionFormCard').style.display = 'block';
+        
+        // Focus on nickname field
+        document.getElementById('nickname').focus();
+        
+        console.log('Connection form shown');
+        
+    } catch (error) {
+        console.error('Error showing connection form:', error);
+    }
+}
+
+// Hide the connection form
+function hideConnectionForm() {
+    console.log('Hiding connection form...');
+    
+    try {
+        document.getElementById('welcomeCard').style.display = 'block';
+        document.getElementById('connectionFormCard').style.display = 'none';
+        document.getElementById('tableVisibilityCard').style.display = 'none';
+        
+        // Remove active class from all connection cards
+        document.querySelectorAll('.connection-card').forEach(card => {
+            card.classList.remove('active');
+        });
+        
+        currentConnectionId = null;
+        
+        console.log('Connection form hidden');
+        
+    } catch (error) {
+        console.error('Error hiding connection form:', error);
+    }
+}
+
+// Toggle database-specific fields based on selected type
+function toggleDatabaseFields() {
+    console.log('Toggling database fields...');
+    
+    try {
+        const dbType = document.getElementById('db_type').value;
+        const serverFields = document.getElementById('server-fields');
+        const sqliteFields = document.getElementById('sqlite-fields');
+        const schemaContainer = document.getElementById('schema-container');
+        
+        console.log('Database type selected:', dbType);
+        
+        if (dbType === 'sqlite') {
+            serverFields.classList.remove('active');
+            sqliteFields.classList.add('active');
+            if (schemaContainer) schemaContainer.style.display = 'none';
+        } else if (dbType) {
+            serverFields.classList.add('active');
+            sqliteFields.classList.remove('active');
+            if (schemaContainer) schemaContainer.style.display = (dbType === 'postgresql') ? 'block' : 'none';
+        } else {
+            serverFields.classList.remove('active');
+            sqliteFields.classList.remove('active');
+        }
+        
+        // Set default ports
+        const defaultPorts = {
+            'postgresql': '5432',
+            'mysql': '3306'
+        };
+        
+        const portField = document.getElementById('port');
+        if (defaultPorts[dbType] && portField && !portField.value) {
+            portField.value = defaultPorts[dbType];
+        }
+        
+        console.log('Database fields toggled successfully');
+        
+    } catch (error) {
+        console.error('Error toggling database fields:', error);
+    }
+}
+
+// Toggle password visibility
+function togglePasswordVisibility() {
+    try {
+        const passwordField = document.getElementById('password');
+        const toggleBtn = document.getElementById('togglePasswordBtn');
+        
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+        } else {
+            passwordField.type = 'password';
+            toggleBtn.innerHTML = '<i class="fas fa-eye"></i>';
+        }
+    } catch (error) {
+        console.error('Error toggling password visibility:', error);
+    }
+}
+
+// Browse SQLite file
+function browseSqliteFile() {
+    try {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.db,.sqlite,.sqlite3';
+        
+        input.onchange = function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                document.getElementById('filepath').value = file.name;
+            }
+        };
+        
+        input.click();
+    } catch (error) {
+        console.error('Error browsing file:', error);
+    }
+}
+
+// Save connection (create or update)
+async function saveConnection(event) {
+    event.preventDefault();
+    console.log('Saving connection...');
+    
+    try {
+        const connectionData = {
+            nickname: document.getElementById('nickname').value.trim(),
+            db_type: document.getElementById('db_type').value,
+            host: document.getElementById('host').value.trim(),
+            port: document.getElementById('port').value.trim(),
+            username: document.getElementById('username').value.trim(),
+            password: document.getElementById('password').value,
+            db_name: document.getElementById('db_name').value.trim(),
+            schema: document.getElementById('schema').value.trim(),
+            filepath: document.getElementById('filepath').value.trim()
+        };
+        
+        console.log('Connection data to save:', connectionData);
+        
+        // Basic validation
+        if (!connectionData.nickname) {
+            showAlert('Connection name is required', 'danger');
+            document.getElementById('nickname').focus();
+            return;
+        }
+        
+        if (!connectionData.db_type) {
+            showAlert('Database type is required', 'danger');
+            document.getElementById('db_type').focus();
+            return;
+        }
+        
+        if (connectionData.db_type === 'sqlite' && !connectionData.filepath) {
+            showAlert('File path is required for SQLite databases', 'danger');
+            document.getElementById('filepath').focus();
+            return;
+        }
+        
+        if (connectionData.db_type !== 'sqlite' && !connectionData.host) {
+            showAlert('Host is required for server-based databases', 'danger');
+            document.getElementById('host').focus();
+            return;
+        }
+        
+        const saveBtn = document.getElementById('saveConnectionBtn');
+        const originalText = saveBtn.innerHTML;
+        saveBtn.innerHTML = '<div class="loading-spinner me-2"></div>Saving...';
+        saveBtn.disabled = true;
+        
+        let url, method;
+        if (currentConnectionId) {
+            url = `{% url "mis_app:api_connection_detail" "00000000-0000-0000-0000-000000000000" %}`.replace('00000000-0000-0000-0000-000000000000', currentConnectionId);
+            method = 'PUT';
+        } else {
+            url = '{% url "mis_app:api_connections" %}';
+            method = 'POST';
+        }
+        
+        console.log('Making request to:', url, 'with method:', method);
+        
+        const response = await fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: JSON.stringify(connectionData)
+        });
+        
+        console.log('Response status:', response.status);
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || `Server returned ${response.status}`);
+        }
+        
+        const result = await response.json();
+        console.log('Connection saved:', result);
+        
+        showAlert(currentConnectionId ? 'Connection updated successfully' : 'Connection created successfully', 'success');
+        
+        // Reload connections list
+        await loadConnections();
+        
+        // If this was a new connection, load its details
+        if (!currentConnectionId && result.id) {
+            loadConnectionDetails(result.id);
+        }
+        
+        saveBtn.innerHTML = originalText;
+        saveBtn.disabled = false;
+        
+    } catch (error) {
+        console.error('Error saving connection:', error);
+        showAlert('Error saving connection: ' + error.message, 'danger');
+        
+        const saveBtn = document.getElementById('saveConnectionBtn');
+        saveBtn.innerHTML = '<i class="fas fa-save me-2"></i>Save Connection';
+        saveBtn.disabled = false;
+    }
+}
+
+// Test current connection
+async function testCurrentConnection() {
+    if (!currentConnectionId) {
+        showAlert('Please save the connection first', 'warning');
+        return;
+    }
+    
+    await testConnection(currentConnectionId);
+}
+
+// Test a specific connection
+async function testConnection(connectionId) {
+    console.log('Testing connection:', connectionId);
+    
+    try {
+        const testBtn = document.querySelector(`[onclick="testConnection('${connectionId}')"]`) || 
+                       document.getElementById('testConnectionBtn');
+        
+        if (testBtn) {
+            const originalText = testBtn.innerHTML;
+            testBtn.innerHTML = '<div class="loading-spinner"></div>';
+            testBtn.disabled = true;
+            
+            const response = await fetch(`{% url "mis_app:api_test_connection" "00000000-0000-0000-0000-000000000000" %}`.replace('00000000-0000-0000-0000-000000000000', connectionId), {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            });
+            
+            const result = await response.json();
+            console.log('Test result:', result);
+            
+            if (result.success) {
+                showAlert('Connection test successful!', 'success');
+            } else {
+                showAlert('Connection test failed: ' + (result.error || 'Unknown error'), 'danger');
+            }
+            
+            // Reload connections to get updated status
+            loadConnections();
+            
+            testBtn.innerHTML = originalText;
+            testBtn.disabled = false;
+        }
+        
+    } catch (error) {
+        console.error('Error testing connection:', error);
+        showAlert('Error testing connection: ' + error.message, 'danger');
+    }
+}
+
+// Delete current connection
+async function deleteCurrentConnection() {
+    if (!currentConnectionId) return;
+    
+    const connection = connections.find(c => c.id === currentConnectionId);
+    const connectionName = connection ? connection.nickname : 'this connection';
+    
+    if (confirm(`Are you sure you want to delete "${connectionName}"? This action cannot be undone.`)) {
+        try {
+            const response = await fetch(`{% url "mis_app:api_connection_detail" "00000000-0000-0000-0000-000000000000" %}`.replace('00000000-0000-0000-0000-000000000000', currentConnectionId), {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            });
+            
+            if (response.ok) {
+                showAlert('Connection deleted successfully', 'success');
+                hideConnectionForm();
+                loadConnections();
+            } else {
+                const result = await response.json();
+                showAlert('Error deleting connection: ' + (result.error || 'Unknown error'), 'danger');
+            }
+        } catch (error) {
+            console.error('Error deleting connection:', error);
+            showAlert('Error deleting connection: ' + error.message, 'danger');
+        }
+    }
+}
+
+// Load table visibility settings
+async function loadTableVisibility() {
+  if (!currentConnectionId) return;
+
+  try {
+    const response = await fetch(`/api/connections/${currentConnectionId}/tables/all/`);
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    const result = await response.json();
+
+    if (result.success) {
+      window.allTables = result.tables || [];
+      renderTableCheckboxes(window.allTables);
+      document.getElementById('tableVisibilityCard').style.display = 'block';
+    } else {
+      showAlert(`Failed to load tables: ${result.error}`, 'danger');
+      document.getElementById('tableVisibilityCard').style.display = 'none';
+    }
+  } catch (error) {
+    console.error('Error loading tables:', error);
+    showAlert('Error loading tables', 'danger');
+    document.getElementById('tableVisibilityCard').style.display = 'none';
+  }
+}
+// Render table checkboxes
+function renderTableCheckboxes(tables) {
+  const container = document.getElementById('tablesCheckboxList');
+  if (!container) {
+    console.error('Tables container element not found');
+    return;
+  }
+
+  if (!tables || tables.length === 0) {
+    container.innerHTML = `
+      <div class="text-center text-muted py-4">
+        <i class="fas fa-table mb-2" style="font-size: 2rem; opacity: 0.3;"></i>
+        <div>No tables found for this connection.</div>
+      </div>
+    `;
+    return;
+  }
+
+  // Clear previous content
+  container.innerHTML = '';
+
+  // Find hidden tables from current connection data or empty set
+  const connection = connections.find(c => c.id === currentConnectionId);
+  const hiddenTables = new Set((connection && connection.hidden_tables || '').split(',').map(t => t.trim()).filter(Boolean));
+
+  tables.forEach(table => {
+    const isChecked = !hiddenTables.has(table);
+    const checkDiv = document.createElement('div');
+    checkDiv.className = 'form-check mb-2';
+
+    checkDiv.innerHTML = `
+      <input class="form-check-input" type="checkbox" id="tableCheckbox_${table}" data-table-name="${table}" ${isChecked ? 'checked' : ''}>
+      <label class="form-check-label" for="tableCheckbox_${table}">
+        <i class="fas fa-table me-2 text-muted"></i>${table}
+      </label>
+    `;
+
+    container.appendChild(checkDiv);
+  });
+
+  // Add change event listeners to checkboxes
+  container.querySelectorAll('input[type=checkbox]').forEach(chk => {
+    chk.addEventListener('change', onTableCheckboxChange);
+  });
+}
+
+// Event handler for checkbox change - update hidden tables list on server
+async function onTableCheckboxChange() {
+  if (!currentConnectionId) return;
+
+  try {
+    const container = document.getElementById('tablesCheckboxList');
+    const uncheckedTables = Array.from(container.querySelectorAll('input[type=checkbox]'))
+      .filter(input => !input.checked)
+      .map(input => input.getAttribute('data-table-name'));
+
+    const response = await fetch(`/api/connections/${currentConnectionId}/`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCsrfToken()
+      },
+      body: JSON.stringify({ hidden_tables: uncheckedTables.join(',') })
+    });
+
+    if (!response.ok) {
+      const err = await response.json();
+      showAlert(`Failed to update hidden tables: ${err.error || 'Unknown error'}`, 'danger');
+    } else {
+      showAlert('Table visibility updated', 'success', 2000);
+      // Update local cache if needed
+      const conn = connections.find(c => c.id === currentConnectionId);
+      if (conn) conn.hidden_tables = uncheckedTables.join(',');
+    }
+  } catch (error) {
+    console.error('Error updating table visibility:', error);
+    showAlert('Error updating table visibility: ' + error.message, 'danger');
+  }
+}
+
+async function toggleTableVisibility(tableName) {
+  const checkboxes = document.querySelectorAll('.form-check-input[type=checkbox]');
+  const uncheckedTables = Array.from(checkboxes)
+    .filter(cb => !cb.checked)
+    .map(cb => cb.id.replace('table_', ''));
+
+  try {
+    const response = await fetch(`/api/connections/${currentConnectionId}/`, {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json', 'X-CSRFToken': getCsrfToken()},
+      body: JSON.stringify({hidden_tables: uncheckedTables.join(',')}),
+    });
+    if (!response.ok) {
+      const err = await response.json();
+      showAlert(`Failed to update hidden tables: ${err.error || 'Unknown error'}`, 'danger');
+    } else {
+      showAlert('Table visibility updated', 'success', 2000);
+    }
+  } catch (e) {
+    console.error(e);
+    showAlert('Error updating table visibility', 'danger');
+  }
+}
+
+function getCsrfToken() {
+  const tokenElement = document.querySelector('input[name=csrfmiddlewaretoken]');
+  return tokenElement ? tokenElement.value : '';
+}
+
+// Select all tables
+function selectAllTables() {
+    document.querySelectorAll('.table-checkbox').forEach(checkbox => {
+        checkbox.checked = true;
+    });
+    updateConnectionTables();
+}
+
+// Deselect all tables
+function deselectAllTables() {
+    document.querySelectorAll('.table-checkbox').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    updateConnectionTables();
+}
+
+// Toggle table visibility
+function toggleTableVisibility(tableName) {
+    updateConnectionTables();
+}
+
+// Update connection tables
+async function updateConnectionTables() {
+    if (!currentConnectionId) return;
+    
+    try {
+        const checkboxes = document.querySelectorAll('.table-checkbox:checked');
+        const visibleTables = Array.from(checkboxes).map(cb => cb.id.replace('table_', ''));
+        const hiddenTables = allTables.filter(t => !visibleTables.includes(t));
+        
+        const response = await fetch(`{% url "mis_app:api_connection_detail" "00000000-0000-0000-0000-000000000000" %}`.replace('00000000-0000-0000-0000-000000000000', currentConnectionId), {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: JSON.stringify({ hidden_tables: hiddenTables.join(',') })
+        });
+        
+        if (response.ok) {
+            // Update local connection data
+            const connection = connections.find(c => c.id === currentConnectionId);
+            if (connection) {
+                connection.hidden_tables = hiddenTables.join(',');
+            }
+            showAlert('Table visibility updated', 'success', 2000);
+        }
+    } catch (error) {
+        console.error('Error updating table visibility:', error);
+        showAlert('Error updating table visibility: ' + error.message, 'danger');
+    }
+}
+
+// Utility Functions
+
+// Show alert message
+function showAlert(message, type = 'info', duration = 5000) {
+    console.log('Showing alert:', type, message);
+    
+    const alertContainer = document.getElementById('alertContainer');
+    if (!alertContainer) {
+        console.error('Alert container not found!');
+        return;
+    }
+    
+    const alertId = 'alert_' + Date.now();
+    
+    const alertHtml = `
+        <div class="alert alert-${type} alert-dismissible fade show" id="${alertId}" role="alert">
+            <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'danger' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'} me-2"></i>
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    `;
+    
+    alertContainer.insertAdjacentHTML('beforeend', alertHtml);
+    
+    // Auto-dismiss after duration
+    if (duration > 0) {
+        setTimeout(() => {
+            const alertElement = document.getElementById(alertId);
+            if (alertElement) {
+                try {
+                    const alert = new bootstrap.Alert(alertElement);
+                    alert.close();
+                } catch (e) {
+                    // Fallback if Bootstrap is not available
+                    alertElement.remove();
+                }
+            }
+        }, duration);
+    }
+}
+
+// Error handlers
+window.addEventListener('error', function(e) {
+    console.error('Global JavaScript error:', e.error);
+    console.error('Error in file:', e.filename);
+    console.error('Line number:', e.lineno);
+    showAlert('An unexpected error occurred. Check the console for details.', 'danger');
+});
+
+window.addEventListener('unhandledrejection', function(e) {
+    console.error('Unhandled promise rejection:', e.reason);
+    showAlert('An unexpected error occurred. Check the console for details.', 'danger');
+});
+
+// Global function for debugging
+window.debugDatabaseManagement = function() {
+    console.log('=== Database Management Debug Info ===');
+    console.log('Current connection ID:', currentConnectionId);
+    console.log('Connections:', connections);
+    console.log('All tables:', allTables);
+    console.log('Add New button:', document.getElementById('addNewBtn'));
+    console.log('Connection form:', document.getElementById('connectionForm'));
+    console.log('======================================');
+};
+
+console.log('Database management script fully loaded and ready!');
+</script>
+{% endblock %}

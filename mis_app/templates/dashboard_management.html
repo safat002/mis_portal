@@ -1,0 +1,479 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dashboards{% endblock %}
+
+{% block extra_css %}
+<style>
+  :root{
+    --card-radius:14px;
+    --shadow-sm:0 2px 8px rgba(0,0,0,.05);
+    --shadow-md:0 8px 24px rgba(0,0,0,.08);
+  }
+  .page-wrap{max-width:1200px;margin:0 auto;padding:24px 20px 96px;}
+  .topbar{
+    position:sticky;top:0;z-index:10;background:var(--bs-body-bg);
+    border-bottom:1px solid rgba(0,0,0,.06);
+  }
+  .topbar .inner{max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;gap:12px;align-items:center}
+  .topbar h1{font-size:1.25rem;margin:0;font-weight:600}
+  .search-wrap{flex:1;display:flex;gap:10px;align-items:center}
+  .search-wrap .form-control{border-radius:999px}
+  .btn-pill{border-radius:999px}
+  .toolbar{max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;gap:12px;align-items:center}
+  .chip{display:inline-flex;gap:6px;align-items:center;background:#f4f6f8;border-radius:999px;padding:6px 10px;font-size:.875rem}
+  .chip button{border:0;background:transparent;padding:0 0 0 2px;line-height:1}
+
+  /* Pinned carousel */
+  .pinned-row{display:none;margin-top:10px;margin-bottom:16px}
+  .pinned-row.active{display:block}
+  .pinned-scroll{display:flex;gap:12px;overflow:auto;padding-bottom:6px}
+  .pinned-scroll::-webkit-scrollbar{height:8px}
+  .pinned-scroll::-webkit-scrollbar-thumb{background:#d7dbe0;border-radius:999px}
+
+  /* Grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+  .card-dash{
+    border:0;border-radius:var(--card-radius);box-shadow:var(--shadow-sm);
+    transition:transform .15s ease, box-shadow .15s ease; background:var(--bs-body-bg);
+  }
+  .card-dash:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+  .card-dash .card-body{padding:14px 14px 10px}
+  .card-title{font-weight:600;margin-bottom:6px}
+  .card-meta{color:#6c757d;font-size:.85rem}
+  .card-actions{display:flex;gap:8px;opacity:.0;transition:opacity .15s ease}
+  .card-dash:hover .card-actions{opacity:1}
+  .card-actions .btn{padding:.25rem .5rem;border-radius:8px}
+  .card-pin.badge{background:#eef4ff;color:#2962ff}
+  .owner-chip{background:#f1f3f5;border-radius:999px;padding:2px 8px;font-size:.75rem}
+  .select-box{display:none;position:absolute;top:10px;left:10px}
+  .card-dash.selected .select-box{display:block}
+  .card-dash .kebab{border:0;background:transparent}
+
+  /* Inline create */
+  .create-inline{
+    border:1px dashed #cfd4da;border-radius:var(--card-radius);padding:12px;display:flex;gap:12px;align-items:center
+  }
+
+  /* Bulk rail */
+  .bulk-rail{
+    position:fixed;left:50%;transform:translateX(-50%);
+    bottom:16px;background:var(--bs-body-bg);border-radius:12px;box-shadow:var(--shadow-md);
+    display:none;gap:8px;align-items:center;padding:8px 10px;z-index:50
+  }
+  .bulk-rail.active{display:flex}
+  .bulk-rail .btn{border-radius:10px}
+
+  /* Empty states */
+  .empty{padding:28px;border:2px dashed #e9ecef;border-radius:12px;text-align:center;color:#6c757d}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="topbar">
+  <div class="inner">
+    <h1 class="me-2">Dashboards</h1>
+    <div class="search-wrap">
+      <div class="input-group">
+        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+        <input id="searchInput" type="search" class="form-control border-start-0" placeholder="Search dashboards…">
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-outline-secondary btn-pill dropdown-toggle" data-bs-toggle="dropdown" id="sortBtn">
+          <i class="bi bi-arrow-down-up me-1"></i><span data-sort-label>Recently updated</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item sort-opt" data-sort="updated_desc">Recently updated</a></li>
+          <li><a class="dropdown-item sort-opt" data-sort="created_desc">Recently created</a></li>
+          <li><a class="dropdown-item sort-opt" data-sort="az">A → Z</a></li>
+          <li><a class="dropdown-item sort-opt" data-sort="za">Z → A</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ms-auto d-flex gap-2">
+      <button id="filterBtn" class="btn btn-outline-secondary btn-pill"><i class="bi bi-filter me-1"></i>Filter</button>
+      <button id="createBtn" class="btn btn-primary btn-pill"><i class="bi bi-plus-lg me-1"></i>Create dashboard</button>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  {% csrf_token %}
+
+  <!-- Toolbar chips area -->
+  <div id="chipRow" class="toolbar">
+    <div class="chip d-none" id="chipOwnerMe">Owner: Me <button type="button" class="text-muted" data-remove-chip="owner"><i class="bi bi-x"></i></button></div>
+    <div class="chip d-none" id="chipShared">Shared with me <button type="button" class="text-muted" data-remove-chip="shared"><i class="bi bi-x"></i></button></div>
+    <!-- Add tag/date chips programmatically if needed -->
+  </div>
+
+  <!-- Inline create -->
+  <div class="create-inline mb-3">
+    <i class="bi bi-kanban fs-5 text-primary"></i>
+    <input id="newName" type="text" class="form-control" placeholder="Name your new dashboard…">
+    <button id="createInlineBtn" class="btn btn-primary">Create</button>
+  </div>
+
+  <!-- Pinned row -->
+  <section id="pinnedSection" class="pinned-row">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <div class="fw-semibold text-muted">Pinned</div>
+    </div>
+    <div id="pinnedScroll" class="pinned-scroll"></div>
+  </section>
+
+  <!-- Grid -->
+  <section id="gridSection">
+    {% if owned_dashboards or shared_dashboards %}
+      <div class="grid" id="dashGrid">
+        {% for dash in owned_dashboards %}
+          <article class="card-dash position-relative" tabindex="0"
+                   data-id="{{ dash.id }}"
+                   data-title="{{ dash.title|default:'Untitled' }}"
+                   data-owner="me"
+                   data-created="{{ dash.created_at|date:'c' }}"
+                   data-updated="{{ dash.updated_at|date:'c' }}">
+            <div class="select-box form-check">
+              <input class="form-check-input select-toggle" type="checkbox">
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="pe-2">
+                  <div class="card-title text-truncate">{{ dash.title|default:"Untitled" }}</div>
+                  <div class="card-meta">
+                    <span class="owner-chip">You</span>
+                    <span class="ms-2" title="Last updated">{{ dash.updated_at|timesince }} ago</span>
+                  </div>
+                </div>
+                <div class="card-actions">
+                  <a href="{% url 'mis_app:dashboard_design' dashboard_id=dash.id %}" class="btn btn-outline-secondary btn-sm" title="Open"><i class="bi bi-box-arrow-up-right"></i></a>
+                  <button class="btn btn-outline-secondary btn-sm act-pin" title="Pin/Unpin"><i class="bi bi-pin-angle"></i></button>
+                  <button class="btn btn-outline-secondary btn-sm act-dup" title="Duplicate"><i class="bi bi-files"></i></button>
+                  <button class="btn btn-outline-danger btn-sm act-del" title="Delete"><i class="bi bi-trash"></i></button>
+                </div>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+
+        {% for dash in shared_dashboards %}
+          <article class="card-dash position-relative" tabindex="0"
+                   data-id="{{ dash.id }}"
+                   data-title="{{ dash.title|default:'Untitled' }}"
+                   data-owner="shared"
+                   data-created="{{ dash.created_at|date:'c' }}"
+                   data-updated="{{ dash.updated_at|date:'c' }}">
+            <div class="select-box form-check">
+              <input class="form-check-input select-toggle" type="checkbox">
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="pe-2">
+                  <div class="card-title text-truncate">{{ dash.title|default:"Untitled" }}</div>
+                  <div class="card-meta">
+                    <span class="owner-chip">Shared</span>
+                    <span class="ms-2" title="Last updated">{{ dash.updated_at|timesince }} ago</span>
+                  </div>
+                </div>
+                <div class="card-actions">
+                  <a href="{% url 'mis_app:dashboard_design' dashboard_id=dash.id %}" class="btn btn-outline-secondary btn-sm" title="Open"><i class="bi bi-box-arrow-up-right"></i></a>
+                  <button class="btn btn-outline-secondary btn-sm act-pin" title="Pin/Unpin"><i class="bi bi-pin-angle"></i></button>
+                  <button class="btn btn-outline-secondary btn-sm act-dup" title="Duplicate"><i class="bi bi-files"></i></button>
+                  <!-- no delete for shared by default; will be guarded server-side anyway -->
+                </div>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty">No dashboards yet. Create your first one above.</div>
+    {% endif %}
+  </section>
+</div>
+
+<!-- Bulk action rail -->
+<div id="bulkRail" class="bulk-rail">
+  <div class="ms-2 me-2 small text-muted" id="bulkCount">0 selected</div>
+  <button class="btn btn-outline-secondary btn-sm" id="bulkShare"><i class="bi bi-people me-1"></i>Share</button>
+  <button class="btn btn-outline-secondary btn-sm" id="bulkPin"><i class="bi bi-pin-angle me-1"></i>Pin</button>
+  <button class="btn btn-outline-secondary btn-sm" id="bulkDup"><i class="bi bi-files me-1"></i>Duplicate</button>
+  <button class="btn btn-outline-danger btn-sm" id="bulkDel"><i class="bi bi-trash me-1"></i>Delete</button>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function(){
+  // ---------- helpers ----------
+  function qs(sel, root=document){ return root.querySelector(sel); }
+  function qsa(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
+  function getCsrfToken(){ const el = document.querySelector('input[name="csrfmiddlewaretoken"]'); return el? el.value : ''; }
+  function fmtISO(d){ return new Date(d).toISOString(); }
+  function getCardData(card){
+    return {
+      id: card.dataset.id,
+      title: (card.dataset.title || '').toLowerCase(),
+      owner: card.dataset.owner,
+      updated: card.dataset.updated,
+      created: card.dataset.created
+    };
+  }
+  function debounce(fn, t=300){ let h; return (...a)=>{ clearTimeout(h); h=setTimeout(()=>fn(...a), t); }; }
+
+  // ---------- state ----------
+  const pinnedIds = (window.initialPinnedIds || []).map(String); // if you expose user pinned list later
+  const selected = new Set();
+
+  const gridEl = qs('#dashGrid');
+  const pinnedSection = qs('#pinnedSection');
+  const pinnedScroll = qs('#pinnedScroll');
+  const searchInput = qs('#searchInput');
+  const bulkRail = qs('#bulkRail');
+  const bulkCount = qs('#bulkCount');
+
+  // ---------- init ----------
+  function hydratePinned(){
+    if(!gridEl) return;
+    const cards = qsa('.card-dash', gridEl);
+    pinnedScroll.innerHTML = '';
+    let anyPinned = false;
+    cards.forEach(card=>{
+      const id = card.dataset.id;
+      if(pinnedIds.includes(id)){
+        anyPinned = true;
+        const clone = card.cloneNode(true);
+        clone.classList.add('border');
+        clone.querySelectorAll('.select-box').forEach(n=>n.remove());
+        pinnedScroll.appendChild(clone);
+      }
+    });
+    pinnedSection.classList.toggle('active', anyPinned);
+  }
+
+  function applySearchSortFilter(){
+    if(!gridEl) return;
+    const query = (searchInput.value || '').trim().toLowerCase();
+    const sortMode = localStorage.getItem('dash_sort') || 'updated_desc';
+
+    const cards = qsa('.card-dash', gridEl);
+    // filter
+    cards.forEach(card=>{
+      const d = getCardData(card);
+      const visible = !query || d.title.includes(query);
+      card.style.display = visible ? '' : 'none';
+    });
+
+    // sort (client-side)
+    const visibleCards = cards.filter(c => c.style.display !== 'none');
+    const collator = new Intl.Collator(undefined, {numeric:true, sensitivity:'base'});
+    visibleCards.sort((a,b)=>{
+      const A = getCardData(a), B = getCardData(b);
+      switch(sortMode){
+        case 'created_desc': return new Date(B.created) - new Date(A.created);
+        case 'az': return collator.compare(A.title, B.title);
+        case 'za': return collator.compare(B.title, A.title);
+        case 'updated_desc':
+        default: return new Date(B.updated) - new Date(A.updated);
+      }
+    });
+    visibleCards.forEach(c => gridEl.appendChild(c));
+  }
+
+  // ---------- events: search & sort ----------
+  if(searchInput){
+    searchInput.addEventListener('input', debounce(applySearchSortFilter, 150));
+  }
+  qsa('.sort-opt').forEach(opt=>{
+    opt.addEventListener('click', () => {
+      const mode = opt.dataset.sort;
+      localStorage.setItem('dash_sort', mode);
+      qs('[data-sort-label]').textContent = opt.textContent.trim();
+      applySearchSortFilter();
+    });
+  });
+
+  // ---------- selection & bulk rail ----------
+  function updateBulk(){
+    const count = selected.size;
+    bulkCount.textContent = count + ' selected';
+    bulkRail.classList.toggle('active', count>0);
+  }
+  function setSelected(card, on){
+    card.classList.toggle('selected', on);
+    const cb = qs('.select-toggle', card);
+    if(cb) cb.checked = on;
+    const id = card.dataset.id;
+    on ? selected.add(id) : selected.delete(id);
+    updateBulk();
+  }
+  if(gridEl){
+    gridEl.addEventListener('click', e=>{
+      const card = e.target.closest('.card-dash');
+      if(!card) return;
+
+      // checkbox
+      if(e.target.classList.contains('select-toggle')){
+        setSelected(card, e.target.checked);
+        e.stopPropagation();
+        return;
+      }
+
+      // per-card actions
+      if(e.target.closest('.act-pin')) { togglePin(card); return; }
+      if(e.target.closest('.act-dup')) { duplicateDash(card); return; }
+      if(e.target.closest('.act-del')) { deleteDash(card); return; }
+    });
+
+    // keyboard select with Space
+    gridEl.addEventListener('keydown', e=>{
+      const card = e.target.closest('.card-dash'); if(!card) return;
+      if(e.code==='Space'){ e.preventDefault(); setSelected(card, !card.classList.contains('selected')); }
+      if(e.code==='Delete'){ e.preventDefault(); deleteDash(card); }
+      if(e.key.toLowerCase()==='p'){ togglePin(card); }
+    });
+  }
+
+  // bulk buttons
+  qs('#bulkDel')?.addEventListener('click', ()=> bulkDelete());
+  qs('#bulkPin')?.addEventListener('click', ()=> bulkPin());
+  qs('#bulkDup')?.addEventListener('click', ()=> bulkDuplicate());
+  qs('#bulkShare')?.addEventListener('click', ()=> showInfo?.('Sharing UI coming soon'));
+
+  // ---------- create flow ----------
+  function createDashboard(name){
+    if(!name){ showError?.('Please enter a dashboard name.'); return; }
+    fetch("{% url 'mis_app:create_dashboard_api' %}", {
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-CSRFToken':getCsrfToken()},
+      body:JSON.stringify({dashboard_name:name})
+    }).then(r=>r.json()).then(res=>{
+      if(res.success){
+        showSuccess?.('Dashboard created');
+        window.location.href = `/dashboard/design/${res.dashboard_id}/`;
+      }else{
+        showError?.(res.error || 'Failed to create dashboard');
+      }
+    }).catch(()=>showError?.('Network error creating dashboard'));
+  }
+  qs('#createBtn')?.addEventListener('click', ()=>{
+    const v = prompt('Dashboard name');
+    if(v) createDashboard(v.trim());
+  });
+  qs('#createInlineBtn')?.addEventListener('click', ()=>{
+    const v = qs('#newName').value.trim();
+    createDashboard(v);
+  });
+
+  // ---------- pin / duplicate / delete (single) ----------
+  function togglePin(card){
+    const id = card.dataset.id;
+    fetch(`/api/dashboard/${id}/pin/`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-CSRFToken':getCsrfToken()}
+    }).then(r=>r.json()).then(res=>{
+      if(res.success){
+        const pinned = !!res.pinned;
+        // update local state
+        const idx = pinnedIds.indexOf(id);
+        if(pinned && idx<0) pinnedIds.push(id);
+        if(!pinned && idx>=0) pinnedIds.splice(idx,1);
+        hydratePinned();
+        showSuccess?.(pinned ? 'Pinned' : 'Unpinned');
+      }else{
+        showWarning?.(res.error || 'Pin API not ready yet');
+      }
+    }).catch(()=>showWarning?.('Pin API not found yet'));
+  }
+
+  function duplicateDash(card){
+    const id = card.dataset.id;
+    fetch(`/api/dashboard/${id}/duplicate/`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-CSRFToken':getCsrfToken()}
+    }).then(r=>r.json()).then(res=>{
+      if(res.success && res.new_id){
+        showSuccess?.('Duplicated');
+        // quick client-side clone (fallback) — real list refresh is better
+        const clone = card.cloneNode(true);
+        clone.dataset.id = res.new_id;
+        clone.querySelector('.card-title').textContent += ' (Copy)';
+        gridEl.prepend(clone);
+        applySearchSortFilter();
+      }else{
+        showWarning?.(res.error || 'Duplicate API not ready yet');
+      }
+    }).catch(()=>showWarning?.('Duplicate API not found yet'));
+  }
+
+  function deleteDash(card){
+    const id = card.dataset.id;
+    if(!confirm('Delete this dashboard?')) return;
+    fetch(`/api/dashboard/${id}/`,{
+      method:'DELETE',
+      headers:{'X-CSRFToken':getCsrfToken()}
+    }).then(r=>r.json()).then(res=>{
+      if(res.success){
+        showSuccess?.('Deleted');
+        card.remove();
+        selected.delete(id);
+        updateBulk();
+      }else{
+        showWarning?.(res.error || 'Delete API not ready yet');
+      }
+    }).catch(()=>showWarning?.('Delete API not found yet'));
+  }
+
+  // ---------- bulk actions ----------
+  function bulkDelete(){
+    if(selected.size===0) return;
+    if(!confirm(`Delete ${selected.size} selected dashboards?`)) return;
+    const ids = Array.from(selected);
+    Promise.all(ids.map(id => fetch(`/api/dashboard/${id}/`,{
+      method:'DELETE', headers:{'X-CSRFToken':getCsrfToken()}
+    }).then(r=>r.json()).catch(()=>({success:false})))).then(results=>{
+      const ok = results.filter(x=>x && x.success).length;
+      qsa('.card-dash').forEach(c=>{ if(selected.has(c.dataset.id)) c.remove(); });
+      selected.clear(); updateBulk();
+      showSuccess?.(`Deleted ${ok} dashboards`);
+    });
+  }
+  function bulkPin(){
+    if(selected.size===0) return;
+    const ids = Array.from(selected);
+    Promise.all(ids.map(id => fetch(`/api/dashboard/${id}/pin/`,{
+      method:'POST', headers:{'Content-Type':'application/json','X-CSRFToken':getCsrfToken()}
+    }).then(r=>r.json()).catch(()=>({success:false})))).then(results=>{
+      hydratePinned();
+      showInfo?.('Pin/unpin requested for selected items');
+    });
+  }
+  function bulkDuplicate(){
+    if(selected.size===0) return;
+    const ids = Array.from(selected);
+    Promise.all(ids.map(id => fetch(`/api/dashboard/${id}/duplicate/`,{
+      method:'POST', headers:{'Content-Type':'application/json','X-CSRFToken':getCsrfToken()}
+    }).then(r=>r.json()).catch(()=>({success:false})))).then(results=>{
+      const created = results.filter(x=>x && x.success && x.new_id);
+      created.forEach(c=>{
+        // Minimal visual feedback; full refresh recommended after you implement list API
+        const card = qsa('.card-dash').find(el => el.dataset.id === ids[0]);
+        if(card){
+          const clone = card.cloneNode(true);
+          clone.dataset.id = c.new_id;
+          clone.querySelector('.card-title').textContent += ' (Copy)';
+          gridEl.prepend(clone);
+        }
+      });
+      applySearchSortFilter();
+      showInfo?.('Duplicate requests submitted');
+    });
+  }
+
+  // ---------- boot ----------
+  hydratePinned();
+  applySearchSortFilter();
+
+})();
+</script>
+{% endblock %}

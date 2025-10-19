@@ -1,0 +1,318 @@
+/* =========================
+   Data Model Designer (clean)
+   ========================= */
+
+/* Layout */
+.data-model-container {
+	display: flex;
+	flex-direction: column;
+	height: calc(100vh - 120px);
+	overflow: hidden;
+	background: #fff;
+}
+.data-model-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.5rem 1rem;
+	border-bottom: 1px solid #dee2e6;
+	flex-shrink: 0;
+	background-color: #f8f9fa;
+}
+.data-model-workspace {
+	display: flex;
+	flex-grow: 1;
+	overflow: hidden;
+}
+
+/* Sidebar */
+#sourceTablesSidebar {
+	width: 280px;
+	flex-shrink: 0;
+	border-right: 1px solid #dee2e6;
+	display: flex;
+	flex-direction: column;
+	background-color: #f8f9fa;
+}
+.sidebar-header {
+	padding: 0.75rem 1rem;
+	border-bottom: 1px solid #dee2e6;
+}
+.sidebar-content {
+	flex-grow: 1;
+	overflow-y: auto;
+}
+#tableList .list-group-item {
+	cursor: grab;
+	user-select: none;
+}
+#tableList .list-group-item.disabled {
+	color: #6c757d;
+	background-color: #f8f9fa;
+	cursor: not-allowed;
+}
+
+/* Canvas */
+.data-model-canvas {
+	flex-grow: 1;
+	position: relative;
+	overflow: auto;
+	background-image: linear-gradient(#e9ecef 1px, transparent 1px),
+		linear-gradient(to right, #e9ecef 1px, #fff 1px);
+	background-size: 20px 20px;
+}
+.placeholder-text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	color: #6c757d;
+}
+.canvas-content {
+	position: relative;
+	width: fit-content;
+	height: fit-content;
+	min-width: 100%;
+	min-height: 100%;
+	transform-origin: 0 0;
+	transition: transform 0.1s ease;
+	left: 0;
+	top: 0;
+}
+
+/* Table Card */
+.table-card {
+	position: absolute;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	border-radius: 6px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	transform: none !important; /* avoid transform stacking on drag libs */
+}
+.table-card-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.5rem 0.75rem;
+	font-weight: 600;
+	background-color: #f1f1f1;
+	border-bottom: 1px solid #ddd;
+	cursor: move; /* drag handle */
+}
+.table-card-header,
+.table-card-header * {
+	user-select: none; /* drag even when over text/icons */
+}
+.table-card-body {
+	max-height: none;
+	overflow: hidden;
+}
+.table-card-body.collapsed {
+	max-height: 0;
+	padding: 0;
+	overflow: hidden;
+	border: none;
+}
+.table-card-field {
+	padding: 0.4rem 0.75rem;
+	font-size: 0.875rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #f1f1f1;
+	cursor: crosshair; /* indicates join-drag start */
+}
+.table-card-field .join-wizard-btn,
+.table-card-field .join-wizard-btn * {
+	cursor: pointer; /* explicit click target */
+}
+.table-card-field:hover .join-wizard-btn {
+	opacity: 1;
+}
+
+/* Tooltip for join hover */
+.join-info-tooltip {
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: #fff;
+	padding: 5px 10px;
+	border-radius: 4px;
+	font-size: 12px;
+	z-index: 9999;
+	pointer-events: none;
+	display: none;
+}
+
+/* jsPlumb layering & clickability */
+.jtk-connector {
+	z-index: 5;
+	cursor: pointer;
+	pointer-events: all !important;
+	stroke: #4361ee;
+	stroke-width: 2;
+}
+.jtk-endpoint {
+	z-index: 6;
+	cursor: pointer;
+	pointer-events: all !important;
+	fill: #4361ee;
+}
+.jtk-overlay {
+	z-index: 7;
+}
+.jtk-connector path {
+	pointer-events: stroke;
+	cursor: pointer;
+}
+.jtk-connector,
+.jtk-endpoint,
+.jtk-overlay {
+	transform: scale(1) !important;
+} /* let jsPlumb handle zoom */
+
+/* Join labels (cardinality markers and center label) */
+.connection-label,
+.conn-label {
+	/* alias to support either class from JS */
+	background-color: #fff;
+	padding: 1px 5px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	font-size: 10px;
+	z-index: 7;
+}
+
+/* Join type visual indicators (stroke styles) */
+.inner-join {
+	stroke: #4361ee;
+}
+.left-join {
+	stroke: #f72585;
+	stroke-dasharray: 5 5;
+}
+.right-join {
+	stroke: #4cc9f0;
+	stroke-dasharray: 10 5;
+}
+.full-join {
+	stroke: #7209b7;
+	stroke-dasharray: 15 5 5 5;
+}
+
+/* Inline popover for connection editing */
+.connection-popover-container {
+	animation: fadeIn 0.15s ease-in;
+	z-index: 10000;
+	position: absolute;
+}
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-5px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+/* Bootstrap popover skin for join editor */
+.popover.join-wizard-popover {
+	max-width: 320px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.popover.join-wizard-popover .popover-body {
+	padding: 0;
+}
+
+/* Join wizard (gear) */
+.join-wizard-btn {
+	opacity: 0.75;
+}
+.join-wizard-row {
+	display: flex;
+	gap: 8px;
+	margin-bottom: 8px;
+}
+.join-wizard-footer {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+.join-wizard-sub-title {
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #6c757d;
+	text-transform: uppercase;
+	border-bottom: 1px solid #dee2e6;
+	padding-bottom: 0.25rem;
+	margin-bottom: 0.25rem;
+}
+
+/* Print / Export tweaks */
+@media print {
+	.table-card {
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+		border: 2px solid #333 !important;
+	}
+	.jtk-connector {
+		stroke-width: 3px !important;
+		stroke: #000 !important;
+	}
+	.jtk-endpoint {
+		fill: #000 !important;
+		stroke: #000 !important;
+		stroke-width: 2px !important;
+	}
+}
+
+/* Enhanced visual feedback for different cardinalities */
+.connection-cardinality-hint {
+	position: absolute;
+	background: rgba(255, 255, 255, 0.9);
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 2px 6px;
+	font-size: 10px;
+	z-index: 100;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 0.2s;
+}
+
+.jtk-connector:hover .connection-cardinality-hint {
+	opacity: 1;
+}
+
+/* Different colors for different cardinality types */
+.one-to-one-connection {
+	stroke: #10b981; /* Green */
+}
+
+.one-to-many-connection {
+	stroke: #3b82f6; /* Blue */
+}
+
+.many-to-one-connection {
+	stroke: #8b5cf6; /* Purple */
+}
+
+.many-to-many-connection {
+	stroke: #f59e0b; /* Amber */
+}
+
+/* Confidence indicators */
+.high-confidence {
+	stroke-width: 3;
+}
+
+.medium-confidence {
+	stroke-width: 2;
+	stroke-dasharray: 5, 3;
+}
+
+.low-confidence {
+	stroke-width: 2;
+	stroke-dasharray: 3, 3;
+}

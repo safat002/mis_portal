@@ -1,0 +1,165 @@
+{% comment %} This file contains only the *content* for the Data Preparation
+modal. It will be loaded dynamically into the modal shell in
+report_builder.html. {% endcomment %}
+
+<div class="container-fluid h-100">
+	<div class="row h-100">
+		<div class="col-md-3 border-end d-flex flex-column h-100">
+			<h6 class="pt-3 pb-2 border-bottom">
+				<i class="fas fa-search me-2"></i>Column Inspector
+			</h6>
+			<div id="qualitySummary" class="small text-muted p-2"></div>
+			<div class="list-group list-group-flush overflow-auto" id="columnList">
+				<div class="text-center p-5">
+					<div class="spinner-border text-primary" role="status">
+						<span class="visually-hidden">Loading columns...</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-6 d-flex flex-column h-100">
+			<div
+				class="pt-3 pb-2 border-bottom d-flex justify-content-between align-items-center"
+			>
+				<h6 class="mb-0"><i class="fas fa-table me-2"></i>Live Data Preview</h6>
+				<button
+					id="toggleBeforeAfterBtn"
+					class="btn btn-sm btn-outline-secondary"
+				>
+					Show Original
+				</button>
+			</div>
+			<div class="table-responsive flex-grow-1" id="dataPreviewContainer">
+				<div class="text-center p-5">
+					<div class="spinner-border text-primary" role="status">
+						<span class="visually-hidden">Loading data...</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-3 border-start d-flex flex-column h-100 bg-light">
+			<button class="btn btn-sm btn-outline-primary" id="addTransformationBtn">
+				<i class="fas fa-plus"></i> Add Cleaning Step...
+			</button>
+			<div class="btn-group">
+				<button
+					type="button"
+					class="btn btn-sm btn-outline-secondary dropdown-toggle"
+					data-bs-toggle="dropdown"
+				>
+					Quick add
+				</button>
+				<ul class="dropdown-menu dropdown-menu-end">
+					<li>
+						<a class="dropdown-item" data-dp-action="fill-missing" href="#"
+							>Fill Missing…</a
+						>
+					</li>
+					<li>
+						<a class="dropdown-item" data-dp-action="cast" href="#"
+							>Cast Type…</a
+						>
+					</li>
+					<li>
+						<a class="dropdown-item" data-dp-action="trim" href="#"
+							>Trim / Clean Text…</a
+						>
+					</li>
+					<li>
+						<a class="dropdown-item" data-dp-action="replace" href="#"
+							>Replace Values…</a
+						>
+					</li>
+				</ul>
+			</div>
+			<h6 class="pt-3 pb-2 border-bottom px-3">
+				<i class="fas fa-stream me-2"></i>Transformation Pipeline
+			</h6>
+			<div class="flex-grow-1 overflow-auto p-2" id="pipelineList">
+				<p class="text-muted small text-center p-3">
+					No cleaning steps have been applied yet.
+				</p>
+			</div>
+			<div class="p-3 border-top">
+				<div class="d-grid gap-2"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal-footer bg-white position-sticky bottom-0">
+	<button
+		type="button"
+		class="btn btn-success me-auto"
+		id="saveCleanSourceBtn"
+		title="Save these cleaning steps as a new reusable data source"
+	>
+		<i class="fas fa-save me-2"></i>Save as Clean Source
+	</button>
+	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+		Cancel
+	</button>
+	<button type="button" class="btn btn-primary" id="applyTransformationsBtn">
+		<i class="fas fa-check me-2"></i>Apply to Report
+	</button>
+</div>
+
+<div
+	class="modal fade"
+	id="fillMissingModal"
+	tabindex="-1"
+	aria-labelledby="fillMissingModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="fillMissingModalLabel">
+					<i class="fas fa-magic me-2"></i>Add Step: Fill Missing Values
+				</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Close"
+				></button>
+			</div>
+			<div class="modal-body">
+				<div class="mb-3">
+					<label for="fillColumnSelect" class="form-label"
+						>Column to clean</label
+					>
+					<select id="fillColumnSelect" class="form-select"></select>
+				</div>
+				<div class="mb-3">
+					<label for="fillMethodSelect" class="form-label">Fill with</label>
+					<select id="fillMethodSelect" class="form-select">
+						<option value="mean">Mean (Average)</option>
+						<option value="median">Median (Middle Value)</option>
+						<option value="mode">Mode (Most Frequent Value)</option>
+						<option value="custom">A specific custom value</option>
+					</select>
+				</div>
+				<div class="mb-3" id="customValueContainer" style="display: none">
+					<label for="fillCustomValue" class="form-label">Custom value</label>
+					<input
+						type="text"
+						id="fillCustomValue"
+						class="form-control"
+						placeholder="Enter the value to use"
+					/>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+					Cancel
+				</button>
+				<button type="button" class="btn btn-primary" id="addFillStepBtn">
+					Add Step
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

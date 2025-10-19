@@ -1,0 +1,526 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Report Builder{% endblock %}
+{% block page_title %}Report Builder{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'css/report_builder.css' %}" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/sortablejs/1.15.0/sortable.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid report-builder-container">
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <small class="text-muted" id="reportNameDisplay">New Report</small>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-secondary" id="newReportBtn" title="Start a New Report">
+                        <i class="fas fa-plus"></i> New
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" id="loadReportBtn" title="Load Report">
+                        <i class="fas fa-folder-open"></i> Load
+                    </button>
+                    <button type="button" class="btn btn-outline-success" id="saveAsReportBtn" title="Save As New">
+                        <i class="fas fa-save"></i> Save As
+                    </button>
+                    <button type="button" class="btn btn-outline-info" id="updateReportBtn" title="Update Current">
+                        <i class="fas fa-sync"></i> Update
+                    </button>
+                    <div class="btn-group" role="group">
+                        <button id="exportMenuBtn" type="button" class="btn btn-outline-secondary dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false" title="Export Options">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" id="exportExcelBtn">
+                                <i class="fas fa-file-excel text-success"></i> Excel
+                            </a></li>
+                            <li><a class="dropdown-item" href="#" id="exportCsvBtn">
+                                <i class="fas fa-file-csv text-primary"></i> CSV
+                            </a></li>
+                            <li><a class="dropdown-item" href="#" id="exportPdfBtn">
+                                <i class="fas fa-file-pdf text-danger"></i> PDF
+                            </a></li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="refreshReportBtn" title="Generate Report">
+                        <i class="fas fa-play"></i> Run Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row rb-workspace-row">
+        <div class="col-lg-3 rb-sidebar-left">
+            <div class="rb-sidebar-header">
+                <h6 class="mb-0">
+                    <i class="fas fa-database me-2"></i>Data Sources
+                </h6>
+            </div>
+            <div class="rb-sidebar-search">
+                <div class="mb-2">
+                    <label class="form-label small fw-bold">Connection</label>
+                    <select class="form-select form-select-sm" id="connectionSelect" data-default-connection-id="{{ default_connection_id|default_if_none:'' }}">
+                        <option value="">Select connection...</option>
+                        {% for conn in connections %}
+                        <option value="{{ conn.id }}">{{ conn.nickname }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input-group input-group-sm">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    <input type="text" class="form-control" id="dataSourceSearch" placeholder="Search tables...">
+                </div>
+            </div>
+            <div class="rb-sidebar-content">
+                <div class="accordion accordion-flush" id="dataSourceAccordion"></div>
+                <div class="sidebar-footer">
+                    <div class="mt-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h6 class="mb-0 small text-muted">Calculated Fields</h6>
+                            <button class="btn btn-sm btn-outline-primary" id="addCalculatedFieldBtn" title="Add Calculated Field">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div id="calculatedFieldsList"></div>
+                    </div>
+                    <div class="mt-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h6 class="mb-0 small text-muted">Data Preparation</h6>
+                            <button class="btn btn-sm btn-outline-info" id="prepareDataBtn" title="Prepare Data">
+                                <i class="fas fa-tools"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+            <div class="card">
+                <div class="card-header bg-light" id="configHeader" style="cursor: pointer;">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">
+                            <i class="fas fa-cogs me-2"></i>Query Configuration
+                        </h6>
+                        <button type="button" class="btn btn-sm btn-link p-0" id="toggleConfigBtn">
+                            <i class="fas fa-chevron-up" id="configChevron"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body collapse show" id="queryBuilder">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <div class="btn-group btn-group-sm" role="group">
+                                <button class="btn btn-outline-primary action-btn active" data-section="columns">
+                                    <i class="fas fa-columns"></i> Columns
+                                </button>
+                                <button class="btn btn-outline-info action-btn" data-section="filters">
+                                    <i class="fas fa-filter"></i> Filters
+                                </button>
+                                <button class="btn btn-outline-success action-btn" data-section="groups">
+                                    <i class="fas fa-layer-group"></i> Groups
+                                </button>
+                                <button class="btn btn-outline-warning action-btn" data-section="sorts">
+                                    <i class="fas fa-sort"></i> Sorts
+                                </button>
+                                <button class="btn btn-outline-secondary action-btn" data-section="joins">
+                                    <i class="fas fa-link"></i> Joins
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div id="columnsSection" class="col-12 query-section">
+                            <div class="drop-zone-container">
+                                <label class="form-label fw-bold small"><i class="fas fa-columns text-primary"></i> Columns</label>
+                                <div class="drop-zone" id="columnsBox" data-type="columns">
+                                    <div class="drop-zone-placeholder"><span>Drag columns here</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="filtersSection" class="col-md-6 query-section" style="display: none;">
+                            <div class="drop-zone-container">
+                                <label class="form-label fw-bold small"><i class="fas fa-filter text-info"></i> Filters</label>
+                                <div class="drop-zone" id="filtersBox" data-type="filters">
+                                    <div class="drop-zone-placeholder"><span>Drag filters here</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="groupsSection" class="col-md-6 query-section" style="display: none;">
+                            <div class="drop-zone-container">
+                                <label class="form-label fw-bold small"><i class="fas fa-layer-group text-success"></i> Groups</label>
+                                <div class="drop-zone" id="groupBox" data-type="groups">
+                                    <div class="drop-zone-placeholder"><span>Drag groups here</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="sortsSection" class="col-md-6 query-section" style="display: none;">
+                            <div class="drop-zone-container">
+                                <label class="form-label fw-bold small"><i class="fas fa-sort text-warning"></i> Sorts</label>
+                                <div class="drop-zone" id="sortsBox" data-type="sorts">
+                                    <div class="drop-zone-placeholder"><span>Drag sorts here</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="joinsSection" class="col-md-6 query-section" style="display: none;">
+                            <div class="drop-zone-container">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <label class="form-label fw-bold small mb-0"><i class="fas fa-link text-secondary"></i> Joins</label>
+                                    <button class="btn btn-sm btn-outline-secondary" id="addJoinBtn" title="Add Join"><i class="fas fa-plus"></i> Add Join Manually</button>
+                                </div>
+                                <div id="joinStatusAlert" class="alert alert-secondary small p-2 mt-2" role="alert" style="display: none;"></div>
+                                <div class="drop-zone mt-2" id="joinsBox" data-type="joins">
+                                    <div class="drop-zone-placeholder"><span>Joins will be added here.</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body border-top">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center">
+                                <button class="btn btn-sm btn-outline-info me-2 d-none" id="showFiltersBtn" title="Toggle Interactive Filters"><i class="fas fa-sliders-h"></i> Filters</button>
+                                <button class="btn btn-sm btn-outline-secondary" id="drillBackBtn" style="display: none;" title="Drill Back"><i class="fas fa-arrow-left"></i> Back</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <div class="d-flex justify-content-end align-items-center" id="paginationControls">
+                                <span class="text-muted small me-3" id="resultsInfo"></span>
+                                <select class="form-select form-select-sm me-2" id="pageSizeSelect" style="width: auto;">
+                                    <option value="10">10 per page</option>
+                                    <option value="25">25 per page</option>
+                                    <option value="50">50 per page</option>
+                                    <option value="100" selected>100 per page</option>
+                                </select>
+                                <nav><ul class="pagination pagination-sm mb-0" id="paginationList"></ul></nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="userFilterControls" style="display: none;">
+                        <div class="card border-info mb-3">
+                            <div class="card-header bg-info bg-opacity-10 py-2">
+                                 <div class="d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-0 small"><i class="fas fa-sliders-h me-2"></i>Interactive Filters</h6>
+                                    <button class="btn-close btn-sm" id="hideFiltersBtn"></button>
+                                </div>
+                            </div>
+                            <div class="card-body d-flex flex-wrap align-items-center p-2">
+                                <div id="dynamicFilterContainer" class="d-flex flex-wrap align-items-center"></div>
+                                <div class="ms-auto ps-3">
+                                    <button class="btn btn-sm btn-primary" id="applyFiltersBtn"><i class="fas fa-check"></i> Apply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="resultsContainer" class="table-responsive">
+                        <div class="text-center py-5 text-muted">
+                            <p>Configure your report and click "Run Report" to see results</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="appToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto" id="toastTitle">Notification</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body" id="toastBody">
+            <!-- Toast message -->
+        </div>
+    </div>
+</div>
+
+<!-- Load Report Modal -->
+<div class="modal fade" id="loadReportModal" tabindex="-1" aria-labelledby="loadReportModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loadReportModalLabel">
+                    <i class="fas fa-folder-open me-2"></i>Load Saved Report
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="loadReportModalBody">
+                    <div class="text-center py-3">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Save Report Modal -->
+<div class="modal fade" id="saveReportModal" tabindex="-1" aria-labelledby="saveReportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="saveReportModalLabel">
+                    <i class="fas fa-save me-2"></i>Save Report
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="reportName" class="form-label">Report Name</label>
+                    <input type="text" class="form-control" id="reportName" placeholder="Enter report name">
+                    <div class="form-text">Choose a descriptive name for your report</div>
+                </div>
+                <div class="mb-3">
+                    <label for="reportDescription" class="form-label">Description (Optional)</label>
+                    <textarea class="form-control" id="reportDescription" rows="3"
+                              placeholder="Brief description of this report"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmSaveReport">
+                    <i class="fas fa-save me-2"></i>Save Report
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Share Report Modal -->
+<div class="modal fade" id="shareReportModal" tabindex="-1" aria-labelledby="shareReportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="shareReportModalLabel">
+                    <i class="fas fa-share-alt me-2"></i>Share Report: <span class="fw-bold" id="shareReportName"></span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <label class="form-label">Add User</label>
+                <div class="input-group mb-3">
+                    <select class="form-select" id="userToShare">
+                        <option>Loading users...</option>
+                    </select>
+                    <select class="form-select" id="sharePermission" style="flex-grow: 0.5;">
+                        <option value="view">Can View</option>
+                        <option value="edit">Can Edit</option>
+                    </select>
+                    <button class="btn btn-outline-primary" type="button" id="addUserShareBtn">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </div>
+                <hr>
+                <h6>Currently Shared With:</h6>
+                <div id="shareUserList">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="saveSharesBtn">
+                    <i class="fas fa-save me-2"></i>Save Shares
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Formatting Modal -->
+<div class="modal fade" id="formattingModal" tabindex="-1" aria-labelledby="formattingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formattingModalLabel">
+                    <i class="fas fa-palette me-2"></i>Format Column: <span class="fw-bold" id="formatColumnName"></span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="columnAlias" class="form-label">Display Name (Alias)</label>
+                    <input type="text" class="form-control" id="columnAlias" placeholder="Enter a new name">
+                </div>
+                <hr>
+                <div class="mb-3">
+                    <label for="numberFormatType" class="form-label">Number Formatting</label>
+                    <select class="form-select" id="numberFormatType">
+                        <option value="none">None</option>
+                        <option value="number">Number (e.g., 1,234.56)</option>
+                        <option value="currency">Currency (e.g., $1,234.56)</option>
+                        <option value="percent">Percentage (e.g., 12.34%)</option>
+                    </select>
+                </div>
+                <div id="numberOptionsContainer" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="decimalPlaces" class="form-label">Decimal Places</label>
+                            <input type="number" class="form-control" id="decimalPlaces" value="2" min="0" max="10">
+                        </div>
+                        <div class="col-md-6 mb-3" id="currencySymbolContainer" style="display: none;">
+                            <label for="currencySymbol" class="form-label">Currency Symbol</label>
+                            <input type="text" class="form-control" id="currencySymbol" value="$">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="dateOptionsContainer" style="display: none;">
+                    <div class="mb-3">
+                        <label for="datePattern" class="form-label">Date Pattern</label>
+                        <select class="form-select" id="datePattern">
+                            <option value="yyyy-MM-dd">YYYY-MM-DD (2023-01-25)</option>
+                            <option value="MM/dd/yyyy">MM/DD/YYYY (01/25/2023)</option>
+                            <option value="dd/MM/yyyy">DD/MM/YYYY (25/01/2023)</option>
+                            <option value="Month D, YYYY">Month D, YYYY (January 25, 2023)</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="timeFormat" class="form-label">Time Format</label>
+                        <select class="form-select" id="timeFormat">
+                            <option value="none">None</option>
+                            <option value="HH:mm">HH:mm (14:30)</option>
+                            <option value="hh:mm a">hh:mm a (02:30 pm)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="mb-3">
+                    <label class="form-label">Preview</label>
+                    <div class="form-control" id="formatPreview" style="min-height: 38px;"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="applyFormattingBtn">Apply</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Calculated Field Modal -->
+<div class="modal fade" id="calculatedFieldModal" tabindex="-1" aria-labelledby="calculatedFieldModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="calculatedFieldModalLabel">
+                    <i class="fas fa-calculator me-2"></i>Create Calculated Field
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label class="form-label">Available Fields</label>
+                        <div class="available-fields-container border rounded p-2" id="availableFieldsList">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="mb-3">
+                            <label for="calcFieldName" class="form-label">Field Name</label>
+                            <input type="text" class="form-control" id="calcFieldName" placeholder="e.g., Total Revenue">
+                        </div>
+                        <div class="mb-3">
+                            <label for="calcFieldFormula" class="form-label">Formula</label>
+                            <textarea class="form-control font-monospace" id="calcFieldFormula" rows="8"
+                                      placeholder="Click fields on the left to add them here, e.g., [table.price] * [table.quantity]"></textarea>
+                            <div class="form-text">Use [Table.Column] syntax to reference fields.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Common Operators</label>
+                            <div class="btn-group-vertical d-grid gap-1">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button type="button" class="btn btn-outline-secondary operator-btn" data-op="+">+</button>
+                                    <button type="button" class="btn btn-outline-secondary operator-btn" data-op="-">-</button>
+                                    <button type="button" class="btn btn-outline-secondary operator-btn" data-op="*">×</button>
+                                    <button type="button" class="btn btn-outline-secondary operator-btn" data-op="/">/</button>
+                                </div>
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button type="button" class="btn btn-outline-secondary operator-btn" data-op="SUM()">SUM()</button>
+                                    <button type="button" class="btn btn-outline-secondary operator-btn" data-op="AVG()">AVG()</button>
+                                    <button type="button" class="btn btn-outline-secondary operator-btn" data-op="COUNT()">COUNT()</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="saveCalculatedField">
+                    <i class="fas fa-save me-2"></i>Save Field
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Data Preparation Modal -->
+<div class="modal fade" id="dataPrepModal" tabindex="-1" aria-labelledby="dataPrepModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dataPrepModalLabel">
+                    <i class="fas fa-tools me-2"></i>Data Preparation for: <span class="fw-bold" id="dataPrepTableName">Your Report</span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-0" id="dataPrepContent" style="min-height: 80vh;">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script>
+    const csrfToken = '{{ csrf_token }}';
+    const allJoins = JSON.parse('{{ all_joins_json|escapejs }}');
+
+    window.URLS = {
+        connections: "{% url 'mis_app:api_connections' %}",
+        executeReport: "{% url 'mis_app:execute_report_api' %}",
+        saveReport: "{% url 'mis_app:save_report_api' %}",
+        loadReports: "{% url 'mis_app:get_my_reports_api' %}",
+        tables: (connId) => "{% url 'mis_app:api_get_visible_tables' '00000000-0000-0000-0000-000000000000' %}".replace('00000000-0000-0000-0000-000000000000', connId),
+        tableColumns: "{% url 'mis_app:api_get_columns_for_tables' %}",
+        reportDetail: (reportId) => "{% url 'mis_app:report_detail_api' '00000000-0000-0000-0000-000000000000' %}".replace('00000000-0000-0000-0000-000000000000', reportId),
+        updateReport: (reportId) => "{% url 'mis_app:api_update_report' '00000000-0000-0000-0000-000000000000' %}".replace('00000000-0000-0000-0000-000000000000', reportId),
+        exportReport: "{% url 'mis_app:export_report_api' %}",
+        checkJoinPath: "{% url 'mis_app:api_check_join_path' %}",
+        findJoins: "{% url 'mis_app:api_find_joins' %}",
+        dataPrepModalContent: "{% url 'mis_app:data_prep_modal_content' %}",
+        profileData: "{% url 'mis_app:profile_data_api' %}",
+        getFilterValues: "{% url 'mis_app:api_get_filter_values' %}", // <-- ADD THIS LINE
+        listUsers: "{% url 'mis_app:api_list_users' %}",
+        getReportShares: (reportId) => `{% url 'mis_app:api_get_report_shares' '00000000-0000-0000-0000-000000000000' %}`.replace('00000000-0000-0000-0000-000000000000', reportId),
+        updateReportShares: (reportId) => `{% url 'mis_app:api_update_report_shares' '00000000-0000-0000-0000-000000000000' %}`.replace('00000000-0000-0000-0000-000000000000', reportId),
+        exportCsv: "{% url 'mis_app:api_export_csv' %}",
+    };
+</script>
+
+<script src="{% static 'js/vendor/Sortable.min.js' %}"></script>
+<script src="{% static 'js/report_builder_django.js' %}"></script>
+<script src="{% static 'js/data_prep.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+{% endblock %}

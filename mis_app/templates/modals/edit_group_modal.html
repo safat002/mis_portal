@@ -1,0 +1,92 @@
+{% load static %}
+<div class="modal fade" id="editGroupModal" tabindex="-1" aria-labelledby="editGroupModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editGroupModalLabel">Edit Group: <span id="edit-group-title-span"></span></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs" id="editGroupTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details-tab-pane" type="button" role="tab">Details</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="permissions-tab" data-bs-toggle="tab" data-bs-target="#permissions-tab-pane" type="button" role="tab">App Permissions</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="db-permissions-tab" data-bs-toggle="tab" data-bs-target="#db-permissions-tab-pane" type="button" role="tab">Database Permissions</button>
+          </li>
+        </ul>
+        <div class="tab-content" id="editGroupTabContent">
+          <div class="tab-pane fade show active p-3" id="details-tab-pane" role="tabpanel">
+            <form id="editGroupForm">
+              {% csrf_token %}
+              <input type="hidden" id="edit_group_id" name="group_id">
+              <div class="mb-3">
+                <label for="edit_group_name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="edit_group_name" name="name" required>
+              </div>
+              <div class="mb-3">
+                <label for="edit_group_description" class="form-label">Description</label>
+                <textarea class="form-control" id="edit_group_description" name="description"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="edit_group_color" class="form-label">Color</label>
+                <input type="color" class="form-control form-control-color" id="edit_group_color" name="color">
+              </div>
+              <button type="submit" class="btn btn-primary">Save Details</button>
+            </form>
+          </div>
+          <div class="tab-pane fade p-3" id="permissions-tab-pane" role="tabpanel">
+            <h6>Existing App Permissions</h6>
+            <ul class="list-group mb-4" id="existing-permissions-list">
+              </ul>
+            <h6>Add New App Permission</h6>
+            <form id="addGroupPermissionForm">
+              {% csrf_token %}
+              <div class="row align-items-end">
+                <div class="col-md-4 mb-3">
+                  <label for="id_resource_type" class="form-label">Resource Type</label>
+                  <select class="form-select" id="id_resource_type" name="resource_type">
+                    <option value="">---------</option>
+                    {% for value, label in permission_form.resource_type.field.choices %}
+                      {% if value %}<option value="{{ value }}">{{ label }}</option>{% endif %}
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="id_resource_name" class="form-label">Resource Name</label>
+                  <input type="text" class="form-control" id="id_resource_name" name="resource_name" placeholder="Enter name or ID..." required>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="id_permission_level" class="form-label">Permission</label>
+                  <select class="form-select" id="id_permission_level" name="permission_level">
+                    {% for value, label in permission_form.permission_level.field.choices %}
+                      <option value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-1 mb-3">
+                  <button type="submit" class="btn btn-success w-100" title="Add Permission"><i class="fas fa-plus"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
+            <div class="tab-pane fade p-3" id="db-permissions-tab-pane" role="tabpanel">
+              <p class="text-muted small">Control which database connections and tables this group can see and use in reports and dashboards.</p>
+              <div id="db-permissions-accordion-container">
+                  </div>
+
+              <div class="mt-4 pt-3 border-top text-end">
+                  <div id="db-permission-status" class="text-start mb-2"></div>
+                  <button class="btn btn-primary" id="saveDbPermissionsBtn">
+                      <i class="fas fa-save me-2"></i>Save Database Permissions
+                  </button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

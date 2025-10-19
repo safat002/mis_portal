@@ -1,0 +1,14 @@
+.git
+.vscode
+__pycache__
+.pytest_cache
+.venv
+db.sqlite3
+local_data.db
+mis_db.db
+logs
+media
+staticfiles
+*.pyc
+*.log
+.env

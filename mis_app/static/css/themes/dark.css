@@ -1,0 +1,169 @@
+:root {
+  /* Dark Base */
+  --bs-body-bg: #121212;
+  --bs-body-color: #e0e0e0;
+  --bs-card-bg: #1e1e1e;
+  --bs-navbar-bg: #1f1f1f;
+  --bs-sidebar-bg: #1e1e1e;
+
+  /* Primary Palette */
+  --bs-primary: #90caf9;
+  --bs-primary-dark: #648dae;
+  --bs-primary-light: #c3fdff;
+
+  /* Secondary */
+  --bs-secondary: #b0bec5;
+
+  /* Success, Info, Warning, Danger */
+  --bs-success: #66bb6a;
+  --bs-info: #29b6f6;
+  --bs-warning: #ffa726;
+  --bs-danger: #ef5350;
+
+  /* Text */
+  --bs-text-primary: #e0e0e0;
+  --bs-text-secondary: #b0bec5;
+  --bs-text-muted: #90a4ae;
+
+  /* Borders */
+  --bs-border-color: #333;
+  --bs-border-color-light: #444;
+
+  /* Shadows & Radius */
+  --bs-box-shadow: 0 2px 6px rgba(0,0,0,0.7);
+  --bs-box-shadow-hover: 0 4px 12px rgba(0,0,0,0.8);
+  --bs-border-radius: 0.375rem;
+  --bs-border-radius-lg: 0.5rem;
+
+  /* Forms */
+  --bs-input-bg: #2c2c2c;
+  --bs-input-border-color: #555;
+  --bs-input-focus-border-color: #90caf9;
+  --bs-input-focus-box-shadow: 0 0 0 0.25rem rgba(144,202,249,0.25);
+
+  /* Tables */
+  --bs-table-bg: transparent;
+  --bs-table-striped-bg: rgba(255,255,255,0.05);
+  --bs-table-hover-bg: rgba(255,255,255,0.1);
+
+  /* Buttons */
+  --bs-btn-border-radius: 0.375rem;
+  --bs-btn-font-weight: 500;
+
+  /* Mobile Nav */
+  --mobile-nav-bg: #1f1f1f;
+  --mobile-nav-border: #333;
+  --mobile-nav-item-color: #b0bec5;
+  --mobile-nav-item-active-color: #90caf9;
+
+  /* Toast */
+  --toast-success-bg: #2e7d32;
+  --toast-success-color: #e8f5e9;
+  --toast-error-bg: #c62828;
+  --toast-error-color: #ffebee;
+  --toast-warning-bg: #f57f17;
+  --toast-warning-color: #fff8e1;
+  --toast-info-bg: #0277bd;
+  --toast-info-color: #e1f5fe;
+}
+
+/* Body */
+body {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  font-family: Inter, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--bs-navbar-bg);
+  box-shadow: var(--bs-box-shadow);
+  border-bottom: 1px solid var(--bs-border-color-light);
+}
+
+/* Cards */
+.card {
+  background-color: var(--bs-card-bg);
+  border: 1px solid var(--bs-border-color-light);
+  border-radius: var(--bs-border-radius-lg);
+  box-shadow: var(--bs-box-shadow);
+  transition: var(--bs-box-shadow-hover) 0.2s ease;
+}
+.card:hover {
+  box-shadow: var(--bs-box-shadow-hover);
+}
+
+/* Buttons */
+.btn {
+  border-radius: var(--bs-btn-border-radius);
+  font-weight: var(--bs-btn-font-weight);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--bs-box-shadow-hover);
+}
+.btn-primary {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: var(--bs-body-bg);
+}
+.btn-primary:hover {
+  background-color: var(--bs-primary-dark);
+  border-color: var(--bs-primary-dark);
+}
+
+/* Forms */
+.form-control {
+  background-color: var(--bs-input-bg);
+  border: 1px solid var(--bs-input-border-color);
+  border-radius: var(--bs-border-radius);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  color: var(--bs-body-color);
+}
+.form-control:focus {
+  border-color: var(--bs-input-focus-border-color);
+  box-shadow: var(--bs-input-focus-box-shadow);
+}
+
+/* Tables */
+.table {
+  background-color: var(--bs-table-bg);
+  color: var(--bs-body-color);
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: var(--bs-table-striped-bg);
+}
+.table-hover > tbody > tr:hover {
+  background-color: var(--bs-table-hover-bg);
+}
+
+/* Mobile Bottom Nav */
+.mobile-bottom-nav {
+  background-color: var(--mobile-nav-bg);
+  border-top: 1px solid var(--mobile-nav-border);
+}
+.mobile-nav-item {
+  color: var(--mobile-nav-item-color);
+}
+.mobile-nav-item.active {
+  color: var(--mobile-nav-item-active-color);
+}
+
+/* Toast */
+.swal2-toast {
+  background-color: var(--toast-success-bg);
+  color: var(--toast-success-color);
+}
+.swal2-icon.swal2-error {
+  background-color: var(--toast-error-bg);
+  color: var(--toast-error-color);
+}
+.swal2-icon.swal2-warning {
+  background-color: var(--toast-warning-bg);
+  color: var(--toast-warning-color);
+}
+.swal2-icon.swal2-info {
+  background-color: var(--toast-info-bg);
+  color: var(--toast-info-color);
+}

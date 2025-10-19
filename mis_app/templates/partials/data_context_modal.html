@@ -1,0 +1,54 @@
+<div class="modal fade" id="dataContextModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="bi bi-database-gear me-2"></i>Data Context</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- 1) Connection -->
+        <div class="mb-3">
+          <label class="form-label">Connection</label>
+          <select id="data-context-connection-select" class="form-select"></select>
+          <div class="form-text">Choose a connection you have access to.</div>
+        </div>
+
+        <!-- 2) Tables -->
+        <div class="mb-3">
+          <label class="form-label">Tables (permitted)</label>
+          <div id="data-context-tables-list" class="row row-cols-2 row-cols-md-3 g-2">
+            <!-- checkboxes rendered here -->
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- 3) Joins -->
+        <div class="d-flex align-items-center justify-content-between">
+          <h6 class="mb-0">Join Suggestions</h6>
+          <div class="d-flex gap-2">
+            <button id="btnSuggestJoins" class="btn btn-outline-primary btn-sm">
+              <i class="bi bi-diagram-3 me-1"></i>Suggest Joins
+            </button>
+            <button id="btnOpenJoinBuilder" class="btn btn-outline-secondary btn-sm">
+              <i class="bi bi-pencil-square me-1"></i>Open Visual Join Builder
+            </button>
+          </div>
+        </div>
+
+        <div id="join-suggestions" class="mt-3">
+          <div class="text-muted small">No suggestions yet.</div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button id="saveDataContextBtn" class="btn btn-primary">
+            <i class="bi bi-save me-1"></i>Save Context
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,586 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Intelligent Import
+Dashboard{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/intelligent_import.css' %}" />
+{% endblock %} {% block content %}
+<div class="container py-3">
+	<div
+		class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3"
+	>
+		<h3 class="mb-2 mb-md-0">Intelligent Import</h3>
+		<div class="text-md-end">
+			<div id="connection-display-name" class="fw-semibold">
+				No database selected
+			</div>
+			<small id="connection-display-details" class="text-muted d-block"
+				>Destination database information will appear here.</small
+			>
+		</div>
+	</div>
+
+	<input
+		type="hidden"
+		id="active-connection-id"
+		value="{{ active_connection.id|default_if_none:'' }}"
+	/>
+	{{ connections_data|json_script:"intelligent-import-connections" }}
+
+	<div id="progress-text" class="alert alert-info" style="display: none"></div>
+
+    <div class="workflow-steps">
+        <div class="workflow-step active" id="step-upload">1. Upload</div>
+        <div class="workflow-step" id="step-mapping">2. Mapping</div>
+        <div class="workflow-step" id="step-validate">3. Validate</div>
+        <div class="workflow-step" id="step-review">4. Review</div>
+        <div class="workflow-step" id="step-done">5. Complete</div>
+    </div>
+
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card mb-3">
+				<div class="card-body">
+					<div
+						class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2"
+					>
+						<h5 class="mb-0">Import Workflow</h5>
+						<div class="d-flex gap-2">
+							<button
+								id="cancel-import-btn"
+								type="button"
+								disabled
+								class="btn btn-outline-warning btn-sm"
+							>
+								Cancel Session
+							</button>
+							<button
+								id="delete-import-btn"
+								type="button"
+								disabled
+								class="btn btn-outline-danger btn-sm"
+							>
+								Delete Session
+							</button>
+						</div>
+					</div>
+
+					<div id="upload-step" class="import-step">
+						<p class="text-muted">
+							Start by uploading a CSV or Excel file. We will analyze it and
+							suggest a target table and column mappings.
+						</p>
+						<div id="file-upload-area" class="text-center p-5 border rounded">
+							<input
+								id="import-file"
+								type="file"
+								accept=".csv,.xls,.xlsx"
+								style="display: none"
+							/>
+							<button
+								id="browse-import-btn"
+								type="button"
+								class="btn btn-primary"
+							>
+								Browse File
+							</button>
+							<p class="text-muted mt-2 mb-0">Or drag and drop a file here.</p>
+						</div>
+						<div id="analysis-results" class="mt-4" style="display: none">
+							<h6>Analysis Summary</h6>
+							<div id="upload-details"></div>
+							<button
+								id="proceed-mapping-btn"
+								type="button"
+								class="btn btn-success mt-3"
+							>
+								Proceed to Column Mapping
+							</button>
+						</div>
+					</div>
+
+					<div id="mapping-step" class="import-step" style="display: none">
+						<h6>Column Mapping</h6>
+						<p class="text-muted mb-3">
+							Review the auto-detected template and mapping suggestions. Mapping
+							edits are restricted to moderators and admins.
+						</p>
+                        
+						<div class="row g-3">
+							<div class="col-lg-4">
+								<div class="card border">
+									<div class="card-body py-3">
+										<h6 class="card-title mb-2">Report Template</h6>
+										<select
+											id="report-template-select"
+											class="form-select form-select-sm"
+										>
+											<option value="">Detecting template...</option>
+										</select>
+										<div id="template-toolbar" class="d-none">
+											<button
+												id="add-to-template-btn"
+												type="button"
+												class="btn btn-outline-primary btn-sm"
+											>
+												Add to Template
+											</button>
+											<button
+												id="create-template-btn"
+												type="button"
+												class="btn btn-outline-primary btn-sm"
+											>
+												+ Create Template
+											</button>
+											<button
+												id="manage-templates-btn"
+												type="button"
+												class="btn btn-secondary btn-sm ms-2"
+											>
+												Manage Templates
+											</button>
+										</div>
+
+										<div
+											class="small mt-2"
+											id="template-detection-message"
+										></div>
+										<div
+											class="alert alert-secondary mt-3 mb-0 py-2 px-3 small"
+											id="mapping-permissions-info"
+											style="display: none"
+										></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-8">
+								<div
+									id="mapping-readonly-banner"
+									class="alert alert-warning py-2 px-3 small"
+									style="display: none"
+								></div>
+							<div id="column-mapping-container" class="card border">
+								<div class="card-body p-0">
+									<!-- MOUNT: grid goes here -->
+									<div
+										id="template-mapping-grid"
+										data-default-schema="public"
+									></div>
+
+									<!-- Optional: a place for mapping errors / toasts -->
+									<div
+										id="mapping-error"
+										class="alert alert-warning d-none mt-2 small"
+									></div>
+								</div>
+							</div>
+
+							<!-- Relationships panel -->
+							<div id="relationships-panel" class="card border mt-3">
+								<div class="card-header py-2 d-flex justify-content-between align-items-center">
+									<span class="fw-semibold">Relationships (Parent → Child)</span>
+									<div class="form-check form-switch m-0">
+										<input class="form-check-input" type="checkbox" id="rel-enable-switch" checked>
+										<label class="form-check-label small" for="rel-enable-switch">Enable</label>
+									</div>
+								</div>
+								<div class="card-body">
+									<div class="row g-2 align-items-end">
+										<div class="col-md-4">
+											<label class="form-label small">Parent Table</label>
+											<select id="rel-parent-table" class="form-select form-select-sm"></select>
+										</div>
+										<div class="col-md-4">
+											<label class="form-label small">Natural Key (file column)</label>
+											<select id="rel-natural-key" class="form-select form-select-sm"></select>
+											<div class="form-check mt-1">
+												<input class="form-check-input" type="checkbox" id="rel-nk-normalize" checked>
+												<label for="rel-nk-normalize" class="form-check-label small">Case-insensitive, trim spaces</label>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<label class="form-label small">Child FK Column</label>
+											<input id="rel-child-fk" type="text" class="form-control form-control-sm" placeholder="e.g., buyer_id">
+											<div class="form-check mt-1">
+												<input class="form-check-input" type="checkbox" id="rel-add-index" checked>
+												<label for="rel-add-index" class="form-check-label small">Add index</label>
+											</div>
+										</div>
+									</div>
+									<div class="row g-2 mt-2">
+										<div class="col-md-6">
+											<label class="form-label small">Child Table</label>
+											<select id="rel-child-table" class="form-select form-select-sm"></select>
+										</div>
+										<div class="col-md-6">
+											<div class="form-check mt-4">
+												<input class="form-check-input" type="checkbox" id="rel-add-fk-constraint">
+												<label for="rel-add-fk-constraint" class="form-check-label small">Add FK constraint (advanced)</label>
+											</div>
+										</div>
+									</div>
+									<div class="small text-muted mt-2">When enabled, the system will insert missing parents using the natural key and link child rows via the FK column.</div>
+								</div>
+							</div>
+
+								<div class="d-flex justify-content-end mt-3">
+									<button
+										id="save-mapping-btn"
+										type="button"
+										class="btn btn-primary"
+									>
+										Save Mapping
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+                    <div id="validate-step" class="import-step" style="display: none">
+                        <h6>Validate & Approve</h6>
+                        <div id="data-validation-results"></div>
+                        <div id="validation-fixes" class="card border mt-3" style="display:none">
+                            <div class="card-header">Quick Fixes for Validation Errors</div>
+                            <div class="card-body">
+                                <div id="validation-fix-body" class="small text-muted">
+                                    Loading...
+                                </div>
+                                <div class="mt-3 d-flex justify-content-end">
+                                    <button id="apply-fixes-btn" type="button" class="btn btn-primary btn-sm">Apply Fixes and Revalidate</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="master-data-approval-link"></div>
+                        <div class="card border mb-3" id="destination-options">
+                            <div class="card-header">Destination & Options</div>
+                            <div class="card-body">
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-md-6">
+                                        <div class="small text-muted">Destination Connection</div>
+                                        <div id="dest-connection" class="fw-semibold">Not selected</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="small text-muted">Destination Table</div>
+                                        <div id="dest-table" class="fw-semibold">(not set)</div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-items-center mt-2">
+                                    <div class="col-md-6">
+                                        <label class="form-label small mb-1">Duplicate Handling</label>
+                                        <select id="import-mode" class="form-select form-select-sm">
+                                            <option value="append" selected>Append only (skip duplicates)</option>
+                                            <option value="upsert">Upsert (update existing rows)</option>
+                                            <option value="replace">Replace table (delete then insert)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small mb-1">New Columns (normalized)</label>
+                                        <div id="new-fields-hint" class="small text-muted">None</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive mt-3">
+                            <table
+                                id="data-preview-table"
+                                class="table table-sm table-striped"
+							>
+								<thead></thead>
+								<tbody></tbody>
+							</table>
+						</div>
+                        <div class="d-flex justify-content-between mt-3">
+                            <button id="back-to-mapping-btn" type="button" class="btn btn-outline-secondary">
+                                Back to Mapping
+                            </button>
+                            <div>
+                                <button id="proceed-review-btn" type="button" class="btn btn-primary">
+                                    Proceed to Final Review
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="review-step" class="import-step" style="display: none">
+                        <h6>Final Review</h6>
+                        <p class="text-muted">Confirm destination and how duplicates are handled, then proceed to import.</p>
+                        <div id="review-destination-summary" class="card border mb-3" style="display: block">
+                            <div class="card-body py-2">
+                                <div class="small text-muted">Destination Summary</div>
+                                <div id="review-destination-line" class="fw-semibold">Loading...</div>
+                            </div>
+                        </div>
+
+                        <div id="awaiting-approval-banner" class="alert alert-info py-2 px-3" style="display:none"></div>
+                        <div id="final-review-summary" class="mb-3"></div>
+                        <div id="duplicates-panel" class="card border mb-3" style="display:none">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <span>Duplicates</span>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Bulk decisions">
+                                    <button id="dup-approve-all-btn" type="button" class="btn btn-outline-success">Approve All</button>
+                                    <button id="dup-skip-all-btn" type="button" class="btn btn-outline-secondary">Skip All</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-striped" id="duplicates-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 80px;">Row #</th>
+                                                <th>Data (sample)</th>
+                                                <th style="width: 190px;">Decision</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <div class="text-end">
+                                    <button id="review-save-decisions-btn" type="button" class="btn btn-outline-primary btn-sm">Save Decisions</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="conflicts-panel" class="card border mb-3" style="display:none">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <span>Conflicts (same primary key, different data)</span>
+                            </div>
+                            <div class="card-body">
+                                <div id="conflicts-hint" class="alert alert-warning py-2 px-3 small" style="display:none"></div>
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-striped" id="conflicts-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 80px;">Row #</th>
+                                                <th>Data (sample)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="per-table-panel" class="card border mb-3">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <span>Per-Table Plan</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div id="per-table-list" class="list-group"></div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="table-responsive">
+                                            <table class="table table-sm table-striped" id="per-table-detail-table">
+                                                <thead></thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button id="review-back-btn" type="button" class="btn btn-outline-secondary">Back to Validate</button>
+                            <div>
+                                <button id="review-execute-btn" type="button" class="btn btn-success">Approve & Import</button>
+                                <button id="review-request-approval-btn" type="button" class="btn btn-warning" style="display:none">Request Approval</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        id="done-step"
+                        class="import-step text-center"
+                        style="display: none"
+                    >
+						<h5>Import Complete</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-4">
+			<div class="card">
+				<div class="card-header">Recent Sessions</div>
+				<div id="recent-sessions" class="card-body"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Add this modal after the main content but before the extra_js block -->
+<div
+	class="modal fade"
+	id="templateBuilderModal"
+	tabindex="-1"
+	aria-labelledby="templateBuilderModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="templateBuilderModalLabel">
+					Create Report Template
+				</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Close"
+				></button>
+			</div>
+			<div class="modal-body">
+				<form id="template-builder-form">
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="tpl-name" class="form-label">Report Name *</label>
+							<input type="text" class="form-control" id="tpl-name" required />
+						</div>
+						<div class="col-md-6">
+							<label for="tpl-target-table" class="form-label"
+								>Target Table</label
+							>
+							<input
+								type="text"
+								class="form-control"
+								id="tpl-target-table"
+								placeholder="e.g., fact_sewing_production"
+							/>
+						</div>
+					</div>
+
+                <div class="mb-3">
+                    <label class="form-label">Column Mapping</label>
+                    <div class="table-responsive">
+							<table class="table table-sm" id="tpl-headers-table">
+								<thead>
+									<tr>
+										<th>Source Header</th>
+										<th>Target Table</th>
+										<th>Target Column</th>
+										<th>Data Type</th>
+										<th class="d-none">Master Data Source</th>
+										<th class="d-none">Output Field</th>
+										<th>Required</th>
+										<th>Default</th>
+									</tr>
+								</thead>
+								<tbody>
+									<!-- Rows will be added by JavaScript -->
+								</tbody>
+							</table>
+                </div>
+
+                <!-- Template-level Relationships (Parent → Child) -->
+                <div id="tpl-relationships" class="card border mt-3">
+                    <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                        <span class="fw-semibold">Relationships (Parent → Child)</span>
+                        <div class="d-flex align-items-center gap-2">
+                            <button type="button" id="tpl-rel-import-dm" class="btn btn-outline-secondary btn-sm">Import From Data Model</button>
+                            <div class="form-check form-switch m-0">
+                                <input class="form-check-input" type="checkbox" id="tpl-rel-enable" checked>
+                                <label class="form-check-label small" for="tpl-rel-enable">Enable</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="tpl-rel-list"></div>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <div class="small text-muted">Saved with the template so you don’t have to set it on every upload.</div>
+                            <button type="button" id="tpl-rel-add" class="btn btn-outline-primary btn-sm">+ Add Relationship</button>
+                        </div>
+                    </div>
+                </div>
+						<button
+							type="button"
+							class="btn btn-outline-primary btn-sm"
+							id="tpl-add-header"
+						>
+							+ Add Header
+						</button>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+					Cancel
+				</button>
+				<button type="button" class="btn btn-primary" id="tpl-save-btn">
+					Save Template
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal: Manage Templates -->
+<div
+	class="modal fade"
+	id="manageTemplatesModal"
+	tabindex="-1"
+	aria-hidden="true"
+>
+	<div class="modal-dialog modal-lg modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h6 class="modal-title">Manage Report Templates</h6>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Close"
+				></button>
+			</div>
+			<div class="modal-body p-0">
+				<div class="p-3">
+					<div class="d-flex gap-2 mb-3">
+						<input
+							id="mt-new-name"
+							class="form-control form-control-sm"
+							placeholder="New template name"
+						/>
+						<input
+							id="mt-new-desc"
+							class="form-control form-control-sm"
+							placeholder="Description (optional)"
+						/>
+						<button id="mt-create-btn" class="btn btn-primary btn-sm">
+							Create
+						</button>
+					</div>
+
+					<div class="table-responsive">
+						<table class="table table-sm align-middle mb-0">
+							<thead class="table-light">
+								<tr>
+									<th style="width: 28%">Name</th>
+									<th style="width: 42%">Description</th>
+									<th style="width: 10%">Active</th>
+									<th style="width: 20%" class="text-end">Actions</th>
+								</tr>
+							</thead>
+							<tbody id="mt-table-body">
+								<!-- rows injected by JS -->
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<small class="text-muted"
+					>Only Admin/Moderator can modify templates.</small
+				>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %} {% block extra_js %}
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="{% static 'js/intelligent_import_manager.js' %}"></script>
+<script>
+	window.currentUser = {
+		username: "{{ request.user.username|escapejs }}",
+		user_type: "{{ request.user.user_type|escapejs }}",
+	};
+	document.addEventListener("DOMContentLoaded", function () {
+		window.manager = new IntelligentImportManager();
+	});
+</script>
+{% endblock %}

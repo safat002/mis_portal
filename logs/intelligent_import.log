@@ -1,0 +1,1794 @@
+ERROR 2025-10-13 02:04:49,522 views Upload and analysis failed: 'ExternalConnection' object has no attribute 'get_connection_config'
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 226, in upload_and_analyze
+    analyzer = SchemaAnalyzer(connection)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 29, in __init__
+    self.engine = self._create_engine()
+                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 33, in _create_engine
+    db_config = self.db_connection.get_connection_config()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ExternalConnection' object has no attribute 'get_connection_config'
+INFO 2025-10-13 02:20:46,094 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-13 02:22:10,650 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-13 02:22:48,321 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-13 02:23:01,526 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-13 02:23:03,529 schema_analyzer Schema analysis failed: unhashable type: 'set'
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 60, in analyze_file_structure
+    column_analysis = self._analyze_columns(df)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 138, in _analyze_columns
+    'data_type': self._detect_data_type(series),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 162, in _detect_data_type
+    if self._is_boolean_column(non_null_series):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 191, in _is_boolean_column
+    boolean_patterns = {
+                       ^
+TypeError: unhashable type: 'set'
+ERROR 2025-10-13 02:23:03,533 views Upload and analysis failed: unhashable type: 'set'
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 235, in upload_and_analyze
+    analysis_results = analyzer.analyze_file_structure(temp_path)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 60, in analyze_file_structure
+    column_analysis = self._analyze_columns(df)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 138, in _analyze_columns
+    'data_type': self._detect_data_type(series),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 162, in _detect_data_type
+    if self._is_boolean_column(non_null_series):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 191, in _is_boolean_column
+    boolean_patterns = {
+                       ^
+TypeError: unhashable type: 'set'
+ERROR 2025-10-13 06:59:00,409 views Session detail failed: intelligent_import/session_detail.html
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 815, in session_detail
+    return render(request, 'intelligent_import/session_detail.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: intelligent_import/session_detail.html
+ERROR 2025-10-13 07:03:05,037 views Session detail failed: intelligent_import/session_detail.html
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 815, in session_detail
+    return render(request, 'intelligent_import/session_detail.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: intelligent_import/session_detail.html
+INFO 2025-10-13 07:11:51,769 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-13 07:13:02,003 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-13 07:17:35,126 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-13 11:32:21,526 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-13 12:25:57,089 views Session restart failed for session 01393bbe-cae4-4ffb-bffd-2dbaa9f3fa24: Object of type bool_ is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 955, in restart_session
+    session.save()
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 990, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 1054, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\query.py", line 1231, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1984, in execute_sql
+    cursor = super().execute_sql(result_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1947, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 136, in get_db_prep_save
+    return self.get_db_prep_value(value, connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 131, in get_db_prep_value
+    return connection.ops.adapt_json_value(value, self.encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\base\operations.py", line 584, in adapt_json_value
+    return json.dumps(value, cls=encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable
+ERROR 2025-10-13 12:38:29,750 views Session restart failed for session 01393bbe-cae4-4ffb-bffd-2dbaa9f3fa24: Object of type bool_ is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 996, in restart_session
+    session.save()
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 990, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 1054, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\query.py", line 1231, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1984, in execute_sql
+    cursor = super().execute_sql(result_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1947, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 136, in get_db_prep_save
+    return self.get_db_prep_value(value, connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 131, in get_db_prep_value
+    return connection.ops.adapt_json_value(value, self.encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\base\operations.py", line 584, in adapt_json_value
+    return json.dumps(value, cls=encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable
+ERROR 2025-10-13 12:44:43,723 views Failed to restart session 01393bbe-cae4-4ffb-bffd-2dbaa9f3fa24
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 962, in restart_session
+    session.save()
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 990, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 1054, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\query.py", line 1231, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1984, in execute_sql
+    cursor = super().execute_sql(result_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1947, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 136, in get_db_prep_save
+    return self.get_db_prep_value(value, connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 131, in get_db_prep_value
+    return connection.ops.adapt_json_value(value, self.encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\base\operations.py", line 584, in adapt_json_value
+    return json.dumps(value, cls=encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable
+ERROR 2025-10-13 12:53:49,608 views Failed to restart session 01393bbe-cae4-4ffb-bffd-2dbaa9f3fa24
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 960, in restart_session
+    session.save()
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 990, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 1054, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\query.py", line 1231, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1984, in execute_sql
+    cursor = super().execute_sql(result_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1947, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 136, in get_db_prep_save
+    return self.get_db_prep_value(value, connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 131, in get_db_prep_value
+    return connection.ops.adapt_json_value(value, self.encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\base\operations.py", line 584, in adapt_json_value
+    return json.dumps(value, cls=encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable
+ERROR 2025-10-13 12:56:23,998 views Error in restart_session for 01393bbe-cae4-4ffb-bffd-2dbaa9f3fa24
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 960, in restart_session
+    session.save()
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 990, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 1054, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\query.py", line 1231, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1984, in execute_sql
+    cursor = super().execute_sql(result_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1947, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 136, in get_db_prep_save
+    return self.get_db_prep_value(value, connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 131, in get_db_prep_value
+    return connection.ops.adapt_json_value(value, self.encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\base\operations.py", line 584, in adapt_json_value
+    return json.dumps(value, cls=encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable
+INFO 2025-10-13 12:56:59,685 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-13 12:57:00,309 views Upload and analysis failed: Object of type bool_ is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 273, in upload_and_analyze
+    session.save()
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 990, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 1054, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\query.py", line 1231, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1984, in execute_sql
+    cursor = super().execute_sql(result_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1947, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 136, in get_db_prep_save
+    return self.get_db_prep_value(value, connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 131, in get_db_prep_value
+    return connection.ops.adapt_json_value(value, self.encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\base\operations.py", line 584, in adapt_json_value
+    return json.dumps(value, cls=encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable
+ERROR 2025-10-13 13:06:33,185 views Error in restart_session for 01393bbe-cae4-4ffb-bffd-2dbaa9f3fa24
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 960, in restart_session
+    session.save()
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 990, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 1054, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\query.py", line 1231, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1984, in execute_sql
+    cursor = super().execute_sql(result_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1947, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 136, in get_db_prep_save
+    return self.get_db_prep_value(value, connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 131, in get_db_prep_value
+    return connection.ops.adapt_json_value(value, self.encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\base\operations.py", line 584, in adapt_json_value
+    return json.dumps(value, cls=encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable
+INFO 2025-10-13 13:12:19,387 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-13 13:12:19,896 schema_analyzer Schema analysis failed: 'utf-8' codec can't decode byte 0x92 in position 6: invalid start byte
+Traceback (most recent call last):
+  File "parsers.pyx", line 1119, in pandas._libs.parsers.TextReader._convert_tokens
+  File "parsers.pyx", line 1271, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "parsers.pyx", line 1284, in pandas._libs.parsers.TextReader._string_convert
+  File "parsers.pyx", line 1532, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x92 in position 6: invalid start byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 58, in analyze_file_structure
+    df = self._load_file(file_path, header_row)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 102, in _load_file
+    df = pd.read_csv(file_path, header=header_row, encoding='utf-8')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\pandas\io\parsers\readers.py", line 948, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\pandas\io\parsers\readers.py", line 617, in _read
+    return parser.read(nrows)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1748, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 234, in read
+    chunks = self._reader.read_low_memory(nrows)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "parsers.pyx", line 843, in pandas._libs.parsers.TextReader.read_low_memory
+  File "parsers.pyx", line 920, in pandas._libs.parsers.TextReader._read_rows
+  File "parsers.pyx", line 1065, in pandas._libs.parsers.TextReader._convert_column_data
+  File "parsers.pyx", line 1126, in pandas._libs.parsers.TextReader._convert_tokens
+  File "parsers.pyx", line 1271, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "parsers.pyx", line 1284, in pandas._libs.parsers.TextReader._string_convert
+  File "parsers.pyx", line 1532, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x92 in position 6: invalid start byte
+ERROR 2025-10-13 13:12:19,903 views Upload and analysis validation error: 'utf-8' codec can't decode byte 0x92 in position 6: invalid start byte
+INFO 2025-10-13 13:12:33,475 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-13 13:12:33,706 views Upload and analysis failed: Object of type bool_ is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 273, in upload_and_analyze
+    session.save()
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 990, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 1054, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\query.py", line 1231, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1984, in execute_sql
+    cursor = super().execute_sql(result_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1947, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 136, in get_db_prep_save
+    return self.get_db_prep_value(value, connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 131, in get_db_prep_value
+    return connection.ops.adapt_json_value(value, self.encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\base\operations.py", line 584, in adapt_json_value
+    return json.dumps(value, cls=encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable
+INFO 2025-10-13 13:22:25,823 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-13 13:22:25,880 schema_analyzer Schema analysis failed: read_csv() got an unexpected keyword argument 'errors'
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 58, in analyze_file_structure
+    df = self._load_file(file_path, header_row)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 114, in _load_file
+    raise last_err
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 107, in _load_file
+    df = pd.read_csv(file_path, header=header_row, encoding=enc, errors=errs)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: read_csv() got an unexpected keyword argument 'errors'
+ERROR 2025-10-13 13:22:25,882 views Upload and analysis failed: read_csv() got an unexpected keyword argument 'errors'
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 266, in upload_and_analyze
+    analysis_results = analyzer.analyze_file_structure(temp_path)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 58, in analyze_file_structure
+    df = self._load_file(file_path, header_row)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 114, in _load_file
+    raise last_err
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 107, in _load_file
+    df = pd.read_csv(file_path, header=header_row, encoding=enc, errors=errs)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: read_csv() got an unexpected keyword argument 'errors'
+INFO 2025-10-13 13:27:37,460 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-13 14:19:00,131 views Data validation failed: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 491, in validate_and_preview_data
+    session.validation_results = validation_results['validation_results']
+                                 ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+INFO 2025-10-13 14:27:17,729 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-15 21:22:20,682 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-15 21:32:03,967 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-15 21:32:21,281 schema_analyzer Schema analysis failed: 'float' object has no attribute 'lower'
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 71, in analyze_file_structure
+    column_analysis = self._analyze_columns(df)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 239, in _analyze_columns
+    'is_potential_foreign_key': self._is_potential_foreign_key(column, series),
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 408, in _is_potential_foreign_key
+    column_lower = column_name.lower()
+                   ^^^^^^^^^^^^^^^^^
+AttributeError: 'float' object has no attribute 'lower'
+ERROR 2025-10-15 21:32:21,286 views Upload and analysis failed: 'float' object has no attribute 'lower'
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 272, in upload_and_analyze
+    analysis_results = analyzer.analyze_file_structure(temp_path)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 71, in analyze_file_structure
+    column_analysis = self._analyze_columns(df)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 239, in _analyze_columns
+    'is_potential_foreign_key': self._is_potential_foreign_key(column, series),
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 408, in _is_potential_foreign_key
+    column_lower = column_name.lower()
+                   ^^^^^^^^^^^^^^^^^
+AttributeError: 'float' object has no attribute 'lower'
+INFO 2025-10-15 21:32:32,361 views Upload request received: file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-15 21:32:49,964 schema_analyzer Schema analysis failed: 'float' object has no attribute 'lower'
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 71, in analyze_file_structure
+    column_analysis = self._analyze_columns(df)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 239, in _analyze_columns
+    'is_potential_foreign_key': self._is_potential_foreign_key(column, series),
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 408, in _is_potential_foreign_key
+    column_lower = column_name.lower()
+                   ^^^^^^^^^^^^^^^^^
+AttributeError: 'float' object has no attribute 'lower'
+ERROR 2025-10-15 21:32:49,972 views Upload and analysis failed: 'float' object has no attribute 'lower'
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 272, in upload_and_analyze
+    analysis_results = analyzer.analyze_file_structure(temp_path)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 71, in analyze_file_structure
+    column_analysis = self._analyze_columns(df)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 239, in _analyze_columns
+    'is_potential_foreign_key': self._is_potential_foreign_key(column, series),
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 408, in _is_potential_foreign_key
+    column_lower = column_name.lower()
+                   ^^^^^^^^^^^^^^^^^
+AttributeError: 'float' object has no attribute 'lower'
+INFO 2025-10-16 00:01:54,960 views Session entered: user=safat session_id=554e1b47-8a93-45b6-9e0c-7c6a9fb2f87c status=analyzing step=upload
+INFO 2025-10-16 00:02:05,142 views Session entered: user=safat session_id=554e1b47-8a93-45b6-9e0c-7c6a9fb2f87c status=analyzing step=upload
+INFO 2025-10-16 15:55:34,556 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-16 15:55:34,566 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-16 15:55:48,061 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-16 15:55:48,112 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-16 15:56:00,294 views delete_session failed
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\query.py", line 637, in get
+    raise self.model.DoesNotExist(
+intelligent_import.models.ImportSession.DoesNotExist: ImportSession matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 866, in delete_session
+    session = get_object_or_404(ImportSession, id=session_id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\shortcuts.py", line 87, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No ImportSession matches the given query.
+ERROR 2025-10-16 15:56:00,585 views Upload and analysis failed: Object of type Timestamp is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 326, in upload_and_analyze
+    session.save()
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 990, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 1054, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\query.py", line 1231, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1984, in execute_sql
+    cursor = super().execute_sql(result_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1947, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 136, in get_db_prep_save
+    return self.get_db_prep_value(value, connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 131, in get_db_prep_value
+    return connection.ops.adapt_json_value(value, self.encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\base\operations.py", line 584, in adapt_json_value
+    return json.dumps(value, cls=encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Timestamp is not JSON serializable
+ERROR 2025-10-16 15:56:12,462 views delete_session failed
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\query.py", line 637, in get
+    raise self.model.DoesNotExist(
+intelligent_import.models.ImportSession.DoesNotExist: ImportSession matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 866, in delete_session
+    session = get_object_or_404(ImportSession, id=session_id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\shortcuts.py", line 87, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No ImportSession matches the given query.
+ERROR 2025-10-16 15:57:23,432 views Upload and analysis failed: Object of type Timestamp is not JSON serializable
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 326, in upload_and_analyze
+    session.save()
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 990, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 1054, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\query.py", line 1231, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1984, in execute_sql
+    cursor = super().execute_sql(result_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1947, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 136, in get_db_prep_save
+    return self.get_db_prep_value(value, connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\fields\json.py", line 131, in get_db_prep_value
+    return connection.ops.adapt_json_value(value, self.encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\base\operations.py", line 584, in adapt_json_value
+    return json.dumps(value, cls=encoder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Timestamp is not JSON serializable
+INFO 2025-10-16 22:18:54,787 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-16 22:18:54,787 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-16 22:23:02,840 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-16 22:35:56,808 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-17 10:59:33,109 views Data validation failed: Import session is missing a target table definition.
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 547, in validate_and_preview_data
+    validation_results = process_and_validate_data(
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 269, in process_and_validate_data
+    schema_definition = get_table_schema_from_db(session)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 104, in get_table_schema_from_db
+    raise ValueError("Import session is missing a target table definition.")
+ValueError: Import session is missing a target table definition.
+INFO 2025-10-17 13:22:25,810 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-17 13:22:26,002 views Upload and analysis failed: name 'SchemaAnalyzer' is not defined
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 308, in upload_and_analyze
+    analyzer = SchemaAnalyzer(connection, existing_templates=templates_list)
+               ^^^^^^^^^^^^^^
+NameError: name 'SchemaAnalyzer' is not defined
+INFO 2025-10-17 13:43:57,662 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-17 14:15:21,641 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-17 15:33:38,528 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-17 16:03:16,553 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-17 16:04:25,825 views Schema analysis failed: CHECK constraint failed: (JSON_VALID("analysis_summary") OR "analysis_summary" IS NULL)
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: CHECK constraint failed: (JSON_VALID("analysis_summary") OR "analysis_summary" IS NULL)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 366, in upload_and_analyze
+    session.save()
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 990, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\base.py", line 1054, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\query.py", line 1231, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1984, in execute_sql
+    cursor = super().execute_sql(result_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: CHECK constraint failed: (JSON_VALID("analysis_summary") OR "analysis_summary" IS NULL)
+INFO 2025-10-17 16:13:26,000 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-17 16:34:43,614 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-17 18:08:20,064 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-17 18:08:42,929 views Schema analysis failed: 'SchemaAnalyzer' object has no attribute '_detect_header_row_from_df'
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 368, in upload_and_analyze
+    analysis_results = analyzer.analyze_file_structure(temp_path)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 69, in analyze_file_structure
+    df = self._load_file(file_path, header_row)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 184, in _load_file
+    guess = self._detect_header_row_from_df(df0)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SchemaAnalyzer' object has no attribute '_detect_header_row_from_df'
+INFO 2025-10-17 18:11:15,224 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-17 18:11:16,005 views Schema analysis failed: 'SchemaAnalyzer' object has no attribute '_detect_header_row_from_df'
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 368, in upload_and_analyze
+    analysis_results = analyzer.analyze_file_structure(temp_path)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 69, in analyze_file_structure
+    df = self._load_file(file_path, header_row)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 184, in _load_file
+    guess = self._detect_header_row_from_df(df0)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SchemaAnalyzer' object has no attribute '_detect_header_row_from_df'
+INFO 2025-10-17 18:21:04,612 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-17 18:21:05,292 views Schema analysis failed: SchemaAnalyzer._load_file() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 369, in upload_and_analyze
+    analysis_results = analyzer.analyze_file_structure(temp_path)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 68, in analyze_file_structure
+    df = self._load_file(file_path, header_row)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: SchemaAnalyzer._load_file() takes 2 positional arguments but 3 were given
+INFO 2025-10-17 18:23:59,240 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-17 18:24:04,931 views Schema analysis failed: 'SchemaAnalyzer' object has no attribute '_detect_header_row_from_df'
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 369, in upload_and_analyze
+    analysis_results = analyzer.analyze_file_structure(temp_path)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 68, in analyze_file_structure
+    df = self._load_file(file_path, header_row)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\schema_analyzer.py", line 187, in _load_file
+    guess = self._detect_header_row_from_df(raw)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SchemaAnalyzer' object has no attribute '_detect_header_row_from_df'
+INFO 2025-10-17 18:28:28,159 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-17 18:31:21,992 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-17 18:31:57,622 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-17 18:58:35,240 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-17 18:59:27,534 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\bb0ae250-844d-4354-86f1-d65d331f475e_1._SPO_details_production_item.xlsx'.
+INFO 2025-10-17 19:01:45,496 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\bb0ae250-844d-4354-86f1-d65d331f475e_1._SPO_details_production_item.xlsx'.
+INFO 2025-10-17 19:03:37,470 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\bb0ae250-844d-4354-86f1-d65d331f475e_1._SPO_details_production_item.xlsx'.
+INFO 2025-10-17 19:03:44,191 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\bb0ae250-844d-4354-86f1-d65d331f475e_1._SPO_details_production_item.xlsx'.
+INFO 2025-10-17 19:03:44,735 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\bb0ae250-844d-4354-86f1-d65d331f475e_1._SPO_details_production_item.xlsx'.
+INFO 2025-10-17 19:03:44,787 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\bb0ae250-844d-4354-86f1-d65d331f475e_1._SPO_details_production_item.xlsx'.
+INFO 2025-10-17 20:26:16,038 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-17 20:26:16,233 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\2a2eb870-b5cf-479d-a266-90a2f15265ba_report_20251016_135936.xlsx'.
+INFO 2025-10-17 20:26:55,160 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-17 20:27:36,948 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\d8d6c33c-0340-43f1-9f01-5aee0c7b264a_1._SPO_details_production_item.xlsx'.
+INFO 2025-10-17 21:03:25,267 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-17 21:03:26,857 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\92a6f774-3a52-4fe5-8863-e9499cccc524_1._SPO_details.xlsx'.
+INFO 2025-10-17 21:04:25,069 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-17 21:05:08,699 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\1ba858cc-a37c-4880-b476-970d2607e76f_1._SPO_details_production_item.xlsx'.
+INFO 2025-10-17 21:06:03,248 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-17 21:06:48,536 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\5e714abe-6e98-42c9-a66d-02b5fd780b4c_1._SPO_details_production_item_-_Copy.xlsx'.
+INFO 2025-10-17 21:22:30,155 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\58e080a7-2538-48b8-99b5-bf8c11a358ef_Buyer_wise_profitabilityshipment_2024_V9a.xlsx'.
+INFO 2025-10-17 21:22:33,905 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\58e080a7-2538-48b8-99b5-bf8c11a358ef_Buyer_wise_profitabilityshipment_2024_V9a.xlsx'.
+INFO 2025-10-17 22:43:02,982 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-17 22:43:04,087 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\907c3526-3881-4b81-ad2c-6f174a5354f2_CS_ID_Details.xlsx'.
+INFO 2025-10-17 22:43:50,016 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\907c3526-3881-4b81-ad2c-6f174a5354f2_CS_ID_Details.xlsx'.
+INFO 2025-10-17 22:54:37,002 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\907c3526-3881-4b81-ad2c-6f174a5354f2_CS_ID_Details.xlsx'.
+INFO 2025-10-17 22:56:29,614 schema_analyzer No table metadata available for mapping suggestion for file 'C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\media\intelligent_import_temp\907c3526-3881-4b81-ad2c-6f174a5354f2_CS_ID_Details.xlsx'.
+INFO 2025-10-18 00:03:04,211 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-18 00:20:14,719 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-18 02:01:58,413 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-18 02:47:13,237 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-18 03:37:44,829 views Data validation failed: ''
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 885, in validate_and_preview_data
+    validation_results = process_and_validate_data(
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 346, in process_and_validate_data
+    table_def = schema_definition["tables"][target_table_name]
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: ''
+INFO 2025-10-18 10:16:20,759 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-18 10:16:44,758 views Data validation failed: ''
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 885, in validate_and_preview_data
+    validation_results = process_and_validate_data(
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 346, in process_and_validate_data
+    table_def = schema_definition["tables"][target_table_name]
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: ''
+INFO 2025-10-18 10:48:02,665 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-18 11:08:11,114 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-18 11:56:52,912 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-18 12:36:11,299 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-18 16:42:54,274 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-18 17:22:26,699 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-18 17:52:44,983 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-18 18:03:01,274 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-18 18:04:10,047 views Import approval and execution failed: name '_reflect_single_table_definition' is not defined
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 1135, in approve_and_import
+    import_results = execute_data_import(session, effective_mode=effective_mode)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 932, in execute_data_import
+    table_def = _reflect_single_table_definition(session, tname)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name '_reflect_single_table_definition' is not defined
+INFO 2025-10-18 18:09:59,995 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-18 18:10:05,264 views Data validation failed: Failed to inspect table 'new_cs_id': new_cs_id
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 189, in get_table_schema_from_db
+    columns = inspector.get_columns(bare_table, schema=schema)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\reflection.py", line 859, in get_columns
+    col_defs = self.dialect.get_columns(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 2, in get_columns
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\reflection.py", line 97, in cache
+    ret = fn(self, con, *args, **kw)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\base.py", line 3484, in get_columns
+    return self._value_or_raise(data, table_name, schema)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\base.py", line 3452, in _value_or_raise
+    raise exc.NoSuchTableError(
+sqlalchemy.exc.NoSuchTableError: new_cs_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 889, in validate_and_preview_data
+    validation_results = process_and_validate_data(
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 418, in process_and_validate_data
+    schema_definition = get_table_schema_from_db(session)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 191, in get_table_schema_from_db
+    raise RuntimeError(f"Failed to inspect table '{bare_table}': {exc}") from exc
+RuntimeError: Failed to inspect table 'new_cs_id': new_cs_id
+INFO 2025-10-18 18:21:00,999 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-18 18:25:19,522 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-18 18:35:44,028 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-18 18:36:16,136 views Import approval and execution failed: Failed to inspect table 'cs_id': cs_id
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 249, in _reflect_single_table_definition
+    columns = inspector.get_columns(bare_table, schema=schema)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\reflection.py", line 859, in get_columns
+    col_defs = self.dialect.get_columns(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 2, in get_columns
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\reflection.py", line 97, in cache
+    ret = fn(self, con, *args, **kw)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\base.py", line 3484, in get_columns
+    return self._value_or_raise(data, table_name, schema)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\base.py", line 3452, in _value_or_raise
+    raise exc.NoSuchTableError(
+sqlalchemy.exc.NoSuchTableError: cs_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 1138, in approve_and_import
+    import_results = execute_data_import(session, effective_mode=effective_mode)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1000, in execute_data_import
+    table_def = _reflect_single_table_definition(session, tname)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 251, in _reflect_single_table_definition
+    raise RuntimeError(f"Failed to inspect table '{bare_table}': {exc}") from exc
+RuntimeError: Failed to inspect table 'cs_id': cs_id
+INFO 2025-10-18 18:38:47,763 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-18 18:39:15,314 data_processing Data import failed: (psycopg2.errors.SyntaxError) syntax error at or near ":"
+LINE 1: ...ewcol__:style", "__newcol__:file_ref_no") VALUES (:__newcol_...
+                                                             ^
+
+[SQL: INSERT INTO "cs_id" ("__newcol__:cs_id", "__newcol__:style", "__newcol__:file_ref_no") VALUES (:__newcol__:cs_id, :__newcol__:style, :__newcol__:file_ref_no)]
+[parameters: [{}, {}, {}, {}, {}, {}, {}, {}  ... displaying 10 of 1000 total bound parameter sets ...  {}, {}]]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+psycopg2.errors.SyntaxError: syntax error at or near ":"
+LINE 1: ...ewcol__:style", "__newcol__:file_ref_no") VALUES (:__newcol_...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1100, in execute_data_import
+    connection.execute(stmt, to_insert)
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.SyntaxError) syntax error at or near ":"
+LINE 1: ...ewcol__:style", "__newcol__:file_ref_no") VALUES (:__newcol_...
+                                                             ^
+
+[SQL: INSERT INTO "cs_id" ("__newcol__:cs_id", "__newcol__:style", "__newcol__:file_ref_no") VALUES (:__newcol__:cs_id, :__newcol__:style, :__newcol__:file_ref_no)]
+[parameters: [{}, {}, {}, {}, {}, {}, {}, {}  ... displaying 10 of 1000 total bound parameter sets ...  {}, {}]]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+ERROR 2025-10-18 18:39:15,376 views Import approval and execution failed: (psycopg2.errors.SyntaxError) syntax error at or near ":"
+LINE 1: ...ewcol__:style", "__newcol__:file_ref_no") VALUES (:__newcol_...
+                                                             ^
+
+[SQL: INSERT INTO "cs_id" ("__newcol__:cs_id", "__newcol__:style", "__newcol__:file_ref_no") VALUES (:__newcol__:cs_id, :__newcol__:style, :__newcol__:file_ref_no)]
+[parameters: [{}, {}, {}, {}, {}, {}, {}, {}  ... displaying 10 of 1000 total bound parameter sets ...  {}, {}]]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+psycopg2.errors.SyntaxError: syntax error at or near ":"
+LINE 1: ...ewcol__:style", "__newcol__:file_ref_no") VALUES (:__newcol_...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 1138, in approve_and_import
+    import_results = execute_data_import(session, effective_mode=effective_mode)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1100, in execute_data_import
+    connection.execute(stmt, to_insert)
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.SyntaxError) syntax error at or near ":"
+LINE 1: ...ewcol__:style", "__newcol__:file_ref_no") VALUES (:__newcol_...
+                                                             ^
+
+[SQL: INSERT INTO "cs_id" ("__newcol__:cs_id", "__newcol__:style", "__newcol__:file_ref_no") VALUES (:__newcol__:cs_id, :__newcol__:style, :__newcol__:file_ref_no)]
+[parameters: [{}, {}, {}, {}, {}, {}, {}, {}  ... displaying 10 of 1000 total bound parameter sets ...  {}, {}]]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+INFO 2025-10-18 18:45:14,665 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+WARNING 2025-10-18 18:45:46,040 data_processing Failed to fetch existing rows by PK: (psycopg2.errors.UndefinedColumn) column "style" does not exist
+LINE 1: SELECT "id", "cs_id", "style", "file_ref_no" FROM "cs_id" WH...
+                              ^
+
+[SQL: SELECT "id", "cs_id", "style", "file_ref_no" FROM "cs_id" WHERE ("id" = %(p_0_0)s) OR ("id" = %(p_1_0)s) OR ("id" = %(p_2_0)s) OR ("id" = %(p_3_0)s) OR ("id" = %(p_4_0)s) OR ("id" = %(p_5_0)s) OR ("id" = %(p_6_0)s) OR ("id" = %(p_7_0)s) OR ("id" = %(p_8_0)s) OR ("id" = %(p_9_0)s) OR ("id" = %(p_10_0)s) OR ("id" = %(p_11_0)s) OR ("id" = %(p_12_0)s) OR ("id" = %(p_13_0)s) OR ("id" = %(p_14_0)s) OR ("id" = %(p_15_0)s) OR ("id" = %(p_16_0)s) OR ("id" = %(p_17_0)s) OR ("id" = %(p_18_0)s) OR ("id" = %(p_19_0)s) OR ("id" = %(p_20_0)s) OR ("id" = %(p_21_0)s) OR ("id" = %(p_22_0)s) OR ("id" = %(p_23_0)s) OR ("id" = %(p_24_0)s) OR ("id" = %(p_25_0)s) OR ("id" = %(p_26_0)s) OR ("id" = %(p_27_0)s) OR ("id" = %(p_28_0)s) OR ("id" = %(p_29_0)s) OR ("id" = %(p_30_0)s) OR ("id" = %(p_31_0)s) OR ("id" = %(p_32_0)s) OR ("id" = %(p_33_0)s) OR ("id" = %(p_34_0)s) OR ("id" = %(p_35_0)s) OR ("id" = %(p_36_0)s) OR ("id" = %(p_37_0)s) OR ("id" = %(p_38_0)s) OR ("id" = %(p_39_0)s) OR ("id" = %(p_40_0)s) OR ("id" = %(p_41_0)s) OR ("id" = %(p_42_0)s) OR ("id" = %(p_43_0)s) OR ("id" = %(p_44_0)s) OR ("id" = %(p_45_0)s) OR ("id" = %(p_46_0)s) OR ("id" = %(p_47_0)s) OR ("id" = %(p_48_0)s) OR ("id" = %(p_49_0)s) OR ("id" = %(p_50_0)s) OR ("id" = %(p_51_0)s) OR ("id" = %(p_52_0)s) OR ("id" = %(p_53_0)s) OR ("id" = %(p_54_0)s) OR ("id" = %(p_55_0)s) OR ("id" = %(p_56_0)s) OR ("id" = %(p_57_0)s) OR ("id" = %(p_58_0)s) OR ("id" = %(p_59_0)s) OR ("id" = %(p_60_0)s) OR ("id" = %(p_61_0)s) OR ("id" = %(p_62_0)s) OR ("id" = %(p_63_0)s) OR ("id" = %(p_64_0)s) OR ("id" = %(p_65_0)s) OR ("id" = %(p_66_0)s) OR ("id" = %(p_67_0)s) OR ("id" = %(p_68_0)s) OR ("id" = %(p_69_0)s) OR ("id" = %(p_70_0)s) OR ("id" = %(p_71_0)s) OR ("id" = %(p_72_0)s) OR ("id" = %(p_73_0)s) OR ("id" = %(p_74_0)s) OR ("id" = %(p_75_0)s) OR ("id" = %(p_76_0)s) OR ("id" = %(p_77_0)s) OR ("id" = %(p_78_0)s) OR ("id" = %(p_79_0)s) OR ("id" = %(p_80_0)s) OR ("id" = %(p_81_0)s) OR ("id" = %(p_82_0)s) OR ("id" = %(p_83_0)s) OR ("id" = %(p_84_0)s) OR ("id" = %(p_85_0)s) OR ("id" = %(p_86_0)s) OR ("id" = %(p_87_0)s) OR ("id" = %(p_88_0)s) OR ("id" = %(p_89_0)s) OR ("id" = %(p_90_0)s) OR ("id" = %(p_91_0)s) OR ("id" = %(p_92_0)s) OR ("id" = %(p_93_0)s) OR ("id" = %(p_94_0)s) OR ("id" = %(p_95_0)s) OR ("id" = %(p_96_0)s) OR ("id" = %(p_97_0)s) OR ("id" = %(p_98_0)s) OR ("id" = %(p_99_0)s) OR ("id" = %(p_100_0)s) OR ("id" = %(p_101_0)s) OR ("id" = %(p_102_0)s) OR ("id" = %(p_103_0)s) OR ("id" = %(p_104_0)s) OR ("id" = %(p_105_0)s) OR ("id" = %(p_106_0)s) OR ("id" = %(p_107_0)s) OR ("id" = %(p_108_0)s) OR ("id" = %(p_109_0)s) OR ("id" = %(p_110_0)s) OR ("id" = %(p_111_0)s) OR ("id" = %(p_112_0)s) OR ("id" = %(p_113_0)s) OR ("id" = %(p_114_0)s) OR ("id" = %(p_115_0)s) OR ("id" = %(p_116_0)s) OR ("id" = %(p_117_0)s) OR ("id" = %(p_118_0)s) OR ("id" = %(p_119_0)s) OR ("id" = %(p_120_0)s) OR ("id" = %(p_121_0)s) OR ("id" = %(p_122_0)s) OR ("id" = %(p_123_0)s) OR ("id" = %(p_124_0)s) OR ("id" = %(p_125_0)s) OR ("id" = %(p_126_0)s) OR ("id" = %(p_127_0)s) OR ("id" = %(p_128_0)s) OR ("id" = %(p_129_0)s) OR ("id" = %(p_130_0)s) OR ("id" = %(p_131_0)s) OR ("id" = %(p_132_0)s) OR ("id" = %(p_133_0)s) OR ("id" = %(p_134_0)s) OR ("id" = %(p_135_0)s) OR ("id" = %(p_136_0)s) OR ("id" = %(p_137_0)s) OR ("id" = %(p_138_0)s) OR ("id" = %(p_139_0)s) OR ("id" = %(p_140_0)s) OR ("id" = %(p_141_0)s) OR ("id" = %(p_142_0)s) OR ("id" = %(p_143_0)s) OR ("id" = %(p_144_0)s) OR ("id" = %(p_145_0)s) OR ("id" = %(p_146_0)s) OR ("id" = %(p_147_0)s) OR ("id" = %(p_148_0)s) OR ("id" = %(p_149_0)s) OR ("id" = %(p_150_0)s) OR ("id" = %(p_151_0)s) OR ("id" = %(p_152_0)s) OR ("id" = %(p_153_0)s) OR ("id" = %(p_154_0)s) OR ("id" = %(p_155_0)s) OR ("id" = %(p_156_0)s) OR ("id" = %(p_157_0)s) OR ("id" = %(p_158_0)s) OR ("id" = %(p_159_0)s) OR ("id" = %(p_160_0)s) OR ("id" = %(p_161_0)s) OR ("id" = %(p_162_0)s) OR ("id" = %(p_163_0)s) OR ("id" = %(p_164_0)s) OR ("id" = %(p_165_0)s) OR ("id" = %(p_166_0)s) OR ("id" = %(p_167_0)s) OR ("id" = %(p_168_0)s) OR ("id" = %(p_169_0)s) OR ("id" = %(p_170_0)s) OR ("id" = %(p_171_0)s) OR ("id" = %(p_172_0)s) OR ("id" = %(p_173_0)s) OR ("id" = %(p_174_0)s) OR ("id" = %(p_175_0)s) OR ("id" = %(p_176_0)s) OR ("id" = %(p_177_0)s) OR ("id" = %(p_178_0)s) OR ("id" = %(p_179_0)s) OR ("id" = %(p_180_0)s) OR ("id" = %(p_181_0)s) OR ("id" = %(p_182_0)s) OR ("id" = %(p_183_0)s) OR ("id" = %(p_184_0)s) OR ("id" = %(p_185_0)s) OR ("id" = %(p_186_0)s) OR ("id" = %(p_187_0)s) OR ("id" = %(p_188_0)s) OR ("id" = %(p_189_0)s) OR ("id" = %(p_190_0)s) OR ("id" = %(p_191_0)s) OR ("id" = %(p_192_0)s) OR ("id" = %(p_193_0)s) OR ("id" = %(p_194_0)s) OR ("id" = %(p_195_0)s) OR ("id" = %(p_196_0)s) OR ("id" = %(p_197_0)s) OR ("id" = %(p_198_0)s) OR ("id" = %(p_199_0)s) OR ("id" = %(p_200_0)s) OR ("id" = %(p_201_0)s) OR ("id" = %(p_202_0)s) OR ("id" = %(p_203_0)s) OR ("id" = %(p_204_0)s) OR ("id" = %(p_205_0)s) OR ("id" = %(p_206_0)s) OR ("id" = %(p_207_0)s) OR ("id" = %(p_208_0)s) OR ("id" = %(p_209_0)s) OR ("id" = %(p_210_0)s) OR ("id" = %(p_211_0)s) OR ("id" = %(p_212_0)s) OR ("id" = %(p_213_0)s) OR ("id" = %(p_214_0)s) OR ("id" = %(p_215_0)s) OR ("id" = %(p_216_0)s) OR ("id" = %(p_217_0)s) OR ("id" = %(p_218_0)s) OR ("id" = %(p_219_0)s) OR ("id" = %(p_220_0)s) OR ("id" = %(p_221_0)s) OR ("id" = %(p_222_0)s) OR ("id" = %(p_223_0)s) OR ("id" = %(p_224_0)s) OR ("id" = %(p_225_0)s) OR ("id" = %(p_226_0)s) OR ("id" = %(p_227_0)s) OR ("id" = %(p_228_0)s) OR ("id" = %(p_229_0)s) OR ("id" = %(p_230_0)s) OR ("id" = %(p_231_0)s) OR ("id" = %(p_232_0)s) OR ("id" = %(p_233_0)s) OR ("id" = %(p_234_0)s) OR ("id" = %(p_235_0)s) OR ("id" = %(p_236_0)s) OR ("id" = %(p_237_0)s) OR ("id" = %(p_238_0)s) OR ("id" = %(p_239_0)s) OR ("id" = %(p_240_0)s) OR ("id" = %(p_241_0)s) OR ("id" = %(p_242_0)s) OR ("id" = %(p_243_0)s) OR ("id" = %(p_244_0)s) OR ("id" = %(p_245_0)s) OR ("id" = %(p_246_0)s) OR ("id" = %(p_247_0)s) OR ("id" = %(p_248_0)s) OR ("id" = %(p_249_0)s) OR ("id" = %(p_250_0)s) OR ("id" = %(p_251_0)s) OR ("id" = %(p_252_0)s) OR ("id" = %(p_253_0)s) OR ("id" = %(p_254_0)s) OR ("id" = %(p_255_0)s) OR ("id" = %(p_256_0)s) OR ("id" = %(p_257_0)s) OR ("id" = %(p_258_0)s) OR ("id" = %(p_259_0)s) OR ("id" = %(p_260_0)s) OR ("id" = %(p_261_0)s) OR ("id" = %(p_262_0)s) OR ("id" = %(p_263_0)s) OR ("id" = %(p_264_0)s) OR ("id" = %(p_265_0)s) OR ("id" = %(p_266_0)s) OR ("id" = %(p_267_0)s) OR ("id" = %(p_268_0)s) OR ("id" = %(p_269_0)s) OR ("id" = %(p_270_0)s) OR ("id" = %(p_271_0)s) OR ("id" = %(p_272_0)s) OR ("id" = %(p_273_0)s) OR ("id" = %(p_274_0)s) OR ("id" = %(p_275_0)s) OR ("id" = %(p_276_0)s) OR ("id" = %(p_277_0)s) OR ("id" = %(p_278_0)s) OR ("id" = %(p_279_0)s) OR ("id" = %(p_280_0)s) OR ("id" = %(p_281_0)s) OR ("id" = %(p_282_0)s) OR ("id" = %(p_283_0)s) OR ("id" = %(p_284_0)s) OR ("id" = %(p_285_0)s) OR ("id" = %(p_286_0)s) OR ("id" = %(p_287_0)s) OR ("id" = %(p_288_0)s) OR ("id" = %(p_289_0)s) OR ("id" = %(p_290_0)s) OR ("id" = %(p_291_0)s) OR ("id" = %(p_292_0)s) OR ("id" = %(p_293_0)s) OR ("id" = %(p_294_0)s) OR ("id" = %(p_295_0)s) OR ("id" = %(p_296_0)s) OR ("id" = %(p_297_0)s) OR ("id" = %(p_298_0)s) OR ("id" = %(p_299_0)s) OR ("id" = %(p_300_0)s) OR ("id" = %(p_301_0)s) OR ("id" = %(p_302_0)s) OR ("id" = %(p_303_0)s) OR ("id" = %(p_304_0)s) OR ("id" = %(p_305_0)s) OR ("id" = %(p_306_0)s) OR ("id" = %(p_307_0)s) OR ("id" = %(p_308_0)s) OR ("id" = %(p_309_0)s) OR ("id" = %(p_310_0)s) OR ("id" = %(p_311_0)s) OR ("id" = %(p_312_0)s) OR ("id" = %(p_313_0)s) OR ("id" = %(p_314_0)s) OR ("id" = %(p_315_0)s) OR ("id" = %(p_316_0)s) OR ("id" = %(p_317_0)s) OR ("id" = %(p_318_0)s) OR ("id" = %(p_319_0)s) OR ("id" = %(p_320_0)s) OR ("id" = %(p_321_0)s) OR ("id" = %(p_322_0)s) OR ("id" = %(p_323_0)s) OR ("id" = %(p_324_0)s) OR ("id" = %(p_325_0)s) OR ("id" = %(p_326_0)s) OR ("id" = %(p_327_0)s) OR ("id" = %(p_328_0)s) OR ("id" = %(p_329_0)s) OR ("id" = %(p_330_0)s) OR ("id" = %(p_331_0)s) OR ("id" = %(p_332_0)s) OR ("id" = %(p_333_0)s) OR ("id" = %(p_334_0)s) OR ("id" = %(p_335_0)s) OR ("id" = %(p_336_0)s) OR ("id" = %(p_337_0)s) OR ("id" = %(p_338_0)s) OR ("id" = %(p_339_0)s) OR ("id" = %(p_340_0)s) OR ("id" = %(p_341_0)s) OR ("id" = %(p_342_0)s) OR ("id" = %(p_343_0)s) OR ("id" = %(p_344_0)s) OR ("id" = %(p_345_0)s) OR ("id" = %(p_346_0)s) OR ("id" = %(p_347_0)s) OR ("id" = %(p_348_0)s) OR ("id" = %(p_349_0)s) OR ("id" = %(p_350_0)s) OR ("id" = %(p_351_0)s) OR ("id" = %(p_352_0)s) OR ("id" = %(p_353_0)s) OR ("id" = %(p_354_0)s) OR ("id" = %(p_355_0)s) OR ("id" = %(p_356_0)s) OR ("id" = %(p_357_0)s) OR ("id" = %(p_358_0)s) OR ("id" = %(p_359_0)s) OR ("id" = %(p_360_0)s) OR ("id" = %(p_361_0)s) OR ("id" = %(p_362_0)s) OR ("id" = %(p_363_0)s) OR ("id" = %(p_364_0)s) OR ("id" = %(p_365_0)s) OR ("id" = %(p_366_0)s) OR ("id" = %(p_367_0)s) OR ("id" = %(p_368_0)s) OR ("id" = %(p_369_0)s) OR ("id" = %(p_370_0)s) OR ("id" = %(p_371_0)s) OR ("id" = %(p_372_0)s) OR ("id" = %(p_373_0)s) OR ("id" = %(p_374_0)s) OR ("id" = %(p_375_0)s) OR ("id" = %(p_376_0)s) OR ("id" = %(p_377_0)s) OR ("id" = %(p_378_0)s) OR ("id" = %(p_379_0)s) OR ("id" = %(p_380_0)s) OR ("id" = %(p_381_0)s) OR ("id" = %(p_382_0)s) OR ("id" = %(p_383_0)s) OR ("id" = %(p_384_0)s) OR ("id" = %(p_385_0)s) OR ("id" = %(p_386_0)s) OR ("id" = %(p_387_0)s) OR ("id" = %(p_388_0)s) OR ("id" = %(p_389_0)s) OR ("id" = %(p_390_0)s) OR ("id" = %(p_391_0)s) OR ("id" = %(p_392_0)s) OR ("id" = %(p_393_0)s) OR ("id" = %(p_394_0)s) OR ("id" = %(p_395_0)s) OR ("id" = %(p_396_0)s) OR ("id" = %(p_397_0)s) OR ("id" = %(p_398_0)s) OR ("id" = %(p_399_0)s) OR ("id" = %(p_400_0)s) OR ("id" = %(p_401_0)s) OR ("id" = %(p_402_0)s) OR ("id" = %(p_403_0)s) OR ("id" = %(p_404_0)s) OR ("id" = %(p_405_0)s) OR ("id" = %(p_406_0)s) OR ("id" = %(p_407_0)s) OR ("id" = %(p_408_0)s) OR ("id" = %(p_409_0)s) OR ("id" = %(p_410_0)s) OR ("id" = %(p_411_0)s) OR ("id" = %(p_412_0)s) OR ("id" = %(p_413_0)s) OR ("id" = %(p_414_0)s) OR ("id" = %(p_415_0)s) OR ("id" = %(p_416_0)s) OR ("id" = %(p_417_0)s) OR ("id" = %(p_418_0)s) OR ("id" = %(p_419_0)s) OR ("id" = %(p_420_0)s) OR ("id" = %(p_421_0)s) OR ("id" = %(p_422_0)s) OR ("id" = %(p_423_0)s) OR ("id" = %(p_424_0)s) OR ("id" = %(p_425_0)s) OR ("id" = %(p_426_0)s) OR ("id" = %(p_427_0)s) OR ("id" = %(p_428_0)s) OR ("id" = %(p_429_0)s) OR ("id" = %(p_430_0)s) OR ("id" = %(p_431_0)s) OR ("id" = %(p_432_0)s) OR ("id" = %(p_433_0)s) OR ("id" = %(p_434_0)s) OR ("id" = %(p_435_0)s) OR ("id" = %(p_436_0)s) OR ("id" = %(p_437_0)s) OR ("id" = %(p_438_0)s) OR ("id" = %(p_439_0)s) OR ("id" = %(p_440_0)s) OR ("id" = %(p_441_0)s) OR ("id" = %(p_442_0)s) OR ("id" = %(p_443_0)s) OR ("id" = %(p_444_0)s) OR ("id" = %(p_445_0)s) OR ("id" = %(p_446_0)s) OR ("id" = %(p_447_0)s) OR ("id" = %(p_448_0)s) OR ("id" = %(p_449_0)s) OR ("id" = %(p_450_0)s) OR ("id" = %(p_451_0)s) OR ("id" = %(p_452_0)s) OR ("id" = %(p_453_0)s) OR ("id" = %(p_454_0)s) OR ("id" = %(p_455_0)s) OR ("id" = %(p_456_0)s) OR ("id" = %(p_457_0)s) OR ("id" = %(p_458_0)s) OR ("id" = %(p_459_0)s) OR ("id" = %(p_460_0)s) OR ("id" = %(p_461_0)s) OR ("id" = %(p_462_0)s) OR ("id" = %(p_463_0)s) OR ("id" = %(p_464_0)s) OR ("id" = %(p_465_0)s) OR ("id" = %(p_466_0)s) OR ("id" = %(p_467_0)s) OR ("id" = %(p_468_0)s) OR ("id" = %(p_469_0)s) OR ("id" = %(p_470_0)s) OR ("id" = %(p_471_0)s) OR ("id" = %(p_472_0)s) OR ("id" = %(p_473_0)s) OR ("id" = %(p_474_0)s) OR ("id" = %(p_475_0)s) OR ("id" = %(p_476_0)s) OR ("id" = %(p_477_0)s) OR ("id" = %(p_478_0)s) OR ("id" = %(p_479_0)s) OR ("id" = %(p_480_0)s) OR ("id" = %(p_481_0)s) OR ("id" = %(p_482_0)s) OR ("id" = %(p_483_0)s) OR ("id" = %(p_484_0)s) OR ("id" = %(p_485_0)s) OR ("id" = %(p_486_0)s) OR ("id" = %(p_487_0)s) OR ("id" = %(p_488_0)s) OR ("id" = %(p_489_0)s) OR ("id" = %(p_490_0)s) OR ("id" = %(p_491_0)s) OR ("id" = %(p_492_0)s) OR ("id" = %(p_493_0)s) OR ("id" = %(p_494_0)s) OR ("id" = %(p_495_0)s) OR ("id" = %(p_496_0)s) OR ("id" = %(p_497_0)s) OR ("id" = %(p_498_0)s) OR ("id" = %(p_499_0)s) OR ("id" = %(p_500_0)s) OR ("id" = %(p_501_0)s) OR ("id" = %(p_502_0)s) OR ("id" = %(p_503_0)s) OR ("id" = %(p_504_0)s) OR ("id" = %(p_505_0)s) OR ("id" = %(p_506_0)s) OR ("id" = %(p_507_0)s) OR ("id" = %(p_508_0)s) OR ("id" = %(p_509_0)s) OR ("id" = %(p_510_0)s) OR ("id" = %(p_511_0)s) OR ("id" = %(p_512_0)s) OR ("id" = %(p_513_0)s) OR ("id" = %(p_514_0)s) OR ("id" = %(p_515_0)s) OR ("id" = %(p_516_0)s) OR ("id" = %(p_517_0)s) OR ("id" = %(p_518_0)s) OR ("id" = %(p_519_0)s) OR ("id" = %(p_520_0)s) OR ("id" = %(p_521_0)s) OR ("id" = %(p_522_0)s) OR ("id" = %(p_523_0)s) OR ("id" = %(p_524_0)s) OR ("id" = %(p_525_0)s) OR ("id" = %(p_526_0)s) OR ("id" = %(p_527_0)s) OR ("id" = %(p_528_0)s) OR ("id" = %(p_529_0)s) OR ("id" = %(p_530_0)s) OR ("id" = %(p_531_0)s) OR ("id" = %(p_532_0)s) OR ("id" = %(p_533_0)s) OR ("id" = %(p_534_0)s) OR ("id" = %(p_535_0)s) OR ("id" = %(p_536_0)s) OR ("id" = %(p_537_0)s) OR ("id" = %(p_538_0)s) OR ("id" = %(p_539_0)s) OR ("id" = %(p_540_0)s) OR ("id" = %(p_541_0)s) OR ("id" = %(p_542_0)s) OR ("id" = %(p_543_0)s) OR ("id" = %(p_544_0)s) OR ("id" = %(p_545_0)s) OR ("id" = %(p_546_0)s) OR ("id" = %(p_547_0)s) OR ("id" = %(p_548_0)s) OR ("id" = %(p_549_0)s) OR ("id" = %(p_550_0)s) OR ("id" = %(p_551_0)s) OR ("id" = %(p_552_0)s) OR ("id" = %(p_553_0)s) OR ("id" = %(p_554_0)s) OR ("id" = %(p_555_0)s) OR ("id" = %(p_556_0)s) OR ("id" = %(p_557_0)s) OR ("id" = %(p_558_0)s) OR ("id" = %(p_559_0)s) OR ("id" = %(p_560_0)s) OR ("id" = %(p_561_0)s) OR ("id" = %(p_562_0)s) OR ("id" = %(p_563_0)s) OR ("id" = %(p_564_0)s) OR ("id" = %(p_565_0)s) OR ("id" = %(p_566_0)s) OR ("id" = %(p_567_0)s) OR ("id" = %(p_568_0)s) OR ("id" = %(p_569_0)s) OR ("id" = %(p_570_0)s) OR ("id" = %(p_571_0)s) OR ("id" = %(p_572_0)s) OR ("id" = %(p_573_0)s) OR ("id" = %(p_574_0)s) OR ("id" = %(p_575_0)s) OR ("id" = %(p_576_0)s) OR ("id" = %(p_577_0)s) OR ("id" = %(p_578_0)s) OR ("id" = %(p_579_0)s) OR ("id" = %(p_580_0)s) OR ("id" = %(p_581_0)s) OR ("id" = %(p_582_0)s) OR ("id" = %(p_583_0)s) OR ("id" = %(p_584_0)s) OR ("id" = %(p_585_0)s) OR ("id" = %(p_586_0)s) OR ("id" = %(p_587_0)s) OR ("id" = %(p_588_0)s) OR ("id" = %(p_589_0)s) OR ("id" = %(p_590_0)s) OR ("id" = %(p_591_0)s) OR ("id" = %(p_592_0)s) OR ("id" = %(p_593_0)s) OR ("id" = %(p_594_0)s) OR ("id" = %(p_595_0)s) OR ("id" = %(p_596_0)s) OR ("id" = %(p_597_0)s) OR ("id" = %(p_598_0)s) OR ("id" = %(p_599_0)s) OR ("id" = %(p_600_0)s) OR ("id" = %(p_601_0)s) OR ("id" = %(p_602_0)s) OR ("id" = %(p_603_0)s) OR ("id" = %(p_604_0)s) OR ("id" = %(p_605_0)s) OR ("id" = %(p_606_0)s) OR ("id" = %(p_607_0)s) OR ("id" = %(p_608_0)s) OR ("id" = %(p_609_0)s) OR ("id" = %(p_610_0)s) OR ("id" = %(p_611_0)s) OR ("id" = %(p_612_0)s) OR ("id" = %(p_613_0)s) OR ("id" = %(p_614_0)s) OR ("id" = %(p_615_0)s) OR ("id" = %(p_616_0)s) OR ("id" = %(p_617_0)s) OR ("id" = %(p_618_0)s) OR ("id" = %(p_619_0)s) OR ("id" = %(p_620_0)s) OR ("id" = %(p_621_0)s) OR ("id" = %(p_622_0)s) OR ("id" = %(p_623_0)s) OR ("id" = %(p_624_0)s) OR ("id" = %(p_625_0)s) OR ("id" = %(p_626_0)s) OR ("id" = %(p_627_0)s) OR ("id" = %(p_628_0)s) OR ("id" = %(p_629_0)s) OR ("id" = %(p_630_0)s) OR ("id" = %(p_631_0)s) OR ("id" = %(p_632_0)s) OR ("id" = %(p_633_0)s) OR ("id" = %(p_634_0)s) OR ("id" = %(p_635_0)s) OR ("id" = %(p_636_0)s) OR ("id" = %(p_637_0)s) OR ("id" = %(p_638_0)s) OR ("id" = %(p_639_0)s) OR ("id" = %(p_640_0)s) OR ("id" = %(p_641_0)s) OR ("id" = %(p_642_0)s) OR ("id" = %(p_643_0)s) OR ("id" = %(p_644_0)s) OR ("id" = %(p_645_0)s) OR ("id" = %(p_646_0)s) OR ("id" = %(p_647_0)s) OR ("id" = %(p_648_0)s) OR ("id" = %(p_649_0)s) OR ("id" = %(p_650_0)s) OR ("id" = %(p_651_0)s) OR ("id" = %(p_652_0)s) OR ("id" = %(p_653_0)s) OR ("id" = %(p_654_0)s) OR ("id" = %(p_655_0)s) OR ("id" = %(p_656_0)s) OR ("id" = %(p_657_0)s) OR ("id" = %(p_658_0)s) OR ("id" = %(p_659_0)s) OR ("id" = %(p_660_0)s) OR ("id" = %(p_661_0)s) OR ("id" = %(p_662_0)s) OR ("id" = %(p_663_0)s) OR ("id" = %(p_664_0)s) OR ("id" = %(p_665_0)s) OR ("id" = %(p_666_0)s) OR ("id" = %(p_667_0)s) OR ("id" = %(p_668_0)s) OR ("id" = %(p_669_0)s) OR ("id" = %(p_670_0)s) OR ("id" = %(p_671_0)s) OR ("id" = %(p_672_0)s) OR ("id" = %(p_673_0)s) OR ("id" = %(p_674_0)s) OR ("id" = %(p_675_0)s) OR ("id" = %(p_676_0)s) OR ("id" = %(p_677_0)s) OR ("id" = %(p_678_0)s) OR ("id" = %(p_679_0)s) OR ("id" = %(p_680_0)s) OR ("id" = %(p_681_0)s) OR ("id" = %(p_682_0)s) OR ("id" = %(p_683_0)s) OR ("id" = %(p_684_0)s) OR ("id" = %(p_685_0)s) OR ("id" = %(p_686_0)s) OR ("id" = %(p_687_0)s) OR ("id" = %(p_688_0)s) OR ("id" = %(p_689_0)s) OR ("id" = %(p_690_0)s) OR ("id" = %(p_691_0)s) OR ("id" = %(p_692_0)s) OR ("id" = %(p_693_0)s) OR ("id" = %(p_694_0)s) OR ("id" = %(p_695_0)s) OR ("id" = %(p_696_0)s) OR ("id" = %(p_697_0)s) OR ("id" = %(p_698_0)s) OR ("id" = %(p_699_0)s) OR ("id" = %(p_700_0)s) OR ("id" = %(p_701_0)s) OR ("id" = %(p_702_0)s) OR ("id" = %(p_703_0)s) OR ("id" = %(p_704_0)s) OR ("id" = %(p_705_0)s) OR ("id" = %(p_706_0)s) OR ("id" = %(p_707_0)s) OR ("id" = %(p_708_0)s) OR ("id" = %(p_709_0)s) OR ("id" = %(p_710_0)s) OR ("id" = %(p_711_0)s) OR ("id" = %(p_712_0)s) OR ("id" = %(p_713_0)s) OR ("id" = %(p_714_0)s) OR ("id" = %(p_715_0)s) OR ("id" = %(p_716_0)s) OR ("id" = %(p_717_0)s) OR ("id" = %(p_718_0)s) OR ("id" = %(p_719_0)s) OR ("id" = %(p_720_0)s) OR ("id" = %(p_721_0)s) OR ("id" = %(p_722_0)s) OR ("id" = %(p_723_0)s) OR ("id" = %(p_724_0)s) OR ("id" = %(p_725_0)s) OR ("id" = %(p_726_0)s) OR ("id" = %(p_727_0)s) OR ("id" = %(p_728_0)s) OR ("id" = %(p_729_0)s) OR ("id" = %(p_730_0)s) OR ("id" = %(p_731_0)s) OR ("id" = %(p_732_0)s) OR ("id" = %(p_733_0)s) OR ("id" = %(p_734_0)s) OR ("id" = %(p_735_0)s) OR ("id" = %(p_736_0)s) OR ("id" = %(p_737_0)s) OR ("id" = %(p_738_0)s) OR ("id" = %(p_739_0)s) OR ("id" = %(p_740_0)s) OR ("id" = %(p_741_0)s) OR ("id" = %(p_742_0)s) OR ("id" = %(p_743_0)s) OR ("id" = %(p_744_0)s) OR ("id" = %(p_745_0)s) OR ("id" = %(p_746_0)s) OR ("id" = %(p_747_0)s) OR ("id" = %(p_748_0)s) OR ("id" = %(p_749_0)s) OR ("id" = %(p_750_0)s) OR ("id" = %(p_751_0)s) OR ("id" = %(p_752_0)s) OR ("id" = %(p_753_0)s) OR ("id" = %(p_754_0)s) OR ("id" = %(p_755_0)s) OR ("id" = %(p_756_0)s) OR ("id" = %(p_757_0)s) OR ("id" = %(p_758_0)s) OR ("id" = %(p_759_0)s) OR ("id" = %(p_760_0)s) OR ("id" = %(p_761_0)s) OR ("id" = %(p_762_0)s) OR ("id" = %(p_763_0)s) OR ("id" = %(p_764_0)s) OR ("id" = %(p_765_0)s) OR ("id" = %(p_766_0)s) OR ("id" = %(p_767_0)s) OR ("id" = %(p_768_0)s) OR ("id" = %(p_769_0)s) OR ("id" = %(p_770_0)s) OR ("id" = %(p_771_0)s) OR ("id" = %(p_772_0)s) OR ("id" = %(p_773_0)s) OR ("id" = %(p_774_0)s) OR ("id" = %(p_775_0)s) OR ("id" = %(p_776_0)s) OR ("id" = %(p_777_0)s) OR ("id" = %(p_778_0)s) OR ("id" = %(p_779_0)s) OR ("id" = %(p_780_0)s) OR ("id" = %(p_781_0)s) OR ("id" = %(p_782_0)s) OR ("id" = %(p_783_0)s) OR ("id" = %(p_784_0)s) OR ("id" = %(p_785_0)s) OR ("id" = %(p_786_0)s) OR ("id" = %(p_787_0)s) OR ("id" = %(p_788_0)s) OR ("id" = %(p_789_0)s) OR ("id" = %(p_790_0)s) OR ("id" = %(p_791_0)s) OR ("id" = %(p_792_0)s) OR ("id" = %(p_793_0)s) OR ("id" = %(p_794_0)s) OR ("id" = %(p_795_0)s) OR ("id" = %(p_796_0)s) OR ("id" = %(p_797_0)s) OR ("id" = %(p_798_0)s) OR ("id" = %(p_799_0)s) OR ("id" = %(p_800_0)s) OR ("id" = %(p_801_0)s) OR ("id" = %(p_802_0)s) OR ("id" = %(p_803_0)s) OR ("id" = %(p_804_0)s) OR ("id" = %(p_805_0)s) OR ("id" = %(p_806_0)s) OR ("id" = %(p_807_0)s) OR ("id" = %(p_808_0)s) OR ("id" = %(p_809_0)s) OR ("id" = %(p_810_0)s) OR ("id" = %(p_811_0)s) OR ("id" = %(p_812_0)s) OR ("id" = %(p_813_0)s) OR ("id" = %(p_814_0)s) OR ("id" = %(p_815_0)s) OR ("id" = %(p_816_0)s) OR ("id" = %(p_817_0)s) OR ("id" = %(p_818_0)s) OR ("id" = %(p_819_0)s) OR ("id" = %(p_820_0)s) OR ("id" = %(p_821_0)s) OR ("id" = %(p_822_0)s) OR ("id" = %(p_823_0)s) OR ("id" = %(p_824_0)s) OR ("id" = %(p_825_0)s) OR ("id" = %(p_826_0)s) OR ("id" = %(p_827_0)s) OR ("id" = %(p_828_0)s) OR ("id" = %(p_829_0)s) OR ("id" = %(p_830_0)s) OR ("id" = %(p_831_0)s) OR ("id" = %(p_832_0)s) OR ("id" = %(p_833_0)s) OR ("id" = %(p_834_0)s) OR ("id" = %(p_835_0)s) OR ("id" = %(p_836_0)s) OR ("id" = %(p_837_0)s) OR ("id" = %(p_838_0)s) OR ("id" = %(p_839_0)s) OR ("id" = %(p_840_0)s) OR ("id" = %(p_841_0)s) OR ("id" = %(p_842_0)s) OR ("id" = %(p_843_0)s) OR ("id" = %(p_844_0)s) OR ("id" = %(p_845_0)s) OR ("id" = %(p_846_0)s) OR ("id" = %(p_847_0)s) OR ("id" = %(p_848_0)s) OR ("id" = %(p_849_0)s) OR ("id" = %(p_850_0)s) OR ("id" = %(p_851_0)s) OR ("id" = %(p_852_0)s) OR ("id" = %(p_853_0)s) OR ("id" = %(p_854_0)s) OR ("id" = %(p_855_0)s) OR ("id" = %(p_856_0)s) OR ("id" = %(p_857_0)s) OR ("id" = %(p_858_0)s) OR ("id" = %(p_859_0)s) OR ("id" = %(p_860_0)s) OR ("id" = %(p_861_0)s) OR ("id" = %(p_862_0)s) OR ("id" = %(p_863_0)s) OR ("id" = %(p_864_0)s) OR ("id" = %(p_865_0)s) OR ("id" = %(p_866_0)s) OR ("id" = %(p_867_0)s) OR ("id" = %(p_868_0)s) OR ("id" = %(p_869_0)s) OR ("id" = %(p_870_0)s) OR ("id" = %(p_871_0)s) OR ("id" = %(p_872_0)s) OR ("id" = %(p_873_0)s) OR ("id" = %(p_874_0)s) OR ("id" = %(p_875_0)s) OR ("id" = %(p_876_0)s) OR ("id" = %(p_877_0)s) OR ("id" = %(p_878_0)s) OR ("id" = %(p_879_0)s) OR ("id" = %(p_880_0)s) OR ("id" = %(p_881_0)s) OR ("id" = %(p_882_0)s) OR ("id" = %(p_883_0)s) OR ("id" = %(p_884_0)s) OR ("id" = %(p_885_0)s) OR ("id" = %(p_886_0)s) OR ("id" = %(p_887_0)s) OR ("id" = %(p_888_0)s) OR ("id" = %(p_889_0)s) OR ("id" = %(p_890_0)s) OR ("id" = %(p_891_0)s) OR ("id" = %(p_892_0)s) OR ("id" = %(p_893_0)s) OR ("id" = %(p_894_0)s) OR ("id" = %(p_895_0)s) OR ("id" = %(p_896_0)s) OR ("id" = %(p_897_0)s) OR ("id" = %(p_898_0)s) OR ("id" = %(p_899_0)s) OR ("id" = %(p_900_0)s) OR ("id" = %(p_901_0)s) OR ("id" = %(p_902_0)s) OR ("id" = %(p_903_0)s) OR ("id" = %(p_904_0)s) OR ("id" = %(p_905_0)s) OR ("id" = %(p_906_0)s) OR ("id" = %(p_907_0)s) OR ("id" = %(p_908_0)s) OR ("id" = %(p_909_0)s) OR ("id" = %(p_910_0)s) OR ("id" = %(p_911_0)s) OR ("id" = %(p_912_0)s) OR ("id" = %(p_913_0)s) OR ("id" = %(p_914_0)s) OR ("id" = %(p_915_0)s) OR ("id" = %(p_916_0)s) OR ("id" = %(p_917_0)s) OR ("id" = %(p_918_0)s) OR ("id" = %(p_919_0)s) OR ("id" = %(p_920_0)s) OR ("id" = %(p_921_0)s) OR ("id" = %(p_922_0)s) OR ("id" = %(p_923_0)s) OR ("id" = %(p_924_0)s) OR ("id" = %(p_925_0)s) OR ("id" = %(p_926_0)s) OR ("id" = %(p_927_0)s) OR ("id" = %(p_928_0)s) OR ("id" = %(p_929_0)s) OR ("id" = %(p_930_0)s) OR ("id" = %(p_931_0)s) OR ("id" = %(p_932_0)s) OR ("id" = %(p_933_0)s) OR ("id" = %(p_934_0)s) OR ("id" = %(p_935_0)s) OR ("id" = %(p_936_0)s) OR ("id" = %(p_937_0)s) OR ("id" = %(p_938_0)s) OR ("id" = %(p_939_0)s) OR ("id" = %(p_940_0)s) OR ("id" = %(p_941_0)s) OR ("id" = %(p_942_0)s) OR ("id" = %(p_943_0)s) OR ("id" = %(p_944_0)s) OR ("id" = %(p_945_0)s) OR ("id" = %(p_946_0)s) OR ("id" = %(p_947_0)s) OR ("id" = %(p_948_0)s) OR ("id" = %(p_949_0)s) OR ("id" = %(p_950_0)s) OR ("id" = %(p_951_0)s) OR ("id" = %(p_952_0)s) OR ("id" = %(p_953_0)s) OR ("id" = %(p_954_0)s) OR ("id" = %(p_955_0)s) OR ("id" = %(p_956_0)s) OR ("id" = %(p_957_0)s) OR ("id" = %(p_958_0)s) OR ("id" = %(p_959_0)s) OR ("id" = %(p_960_0)s) OR ("id" = %(p_961_0)s) OR ("id" = %(p_962_0)s) OR ("id" = %(p_963_0)s) OR ("id" = %(p_964_0)s) OR ("id" = %(p_965_0)s) OR ("id" = %(p_966_0)s) OR ("id" = %(p_967_0)s) OR ("id" = %(p_968_0)s) OR ("id" = %(p_969_0)s) OR ("id" = %(p_970_0)s) OR ("id" = %(p_971_0)s) OR ("id" = %(p_972_0)s) OR ("id" = %(p_973_0)s) OR ("id" = %(p_974_0)s) OR ("id" = %(p_975_0)s) OR ("id" = %(p_976_0)s) OR ("id" = %(p_977_0)s) OR ("id" = %(p_978_0)s) OR ("id" = %(p_979_0)s) OR ("id" = %(p_980_0)s) OR ("id" = %(p_981_0)s) OR ("id" = %(p_982_0)s) OR ("id" = %(p_983_0)s) OR ("id" = %(p_984_0)s) OR ("id" = %(p_985_0)s) OR ("id" = %(p_986_0)s) OR ("id" = %(p_987_0)s) OR ("id" = %(p_988_0)s) OR ("id" = %(p_989_0)s) OR ("id" = %(p_990_0)s) OR ("id" = %(p_991_0)s) OR ("id" = %(p_992_0)s) OR ("id" = %(p_993_0)s) OR ("id" = %(p_994_0)s) OR ("id" = %(p_995_0)s) OR ("id" = %(p_996_0)s) OR ("id" = %(p_997_0)s) OR ("id" = %(p_998_0)s) OR ("id" = %(p_999_0)s)]
+[parameters: {'p_0_0': None, 'p_1_0': None, 'p_2_0': None, 'p_3_0': None, 'p_4_0': None, 'p_5_0': None, 'p_6_0': None, 'p_7_0': None, 'p_8_0': None, 'p_9_0': None, 'p_10_0': None, 'p_11_0': None, 'p_12_0': None, 'p_13_0': None, 'p_14_0': None, 'p_15_0': None, 'p_16_0': None, 'p_17_0': None, 'p_18_0': None, 'p_19_0': None, 'p_20_0': None, 'p_21_0': None, 'p_22_0': None, 'p_23_0': None, 'p_24_0': None, 'p_25_0': None, 'p_26_0': None, 'p_27_0': None, 'p_28_0': None, 'p_29_0': None, 'p_30_0': None, 'p_31_0': None, 'p_32_0': None, 'p_33_0': None, 'p_34_0': None, 'p_35_0': None, 'p_36_0': None, 'p_37_0': None, 'p_38_0': None, 'p_39_0': None, 'p_40_0': None, 'p_41_0': None, 'p_42_0': None, 'p_43_0': None, 'p_44_0': None, 'p_45_0': None, 'p_46_0': None, 'p_47_0': None, 'p_48_0': None, 'p_49_0': None ... 900 parameters truncated ... 'p_950_0': None, 'p_951_0': None, 'p_952_0': None, 'p_953_0': None, 'p_954_0': None, 'p_955_0': None, 'p_956_0': None, 'p_957_0': None, 'p_958_0': None, 'p_959_0': None, 'p_960_0': None, 'p_961_0': None, 'p_962_0': None, 'p_963_0': None, 'p_964_0': None, 'p_965_0': None, 'p_966_0': None, 'p_967_0': None, 'p_968_0': None, 'p_969_0': None, 'p_970_0': None, 'p_971_0': None, 'p_972_0': None, 'p_973_0': None, 'p_974_0': None, 'p_975_0': None, 'p_976_0': None, 'p_977_0': None, 'p_978_0': None, 'p_979_0': None, 'p_980_0': None, 'p_981_0': None, 'p_982_0': None, 'p_983_0': None, 'p_984_0': None, 'p_985_0': None, 'p_986_0': None, 'p_987_0': None, 'p_988_0': None, 'p_989_0': None, 'p_990_0': None, 'p_991_0': None, 'p_992_0': None, 'p_993_0': None, 'p_994_0': None, 'p_995_0': None, 'p_996_0': None, 'p_997_0': None, 'p_998_0': None, 'p_999_0': None}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+ERROR 2025-10-18 18:45:46,055 data_processing Data import failed: (psycopg2.errors.UndefinedColumn) column "cs_id" of relation "cs_id" does not exist
+LINE 1: INSERT INTO "cs_id" ("cs_id", "style", "file_ref_no") VALUES...
+                             ^
+
+[SQL: INSERT INTO "cs_id" ("cs_id", "style", "file_ref_no") VALUES (%(p_0)s, %(p_1)s, %(p_2)s)]
+[parameters: [{'p_0': 'CS-22-502', 'p_1': 'EPP SKINNY/SLIM/STRAIGHT LONG-AW23', 'p_2': 'EPP SKINNY/SLIM/STRAIGHT LONG-AW23'}, {'p_0': 'CS-23-287', 'p_1': 'Grant Slim 5 pkt Cord', 'p_2': 'Grant Slim 5 pkt Cord S8'}, {'p_0': 'CS-22-1726', 'p_1': '92S24BS223', 'p_2': '92S24BS223-S24'}, {'p_0': 'CS-23-886', 'p_1': 'PRINCETON regular LS shirt S9', 'p_2': 'PRINCETON LS regular fit S9 PREDICTABLE DEMAND'}, {'p_0': 'CS-23-573', 'p_1': 'Madison HW FL Skinny Jeans S9', 'p_2': 'Madison HW FL Skinny Jeans S9'}, {'p_0': 'CS-23-628', 'p_1': 'Nicky jogger pullon S9', 'p_2': 'Nicky jogger pullon S9'}, {'p_0': 'CS-23-908', 'p_1': '2B/7B CARGO-SS24', 'p_2': '2B/7B CARGO-SS24'}, {'p_0': 'CS-22-1562', 'p_1': '92NSWP131-S24', 'p_2': '92NSWP131-S24'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'CS-24-981', 'p_1': '2G EMB DUNGAREE WITH TEE-SS25', 'p_2': '2G EMB DUNGAREE WITH TEE-SS25'}, {'p_0': 'CS-24-961', 'p_1': '2G EMB SHACKET-SS25', 'p_2': '2G EMB SHACKET-SS25'}]]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+psycopg2.errors.UndefinedColumn: column "cs_id" of relation "cs_id" does not exist
+LINE 1: INSERT INTO "cs_id" ("cs_id", "style", "file_ref_no") VALUES...
+                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1113, in execute_data_import
+    connection.execute(stmt, params)
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column "cs_id" of relation "cs_id" does not exist
+LINE 1: INSERT INTO "cs_id" ("cs_id", "style", "file_ref_no") VALUES...
+                             ^
+
+[SQL: INSERT INTO "cs_id" ("cs_id", "style", "file_ref_no") VALUES (%(p_0)s, %(p_1)s, %(p_2)s)]
+[parameters: [{'p_0': 'CS-22-502', 'p_1': 'EPP SKINNY/SLIM/STRAIGHT LONG-AW23', 'p_2': 'EPP SKINNY/SLIM/STRAIGHT LONG-AW23'}, {'p_0': 'CS-23-287', 'p_1': 'Grant Slim 5 pkt Cord', 'p_2': 'Grant Slim 5 pkt Cord S8'}, {'p_0': 'CS-22-1726', 'p_1': '92S24BS223', 'p_2': '92S24BS223-S24'}, {'p_0': 'CS-23-886', 'p_1': 'PRINCETON regular LS shirt S9', 'p_2': 'PRINCETON LS regular fit S9 PREDICTABLE DEMAND'}, {'p_0': 'CS-23-573', 'p_1': 'Madison HW FL Skinny Jeans S9', 'p_2': 'Madison HW FL Skinny Jeans S9'}, {'p_0': 'CS-23-628', 'p_1': 'Nicky jogger pullon S9', 'p_2': 'Nicky jogger pullon S9'}, {'p_0': 'CS-23-908', 'p_1': '2B/7B CARGO-SS24', 'p_2': '2B/7B CARGO-SS24'}, {'p_0': 'CS-22-1562', 'p_1': '92NSWP131-S24', 'p_2': '92NSWP131-S24'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'CS-24-981', 'p_1': '2G EMB DUNGAREE WITH TEE-SS25', 'p_2': '2G EMB DUNGAREE WITH TEE-SS25'}, {'p_0': 'CS-24-961', 'p_1': '2G EMB SHACKET-SS25', 'p_2': '2G EMB SHACKET-SS25'}]]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+ERROR 2025-10-18 18:45:46,072 views Import approval and execution failed: (psycopg2.errors.UndefinedColumn) column "cs_id" of relation "cs_id" does not exist
+LINE 1: INSERT INTO "cs_id" ("cs_id", "style", "file_ref_no") VALUES...
+                             ^
+
+[SQL: INSERT INTO "cs_id" ("cs_id", "style", "file_ref_no") VALUES (%(p_0)s, %(p_1)s, %(p_2)s)]
+[parameters: [{'p_0': 'CS-22-502', 'p_1': 'EPP SKINNY/SLIM/STRAIGHT LONG-AW23', 'p_2': 'EPP SKINNY/SLIM/STRAIGHT LONG-AW23'}, {'p_0': 'CS-23-287', 'p_1': 'Grant Slim 5 pkt Cord', 'p_2': 'Grant Slim 5 pkt Cord S8'}, {'p_0': 'CS-22-1726', 'p_1': '92S24BS223', 'p_2': '92S24BS223-S24'}, {'p_0': 'CS-23-886', 'p_1': 'PRINCETON regular LS shirt S9', 'p_2': 'PRINCETON LS regular fit S9 PREDICTABLE DEMAND'}, {'p_0': 'CS-23-573', 'p_1': 'Madison HW FL Skinny Jeans S9', 'p_2': 'Madison HW FL Skinny Jeans S9'}, {'p_0': 'CS-23-628', 'p_1': 'Nicky jogger pullon S9', 'p_2': 'Nicky jogger pullon S9'}, {'p_0': 'CS-23-908', 'p_1': '2B/7B CARGO-SS24', 'p_2': '2B/7B CARGO-SS24'}, {'p_0': 'CS-22-1562', 'p_1': '92NSWP131-S24', 'p_2': '92NSWP131-S24'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'CS-24-981', 'p_1': '2G EMB DUNGAREE WITH TEE-SS25', 'p_2': '2G EMB DUNGAREE WITH TEE-SS25'}, {'p_0': 'CS-24-961', 'p_1': '2G EMB SHACKET-SS25', 'p_2': '2G EMB SHACKET-SS25'}]]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+psycopg2.errors.UndefinedColumn: column "cs_id" of relation "cs_id" does not exist
+LINE 1: INSERT INTO "cs_id" ("cs_id", "style", "file_ref_no") VALUES...
+                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 1138, in approve_and_import
+    import_results = execute_data_import(session, effective_mode=effective_mode)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1113, in execute_data_import
+    connection.execute(stmt, params)
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column "cs_id" of relation "cs_id" does not exist
+LINE 1: INSERT INTO "cs_id" ("cs_id", "style", "file_ref_no") VALUES...
+                             ^
+
+[SQL: INSERT INTO "cs_id" ("cs_id", "style", "file_ref_no") VALUES (%(p_0)s, %(p_1)s, %(p_2)s)]
+[parameters: [{'p_0': 'CS-22-502', 'p_1': 'EPP SKINNY/SLIM/STRAIGHT LONG-AW23', 'p_2': 'EPP SKINNY/SLIM/STRAIGHT LONG-AW23'}, {'p_0': 'CS-23-287', 'p_1': 'Grant Slim 5 pkt Cord', 'p_2': 'Grant Slim 5 pkt Cord S8'}, {'p_0': 'CS-22-1726', 'p_1': '92S24BS223', 'p_2': '92S24BS223-S24'}, {'p_0': 'CS-23-886', 'p_1': 'PRINCETON regular LS shirt S9', 'p_2': 'PRINCETON LS regular fit S9 PREDICTABLE DEMAND'}, {'p_0': 'CS-23-573', 'p_1': 'Madison HW FL Skinny Jeans S9', 'p_2': 'Madison HW FL Skinny Jeans S9'}, {'p_0': 'CS-23-628', 'p_1': 'Nicky jogger pullon S9', 'p_2': 'Nicky jogger pullon S9'}, {'p_0': 'CS-23-908', 'p_1': '2B/7B CARGO-SS24', 'p_2': '2B/7B CARGO-SS24'}, {'p_0': 'CS-22-1562', 'p_1': '92NSWP131-S24', 'p_2': '92NSWP131-S24'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'CS-24-981', 'p_1': '2G EMB DUNGAREE WITH TEE-SS25', 'p_2': '2G EMB DUNGAREE WITH TEE-SS25'}, {'p_0': 'CS-24-961', 'p_1': '2G EMB SHACKET-SS25', 'p_2': '2G EMB SHACKET-SS25'}]]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+INFO 2025-10-18 18:47:11,826 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-18 18:47:29,572 data_processing Data import failed: name 'sql_key' is not defined
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1142, in execute_data_import
+    target_table=sql_key,
+                 ^^^^^^^
+NameError: name 'sql_key' is not defined
+ERROR 2025-10-18 18:47:29,590 views Import approval and execution failed: name 'sql_key' is not defined
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 1138, in approve_and_import
+    import_results = execute_data_import(session, effective_mode=effective_mode)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1142, in execute_data_import
+    target_table=sql_key,
+                 ^^^^^^^
+NameError: name 'sql_key' is not defined
+INFO 2025-10-18 18:49:50,848 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-18 18:50:17,736 data_processing Integrity error during import: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(1) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+ERROR 2025-10-18 18:50:17,750 views Import approval and execution failed: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(1) already exists.
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(1) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1126, in execute_data_import
+    connection.execute(stmt, params)
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(1) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 1138, in approve_and_import
+    import_results = execute_data_import(session, effective_mode=effective_mode)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1179, in execute_data_import
+    raise ValueError(f"Database integrity error: {exc.orig}") from exc
+ValueError: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(1) already exists.
+
+INFO 2025-10-18 18:52:46,839 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-18 18:53:18,434 data_processing Integrity error during import: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(2) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+ERROR 2025-10-18 18:53:18,454 views Import approval and execution failed: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(2) already exists.
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(2) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1131, in execute_data_import
+    connection.execute(stmt, params)
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(2) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 1138, in approve_and_import
+    import_results = execute_data_import(session, effective_mode=effective_mode)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1184, in execute_data_import
+    raise ValueError(f"Database integrity error: {exc.orig}") from exc
+ValueError: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(2) already exists.
+
+INFO 2025-10-18 18:56:31,796 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-18 18:57:03,053 data_processing Integrity error during import: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(3) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+ERROR 2025-10-18 18:57:03,075 views Import approval and execution failed: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(3) already exists.
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(3) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1139, in execute_data_import
+    connection.execute(stmt, params)
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(3) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 1138, in approve_and_import
+    import_results = execute_data_import(session, effective_mode=effective_mode)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1192, in execute_data_import
+    raise ValueError(f"Database integrity error: {exc.orig}") from exc
+ValueError: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(3) already exists.
+
+INFO 2025-10-18 23:27:56,380 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-18 23:29:42,972 data_processing Data import failed: name 'has_id_col' is not defined
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1072, in execute_data_import
+    if has_id_col and single_auto_id_pk and next_id is not None:
+       ^^^^^^^^^^
+NameError: name 'has_id_col' is not defined
+ERROR 2025-10-18 23:29:42,992 views Import approval and execution failed: name 'has_id_col' is not defined
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 1138, in approve_and_import
+    import_results = execute_data_import(session, effective_mode=effective_mode)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1072, in execute_data_import
+    if has_id_col and single_auto_id_pk and next_id is not None:
+       ^^^^^^^^^^
+NameError: name 'has_id_col' is not defined
+INFO 2025-10-18 23:34:07,063 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-18 23:34:55,666 data_processing Integrity error during import: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(4) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+ERROR 2025-10-18 23:34:55,687 views Import approval and execution failed: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(4) already exists.
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(4) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1159, in execute_data_import
+    connection.execute(stmt, params)
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(4) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 1138, in approve_and_import
+    import_results = execute_data_import(session, effective_mode=effective_mode)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1212, in execute_data_import
+    raise ValueError(f"Database integrity error: {exc.orig}") from exc
+ValueError: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(4) already exists.
+
+INFO 2025-10-18 23:42:03,335 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-18 23:42:48,943 data_processing Integrity error during import: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(5) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+ERROR 2025-10-18 23:42:48,980 views Import approval and execution failed: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(5) already exists.
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(5) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1165, in execute_data_import
+    connection.execute(stmt, params)
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(5) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 1138, in approve_and_import
+    import_results = execute_data_import(session, effective_mode=effective_mode)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1218, in execute_data_import
+    raise ValueError(f"Database integrity error: {exc.orig}") from exc
+ValueError: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(5) already exists.
+
+INFO 2025-10-19 00:06:25,534 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+INFO 2025-10-19 10:07:19,657 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-19 10:10:07,666 data_processing Integrity error during import: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(6) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+ERROR 2025-10-19 10:10:07,686 views Import approval and execution failed: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(6) already exists.
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(6) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1427, in execute_data_import
+    connection.execute(stmt, params)
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(6) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 1148, in approve_and_import
+    import_results = execute_data_import(session, effective_mode=effective_mode)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1480, in execute_data_import
+    raise ValueError(f"Database integrity error: {exc.orig}") from exc
+ValueError: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(6) already exists.
+
+INFO 2025-10-19 10:15:31,451 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-19 10:16:27,376 data_processing Integrity error during import: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(7) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+ERROR 2025-10-19 10:16:27,394 views Import approval and execution failed: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(7) already exists.
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(7) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1459, in execute_data_import
+    connection.execute(stmt, params)
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(7) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 1148, in approve_and_import
+    import_results = execute_data_import(session, effective_mode=effective_mode)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1512, in execute_data_import
+    raise ValueError(f"Database integrity error: {exc.orig}") from exc
+ValueError: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(7) already exists.
+
+INFO 2025-10-19 10:17:23,129 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-19 10:18:05,768 data_processing Integrity error during import: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(8) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+ERROR 2025-10-19 10:18:05,784 views Import approval and execution failed: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(8) already exists.
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(8) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1459, in execute_data_import
+    connection.execute(stmt, params)
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(8) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 1148, in approve_and_import
+    import_results = execute_data_import(session, effective_mode=effective_mode)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1512, in execute_data_import
+    raise ValueError(f"Database integrity error: {exc.orig}") from exc
+ValueError: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(8) already exists.
+
+INFO 2025-10-19 10:20:00,097 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a
+ERROR 2025-10-19 10:20:29,210 data_processing Integrity error during import: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(9) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+ERROR 2025-10-19 10:20:29,224 views Import approval and execution failed: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(9) already exists.
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(9) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1470, in execute_data_import
+    connection.execute(stmt, params)
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\venv\Lib\site-packages\sqlalchemy\dialects\postgresql\psycopg2.py", line 794, in do_executemany
+    cursor.executemany(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(9) already exists.
+
+[SQL: INSERT INTO "buyer_list" ("buyer_name") VALUES (%(p_0)s)]
+[parameters: [{'p_0': 'PRIMARK'}, {'p_0': 'H&M'}, {'p_0': 'Kmart Australia'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'H&M'}, {'p_0': 'PRIMARK'}, {'p_0': 'Kmart Australia'}  ... displaying 10 of 1000 total bound parameter sets ...  {'p_0': 'PRIMARK'}, {'p_0': 'PRIMARK'}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\views.py", line 1148, in approve_and_import
+    import_results = execute_data_import(session, effective_mode=effective_mode)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\OneDrive - Bitopi Group\Desktop\django_mis_project\intelligent_import\services\data_processing.py", line 1523, in execute_data_import
+    raise ValueError(f"Database integrity error: {exc.orig}") from exc
+ValueError: Database integrity error: duplicate key value violates unique constraint "buyer_list_pkey"
+DETAIL:  Key (id)=(9) already exists.
+
+INFO 2025-10-19 10:20:57,317 views Upload request received: user=safat file_present=True connection_id=71f7e302-0211-4310-8446-05fbc003446a

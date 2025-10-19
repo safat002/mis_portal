@@ -1,0 +1,50 @@
+/* Modern styles for the Data Model Designer */
+.data-model-container { display: flex; flex-direction: column; height: calc(100vh - 120px); overflow: hidden; background: #fff; }
+.data-model-header { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; border-bottom: 1px solid #dee2e6; flex-shrink: 0; background-color: #f8f9fa; }
+.data-model-workspace { display: flex; flex-grow: 1; overflow: hidden; }
+#sourceTablesSidebar { width: 280px; flex-shrink: 0; border-right: 1px solid #dee2e6; display: flex; flex-direction: column; background-color: #f8f9fa; }
+.sidebar-header { padding: 0.75rem 1rem; border-bottom: 1px solid #dee2e6; }
+.sidebar-content { flex-grow: 1; overflow-y: auto; }
+#tableList .list-group-item { cursor: grab; user-select: none; }
+#tableList .list-group-item.disabled { color: #6c757d; background-color: #f8f9fa; cursor: not-allowed; }
+.data-model-canvas {
+  flex-grow: 1;
+  position: relative; /* This line is essential! */
+  overflow: auto;
+  background-image: linear-gradient(#e9ecef 1px, transparent 1px),
+    linear-gradient(to right, #e9ecef 1px, #fff 1px);
+  background-size: 20px 20px;
+}
+.placeholder-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #6c757d; }
+.table-card { position: absolute; border: 1px solid #ccc; background-color: #fff; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); width: 220px; z-index: 10; }
+.table-card-header { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.75rem; font-weight: bold; background-color: #f1f1f1; border-bottom: 1px solid #ddd; cursor: move; }
+.table-card-body.collapsed { max-height: 0; padding: 0; overflow: hidden; border: none; }
+.table-card-field { padding: 0.4rem 0.75rem; font-size: 0.875rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f1f1; }
+.jtk-connector { z-index: 5; }
+.jtk-endpoint { z-index: 6; }
+.connection-label { background-color: white; padding: 1px 5px; border-radius: 5px; border: 1px solid #ccc; font-size: 10px; z-index: 7; }
+/* ✅ New styles for tooltip and join wizard */
+.join-info-tooltip { position: absolute; background-color: rgba(0, 0, 0, 0.8); color: white; padding: 5px 10px; border-radius: 4px; font-size: 12px; z-index: 9999; pointer-events: none; display: none; }
+.join-wizard-popover .popover { max-width: 400px; }
+.join-wizard-row { display: flex; gap: 8px; margin-bottom: 8px; }
+.join-wizard-footer { display: flex; justify-content: space-between; margin-top: 10px; }
+/* Make the wizard popover wider to fit content */
+.join-wizard-popover {
+    min-width: 350px !important;
+    max-width: 450px !important;
+}
+
+.join-wizard-popover .popover-body {
+    padding: 0.75rem;
+}
+
+/* Style for the 'Existing Joins' title */
+.join-wizard-sub-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #6c757d;
+    text-transform: uppercase;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.25rem;
+}

@@ -1,0 +1,163 @@
+/* mis_app/static/css/data_management.css */
+
+.data-management-container {
+	display: flex;
+	height: calc(100vh - 120px); /* Adjust based on your header/footer height */
+	overflow: hidden;
+	background-color: #f8f9fa;
+}
+
+/* --- Sidebar (Left Panel) --- */
+.dm-sidebar {
+	width: 320px;
+	flex-shrink: 0;
+	background-color: #ffffff;
+	border-right: 1px solid #dee2e6;
+	display: flex;
+	flex-direction: column;
+}
+
+.sidebar-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+	border-bottom: 1px solid #dee2e6;
+}
+
+.sidebar-controls {
+	padding: 1rem;
+	border-bottom: 1px solid #dee2e6;
+}
+
+.sidebar-content {
+	flex-grow: 1;
+	overflow-y: auto;
+	padding: 0.5rem;
+}
+
+.source-item {
+	display: flex;
+	align-items: center;
+	padding: 0.6rem 1rem;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.source-item:hover {
+	background-color: #e9ecef;
+}
+
+.source-item.active {
+	background-color: #0d6efd;
+	color: white;
+}
+
+.source-item.active .text-muted {
+	color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* --- Workspace (Right Panel) --- */
+.dm-workspace {
+	flex-grow: 1;
+	padding: 1.5rem;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.workspace-welcome {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	height: 100%;
+	color: #6c757d;
+}
+
+.workspace-welcome i {
+	font-size: 4rem;
+	margin-bottom: 1rem;
+	opacity: 0.3;
+}
+
+.table-viewer-header {
+	padding-bottom: 1rem;
+	border-bottom: 1px solid #dee2e6;
+	margin-bottom: 1rem;
+}
+
+.table-viewer-body {
+	flex-grow: 1;
+	overflow: auto;
+}
+
+/* Freeze table headers in the data viewer */
+.table-viewer-body .table-responsive {
+    max-height: 100%;
+    overflow: auto; /* vertical scroll lives here so sticky headers work */
+}
+
+.table-viewer-body thead th {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background-color: #f8f9fa; /* ensure header stays opaque over rows */
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Wizard Styles */
+.wizard-container {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.wizard-progress {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.wizard-step {
+	border: 1px solid #dee2e6;
+	border-radius: 0.5rem;
+}
+
+.wizard-card {
+	transition: all 0.2s ease;
+	border: 1px solid #dee2e6;
+}
+
+.wizard-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+	border-color: #0d6efd;
+}
+
+.progress-bar {
+	transition: width 0.3s ease;
+}
+
+.choice-card {
+	cursor: pointer;
+}
+
+.wizard-card {
+	transition: all 0.3s ease;
+	border: 2px solid transparent;
+}
+
+.wizard-card:hover {
+	border-color: #007bff;
+	box-shadow: 0 4px 8px rgba(0, 123, 255, 0.15);
+	transform: translateY(-2px);
+}
+
+#choiceIntelligentImport .card-body {
+	background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+}
+
+#choiceIntelligentImport:hover .card-body {
+	background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+}

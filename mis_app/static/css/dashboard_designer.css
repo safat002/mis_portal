@@ -1,0 +1,736 @@
+:root {
+	--dd-bg: var(--bs-body-bg, #f8f9fa);
+	--dd-fg: var(--bs-body-color, #212529);
+	--dd-muted: #6c757d;
+	--dd-border: rgba(0, 0, 0, 0.08);
+	--dd-soft: rgba(13, 110, 253, 0.08);
+	--dd-sidebar-w: 280px;
+	--dd-inspector-w: 340px;
+	--dd-radius: 14px;
+	--dd-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+	--dd-shadow-md: 0 18px 45px rgba(15, 23, 42, 0.12);
+	--dd-grid-dot: rgba(15, 23, 42, 0.08);
+}
+
+/* Root frame */
+#designer-root {
+	min-height: calc(100vh - 56px);
+	display: flex;
+	flex-direction: column;
+	background: var(--dd-bg);
+	color: var(--dd-fg);
+}
+
+/* ── Top bar ───────────────────────────────────────────── */
+.dd-topbar {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(320px, 1.2fr) auto;
+	align-items: center;
+	gap: 16px;
+	padding: 14px 24px;
+	background: #fff;
+	border-bottom: 1px solid var(--dd-border);
+	box-shadow: var(--dd-shadow-sm);
+}
+.dd-topbar .left,
+.dd-topbar .center,
+.dd-topbar .right {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+}
+.dd-breadcrumb {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 10px;
+	color: var(--dd-fg);
+	border: 1px solid transparent;
+}
+.dd-breadcrumb:hover {
+	border-color: var(--dd-border);
+	background: #f1f3f5;
+}
+.dd-title-wrap {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+.dd-title {
+	margin: 0;
+	font-size: 1.25rem;
+	font-weight: 600;
+	padding: 4px 8px;
+	border-radius: 8px;
+}
+.dd-title[contenteditable="true"]:focus {
+	outline: 2px solid var(--dd-soft);
+	background: #eef5ff;
+}
+.dd-save-indicator {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 0.85rem;
+	color: var(--dd-muted);
+}
+.dd-save-indicator .dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #28a745;
+	display: inline-block;
+}
+.dd-tabs {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+.dd-tablist {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.dd-tab {
+	border: 1px solid transparent;
+	background: #f1f3f5;
+	padding: 6px 14px;
+	border-radius: 999px;
+	font-size: 0.9rem;
+	cursor: pointer;
+	transition: background 0.2s ease, color 0.2s ease;
+}
+.dd-tab:hover {
+	background: #e8edf5;
+}
+.dd-tab.active {
+	background: #0d6efd;
+	color: #fff;
+	border-color: #0d6efd;
+}
+.dd-chip-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+.dd-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 0.8rem;
+	padding: 5px 10px;
+	border-radius: 999px;
+	background: #f1f3f5;
+	color: var(--dd-muted);
+}
+.link-quiet {
+	border: none;
+	background: transparent;
+	color: #0d6efd;
+	font-size: 0.85rem;
+	padding: 0;
+}
+.link-quiet:hover {
+	text-decoration: underline;
+}
+
+/* ── Layout ───────────────────────────────────────────── */
+.dd-layout {
+	flex: 1;
+	display: grid;
+	grid-template-columns: var(--dd-sidebar-w) minmax(0, 1fr) var(
+			--dd-inspector-w
+		);
+	gap: 16px;
+	padding: 20px 24px 32px;
+}
+.dd-sidebar,
+.dd-inspector,
+.dd-canvas {
+	background: #fff;
+	border: 1px solid var(--dd-border);
+	border-radius: var(--dd-radius);
+	box-shadow: var(--dd-shadow-sm);
+}
+.dd-sidebar {
+	padding: 18px 18px 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+.dd-section-title {
+	font-weight: 600;
+	text-transform: uppercase;
+	font-size: 0.75rem;
+	color: var(--dd-muted);
+	margin-bottom: 10px;
+}
+.dd-palette {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 10px;
+}
+.dd-palette-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 12px;
+	border: 1px solid var(--dd-border);
+	border-radius: 10px;
+	background: #fff;
+	font-size: 0.9rem;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.dd-palette-item i {
+	font-size: 1.1rem;
+	color: #0d6efd;
+}
+.dd-palette-item:hover {
+	transform: translateY(-2px);
+	box-shadow: var(--dd-shadow-sm);
+}
+
+.dd-canvas {
+	padding: 18px;
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+	position: relative;
+}
+.dd-page-toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+}
+.dd-page-toolbar .btn-group {
+	gap: 6px;
+}
+.dd-quick-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-left: auto;
+}
+.dd-quick-actions .label {
+	font-size: 0.8rem;
+}
+
+.dd-page-container {
+	position: relative;
+	flex: 1;
+	border: 2px dashed rgba(13, 110, 253, 0.15);
+	border-radius: 12px;
+	background: repeating-linear-gradient(
+			0deg,
+			rgba(15, 23, 42, 0.05),
+			rgba(15, 23, 42, 0.05) 1px,
+			transparent 1px,
+			transparent 24px
+		),
+		repeating-linear-gradient(
+			90deg,
+			rgba(15, 23, 42, 0.05),
+			rgba(15, 23, 42, 0.05) 1px,
+			transparent 1px,
+			transparent 24px
+		);
+	padding: 12px;
+}
+.dd-empty-hint {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
+	color: var(--dd-muted);
+}
+.dd-empty-hint .inner {
+	text-align: center;
+	background: rgba(255, 255, 255, 0.92);
+	padding: 18px 24px;
+	border-radius: 12px;
+	border: 1px dashed var(--dd-border);
+	box-shadow: var(--dd-shadow-sm);
+}
+.dd-empty-hint i {
+	font-size: 1.4rem;
+	display: block;
+	margin-bottom: 6px;
+}
+
+/* ── Inspector ───────────────────────────────────────── */
+.dd-inspector {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+.dd-inspector-tabs {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}
+.dd-inspector-tabs button {
+	border: none;
+	background: transparent;
+	padding: 10px 12px;
+	font-weight: 600;
+	border-bottom: 2px solid transparent;
+}
+.dd-inspector-tabs button.active {
+	border-bottom-color: #0d6efd;
+	color: #0d6efd;
+}
+.dd-inspector-body {
+	flex: 1;
+	overflow: auto;
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+.dd-pane.d-none {
+	display: none !important;
+}
+.dd-group {
+	border: 1px solid var(--dd-border);
+	border-radius: 12px;
+	padding: 12px 14px;
+	background: #fff;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	box-shadow: var(--dd-shadow-sm);
+}
+.dd-group-title {
+	font-weight: 600;
+	font-size: 0.9rem;
+	color: var(--dd-muted);
+}
+
+/* ── Field library & slots ───────────────────────────── */
+.dd-data-pane {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+.dd-data-fields,
+.dd-data-config {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.dd-field-search {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin-bottom: 4px;
+}
+.dd-field-search input {
+	flex: 1;
+	border: 1px solid var(--dd-border);
+	border-radius: 6px;
+	padding: 6px 10px;
+	font-size: 0.9rem;
+}
+.dd-field-search input:focus {
+	outline: none;
+	border-color: #0d6efd;
+	box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.15);
+}
+.dd-field-library {
+	border: 1px solid var(--dd-border);
+	border-radius: 8px;
+	background: #fff;
+	max-height: 260px;
+	overflow: auto;
+	padding: 6px;
+}
+.dd-field-table {
+	border: 1px solid transparent;
+	border-radius: 6px;
+	margin-bottom: 6px;
+	overflow: hidden;
+}
+.dd-field-table.open {
+	border-color: rgba(13, 110, 253, 0.18);
+	background: #f6f9ff;
+}
+.dd-field-table-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 6px 8px;
+	cursor: pointer;
+	font-weight: 500;
+	font-size: 0.9rem;
+}
+.dd-field-table-body {
+	display: none;
+	flex-wrap: wrap;
+	gap: 6px;
+	padding: 6px;
+}
+.dd-field-table.open .dd-field-table-body {
+	display: flex;
+}
+.dd-field-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	border-radius: 999px;
+	border: 1px solid var(--dd-border);
+	background: #fff;
+	padding: 4px 10px;
+	font-size: 0.85rem;
+	cursor: pointer;
+	user-select: none;
+	transition: background 0.15s ease;
+}
+.dd-field-pill:hover {
+	background: #eaf2ff;
+}
+.dd-field-pill[draggable="true"] {
+	cursor: grab;
+}
+.dd-field-pill[draggable="true"]:hover {
+	background: #e3f2fd;
+	border-color: #2196f3;
+}
+.dd-field-pill[draggable="true"]:active {
+	cursor: grabbing;
+}
+.dd-field-pill-badge {
+	font-size: 0.7rem;
+	padding: 2px 6px;
+	border-radius: 999px;
+	background: #e9eef5;
+	text-transform: uppercase;
+}
+.dd-field-pill-meta {
+	font-size: 0.7rem;
+	color: var(--dd-muted);
+}
+
+.dd-field-search-results {
+	display: none;
+	flex-direction: column;
+	gap: 6px;
+}
+.dd-field-search-results.active {
+	display: flex;
+}
+.dd-field-search-empty {
+	padding: 12px;
+	text-align: center;
+	color: var(--dd-muted);
+	font-size: 0.85rem;
+}
+
+.dd-slot-stack {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.dd-slot {
+	border: 1px dashed var(--dd-border);
+	border-radius: 8px;
+	padding: 8px;
+	background: #fff;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	transition: border-color 0.15s ease, background 0.15s ease;
+}
+.dd-slot-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-weight: 500;
+	font-size: 0.9rem;
+}
+.dd-slot-caption {
+	font-size: 0.75rem;
+	color: var(--dd-muted);
+}
+.dd-slot-body {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+.dd-slot-placeholder {
+	border: 1px dashed rgba(0, 0, 0, 0.2);
+	border-radius: 6px;
+	padding: 6px;
+	text-align: center;
+	color: var(--dd-muted);
+	font-size: 0.8rem;
+	background: #f9fafc;
+}
+.dd-assigned-field {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	justify-content: space-between;
+	padding: 6px;
+	border: 1px solid var(--dd-border);
+	border-radius: 6px;
+	background: #fdfdfd;
+}
+.dd-assigned-label {
+	font-size: 0.85rem;
+	font-weight: 500;
+}
+.dd-field-agg {
+	border: 1px solid var(--dd-border);
+	border-radius: 6px;
+	padding: 4px 6px;
+	font-size: 0.8rem;
+}
+.dd-field-agg:disabled {
+	background: #f1f3f5;
+	color: var(--dd-muted);
+}
+.dd-assigned-actions {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+.dd-assigned-remove {
+	border: none;
+	background: transparent;
+	color: #dc3545;
+	font-size: 0.85rem;
+	cursor: pointer;
+}
+.dd-assigned-remove:hover {
+	color: #a71d2a;
+}
+.dd-slot.dd-slot-drop-active {
+	border-color: #2196f3;
+	background-color: rgba(33, 150, 243, 0.08);
+	box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+/* ── Widgets & gridstack ─────────────────────────────── */
+.dd-widget {
+	border: 1px solid var(--dd-border);
+	border-radius: 12px;
+	background: #fff;
+	box-shadow: var(--dd-shadow-sm);
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+.dd-widget-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 12px;
+	border-bottom: 1px solid var(--dd-border);
+	cursor: grab;
+}
+.dd-widget-title {
+	font-weight: 600;
+}
+.dd-widget-actions {
+	display: flex;
+	gap: 6px;
+	opacity: 0.6;
+	transition: opacity 0.15s ease;
+}
+.dd-widget:hover .dd-widget-actions {
+	opacity: 1;
+}
+
+/* BODY: fill container, no internal scroll for visuals */
+.dd-widget-body {
+	flex: 1;
+	min-height: 120px;
+	padding: 0;
+	display: flex;
+	overflow: hidden; /* enforce no scroll for non-table widgets */
+	background: #f9fafc;
+}
+.dd-widget-body .chart-container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.dd-widget-body canvas {
+	width: 100% !important;
+	height: 100% !important;
+	display: block;
+}
+
+/* Table widgets are the ONLY ones allowed to scroll */
+.dd-widget.is-table .dd-widget-body {
+	overflow: auto;
+}
+.dd-widget.is-table .table-responsive {
+	max-height: 100%;
+	overflow: auto;
+}
+.dd-widget-body table {
+	width: 100%;
+	margin-bottom: 0;
+}
+
+.grid-stack-item.selected {
+	outline: 2px solid #2196f3;
+	outline-offset: 2px;
+	z-index: 10;
+}
+.grid-stack-item .grid-stack-item-content {
+	overflow: visible;
+	height: 100%;
+}
+
+/* ── KPI & Slicer widgets ───────────────────────────── */
+.kpi-widget {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	height: 100%;
+}
+.kpi-widget .kpi-value {
+	font-size: 2.5rem;
+	font-weight: 700;
+}
+.kpi-widget .kpi-label {
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 0.75rem;
+	color: var(--dd-muted);
+}
+
+.slicer-widget {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	border: 1px dashed var(--dd-border);
+	border-radius: 10px;
+	padding: 10px;
+	background: rgba(13, 110, 253, 0.05);
+	height: 100%;
+}
+.slicer-widget .slicer-title {
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+.slicer-widget .slicer-values {
+	font-size: 0.9rem;
+	color: var(--dd-fg);
+}
+.slicer-widget .slicer-note {
+	font-size: 0.75rem;
+	color: var(--dd-muted);
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 1280px) {
+	:root {
+		--dd-sidebar-w: 240px;
+		--dd-inspector-w: 300px;
+	}
+}
+@media (max-width: 992px) {
+	.dd-layout {
+		grid-template-columns: 1fr;
+	}
+	.dd-sidebar,
+	.dd-inspector {
+		display: none;
+	}
+	.dd-page-toolbar {
+		flex-wrap: wrap;
+	}
+	.dd-quick-actions {
+		width: 100%;
+		justify-content: flex-start;
+	}
+}
+/* === Dashboard: kill inner scrollbars & make visuals fill === */
+:root {
+	--dd-widget-header-h: 44px; /* keep header height consistent */
+}
+
+/* GridStack sets overflow:auto on content; override it */
+.grid-stack > .grid-stack-item > .grid-stack-item-content {
+	height: 100% !important;
+	overflow: visible !important; /* no scrollbars inside tiles */
+	display: flex !important; /* let widget stretch vertically */
+}
+
+/* Widget frame */
+.dd-widget {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-radius: 12px;
+	background: #fff;
+	overflow: hidden; /* no inner scrollbars by default */
+}
+
+/* Fixed header height so body calc is exact */
+.dd-widget-header {
+	flex: 0 0 var(--dd-widget-header-h);
+	height: var(--dd-widget-header-h);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 12px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Body fills the rest; no scroll for charts */
+.dd-widget-body {
+	flex: 1 1 auto;
+	height: calc(100% - var(--dd-widget-header-h));
+	padding: 0; /* avoid pushing content and causing overflow */
+	overflow: hidden; /* prevent scrollbars for non-table widgets */
+	background: #f9fafc;
+	display: flex;
+}
+
+/* Chart container/canvas take full size */
+.dd-widget-body .chart-container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.dd-widget-body canvas {
+	width: 100% !important;
+	height: 100% !important;
+	display: block;
+}
+
+/* Tables are the ONLY widgets allowed to scroll */
+.dd-widget.is-table .dd-widget-body {
+	overflow: auto !important;
+}
+.dd-widget.is-table .table-responsive {
+	max-height: 100%;
+	overflow: auto;
+}
+
+/* (Optional) If any library injects a vertical scrollbar hint */
+.dd-widget-body::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+}

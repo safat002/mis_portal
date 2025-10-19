@@ -1,0 +1,29 @@
+{% load static %}
+<div class="modal fade" id="bulkActionModal" tabindex="-1" aria-labelledby="bulkActionModalLabel">
+  <div class="modal-dialog modal-dialog-centered">
+    <form id="bulkActionForm" method="post" action="{% url 'mis_app:bulk_user_action' %}">
+      {% csrf_token %}
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bulkActionModalLabel">Bulk Actions</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="bulk_action_type" class="form-label">Action</label>
+            <select class="form-select" id="bulk_action_type" name="action">
+              <option value="activate">Activate Users</option>
+              <option value="deactivate">Deactivate Users</option>
+              <option value="delete">Delete Users</option>
+            </select>
+          </div>
+          <input type="hidden" id="bulk_user_ids" name="user_ids">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-danger">Apply</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

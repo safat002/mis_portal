@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Data Management{% endblock %}
+{% block page_title %}Data Management{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/data_management.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="dataManagementRoot" class="data-management-container"
+    data-can-upload="{{ user_can_upload|yesno:'true,false' }}"
+    data-can-create-from-file="{{ user_can_upload|yesno:'true,false' }}"
+    data-can-modify="{{ user_can_modify|yesno:'true,false' }}"
+    data-can-delete-rows="{{ user_can_delete_rows|yesno:'true,false' }}"
+    data-can-truncate="{{ user_can_truncate|yesno:'true,false' }}"
+    data-can-drop="{{ user_can_drop|yesno:'true,false' }}"
+    data-default-connection-id="{{ default_connection_id|default_if_none:'' }}">
+    <aside class="dm-sidebar">
+        <div class="sidebar-header">
+            <h5 class="mb-0">Data Sources</h5>
+            <div class="btn-group">
+                <button id="add-data-btn" class="btn btn-primary">
+  <i class="bi bi-plus-lg me-1"></i>
+  Add Data
+</button>
+                <button class="btn btn-sm btn-outline-secondary" id="refresh-sources-btn" title="Refresh">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </button>
+            </div>
+        </div>
+        <div class="sidebar-controls">
+            <select id="connectionSelect" class="form-select form-select-sm mb-2"></select>
+            <input type="search" id="sourceSearchInput" class="form-control form-control-sm"
+                placeholder="Search tables..." autocomplete="off">
+        </div>
+        <div class="sidebar-content" id="sourceList">
+        </div>
+    </aside>
+
+    <main class="dm-workspace" id="workspace">
+    </main>
+</div>
+
+{% include "modals/data_management_modals.html" %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/data_management.js' %}"></script>
+{% endblock %}

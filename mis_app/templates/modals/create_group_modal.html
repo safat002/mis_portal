@@ -1,0 +1,35 @@
+{% load static %}
+<div class="modal fade" id="createGroupModal" tabindex="-1" aria-labelledby="createGroupModalLabel">
+  <div class="modal-dialog modal-dialog-centered">
+    <form id="createGroupForm" method="post" action="{% url 'mis_app:create_group' %}">
+      {% csrf_token %}
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="createGroupModalLabel">Create Group</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="id_group_name" class="form-label">Group Name</label>
+            <input type="text" class="form-control" id="id_group_name" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="id_group_description" class="form-label">Description</label>
+            <textarea class="form-control" id="id_group_description" name="description"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="id_group_color" class="form-label">Color</label>
+            <input type="color" class="form-control form-control-color" id="id_group_color" name="color" value="#007bff">
+          </div>
+          {% if form.non_field_errors %}
+          <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+          {% endif %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

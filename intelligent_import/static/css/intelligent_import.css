@@ -1,0 +1,127 @@
+.schema-designer {
+  border: 2px dashed #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 15px 0;
+  background: #f9f9f9;
+}
+
+.table-designer {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px 0;
+}
+
+.column-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+  padding: 8px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.similar-suggestion {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 4px;
+  padding: 8px;
+  margin: 5px 0;
+  font-size: 0.9em;
+}
+
+.ddl-preview {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  font-family: "Courier New", monospace;
+  font-size: 0.9em;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-weight: 700;
+}
+
+.status-analyzing {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.status-schema-defined {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-schema-approved {
+  background: #cce7ff;
+  color: #004085;
+}
+
+.status-completed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-failed {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.workflow-steps {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.workflow-step {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 0 5px;
+  background: #f8f9fa;
+  border: 2px solid #dee2e6;
+}
+
+.workflow-step.active {
+  background: #007bff;
+  color: #fff;
+  border-color: #0056b3;
+}
+
+.workflow-step.completed {
+  background: #28a745;
+  color: #fff;
+  border-color: #1e7e34;
+}
+
+/* Relationships panel alignment tweaks */
+#relationships-panel .form-label,
+#tpl-relationships .form-label {
+  margin-bottom: 2px;
+}
+#relationships-panel .form-check,
+#tpl-relationships .form-check {
+  line-height: 1;
+}
+#relationships-panel .form-select-sm,
+#tpl-relationships .form-select-sm,
+#relationships-panel .form-control-sm,
+#tpl-relationships .form-control-sm {
+  min-height: 30px;
+}

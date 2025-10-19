@@ -1,0 +1,1034 @@
+WARNING 2025-09-17 21:35:58,292 apps 18712 16644 Could not import signals: No module named 'mis_app.services.notification_service'
+WARNING 2025-09-17 21:46:25,887 apps 5412 27568 Could not import signals: No module named 'mis_app.services.notification_service'
+INFO 2025-09-18 20:06:41,120 autoreload 11468 26928 Watching for file changes with StatReloader
+INFO 2025-09-18 20:07:28,132 autoreload 23996 30912 Watching for file changes with StatReloader
+INFO 2025-09-18 20:08:20,159 autoreload 16652 21684 Watching for file changes with StatReloader
+INFO 2025-09-18 20:10:05,818 autoreload 16652 21684 C:\Users\safat\Desktop\django_mis_project\mis_app\admin.py changed, reloading.
+INFO 2025-09-18 20:10:06,856 autoreload 30568 10016 Watching for file changes with StatReloader
+INFO 2025-09-18 20:12:54,986 autoreload 30568 10016 C:\Users\safat\Desktop\django_mis_project\mis_app\models.py changed, reloading.
+INFO 2025-09-18 20:12:56,061 autoreload 26820 19820 Watching for file changes with StatReloader
+INFO 2025-09-18 20:13:07,384 autoreload 32128 19060 Watching for file changes with StatReloader
+INFO 2025-09-18 20:13:40,531 autoreload 32128 19060 C:\Users\safat\Desktop\django_mis_project\mis_app\admin.py changed, reloading.
+INFO 2025-09-18 20:13:41,593 apps 27760 22192 MIS app signals loaded successfully
+INFO 2025-09-18 20:13:41,622 autoreload 27760 22192 Watching for file changes with StatReloader
+INFO 2025-09-18 20:13:47,438 apps 4936 31788 MIS app signals loaded successfully
+INFO 2025-09-18 20:13:48,285 apps 26800 25916 MIS app signals loaded successfully
+INFO 2025-09-18 20:13:48,315 autoreload 26800 25916 Watching for file changes with StatReloader
+INFO 2025-09-18 20:15:44,198 autoreload 26800 25916 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 20:15:45,293 apps 24124 30352 MIS app signals loaded successfully
+INFO 2025-09-18 20:15:45,314 autoreload 24124 30352 Watching for file changes with StatReloader
+INFO 2025-09-18 20:16:01,753 apps 23516 20512 MIS app signals loaded successfully
+INFO 2025-09-18 20:16:02,487 apps 31396 31040 MIS app signals loaded successfully
+INFO 2025-09-18 20:16:02,515 autoreload 31396 31040 Watching for file changes with StatReloader
+INFO 2025-09-18 20:17:00,564 autoreload 31396 31040 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 20:17:01,634 apps 30004 16556 MIS app signals loaded successfully
+INFO 2025-09-18 20:17:01,658 autoreload 30004 16556 Watching for file changes with StatReloader
+INFO 2025-09-18 20:17:14,053 autoreload 30004 16556 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 20:17:15,219 apps 24232 30168 MIS app signals loaded successfully
+INFO 2025-09-18 20:17:15,244 autoreload 24232 30168 Watching for file changes with StatReloader
+INFO 2025-09-18 20:17:43,726 autoreload 24232 30168 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 20:17:44,867 apps 27688 32428 MIS app signals loaded successfully
+INFO 2025-09-18 20:17:44,892 autoreload 27688 32428 Watching for file changes with StatReloader
+INFO 2025-09-18 20:18:39,649 apps 21332 1628 MIS app signals loaded successfully
+INFO 2025-09-18 20:18:40,384 apps 13936 28828 MIS app signals loaded successfully
+INFO 2025-09-18 20:18:40,413 autoreload 13936 28828 Watching for file changes with StatReloader
+INFO 2025-09-18 20:18:47,365 basehttp 13936 26388 "GET / HTTP/1.1" 301 0
+INFO 2025-09-18 20:18:47,681 basehttp 13936 4688 code 400, message Bad request version ('\x1a\x1a\x00\x00\x00\x1b\x00\x03\x02\x00\x02\x00')
+ERROR 2025-09-18 20:18:47,681 basehttp 13936 4688 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:18:47,934 basehttp 13936 20200 code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00')
+ERROR 2025-09-18 20:18:47,934 basehttp 13936 20200 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:18:47,996 basehttp 13936 31516 code 400, message Bad request version ('\x012g\x08')
+ERROR 2025-09-18 20:18:47,996 basehttp 13936 31516 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:18:48,245 basehttp 13936 12416 code 400, message Bad request version ('.\x0fk{Ýw~|ñ;\x84Dl\x80Ö\x9b\xade\x8cÔ´s1¬¶L\x89Â\x8bÄLí»ªw\x11\x88H\x86@')
+ERROR 2025-09-18 20:18:48,247 basehttp 13936 12416 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:18:52,491 basehttp 13936 9204 code 400, message Bad request version ('t6¬\x90Hñür\x10$B_}\x81E')
+ERROR 2025-09-18 20:18:52,492 basehttp 13936 9204 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:18:52,493 basehttp 13936 10600 code 400, message Bad request version ('\\%\x15\x17\x07\x9cÒEð\x9ceó=¿<ÿ#')
+ERROR 2025-09-18 20:18:52,494 basehttp 13936 10600 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:18:52,753 basehttp 13936 23884 code 400, message Bad request version ('3&ÉSyñ')
+ERROR 2025-09-18 20:18:52,753 basehttp 13936 23884 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:18:52,799 basehttp 13936 7088 code 400, message Bad request version ('\x02h2\x08http/1.1\x00')
+ERROR 2025-09-18 20:18:52,800 basehttp 13936 7088 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:18:52,800 basehttp 13936 28276 code 400, message Bad request version ('\x15ØE«À\x7fÒ£\x9eô\x99\x00')
+ERROR 2025-09-18 20:18:52,801 basehttp 13936 28276 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:18:53,064 basehttp 13936 25396 code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+ERROR 2025-09-18 20:18:53,065 basehttp 13936 25396 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:19:05,130 basehttp 13936 15900 code 400, message Bad request version ('ôhÏ\\Ð\x00')
+INFO 2025-09-18 20:19:05,130 basehttp 13936 22300 code 400, message Bad request version ('Î]òwde#ï')
+ERROR 2025-09-18 20:19:05,130 basehttp 13936 15900 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-18 20:19:05,130 basehttp 13936 22300 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:19:05,396 basehttp 13936 30548 code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00')
+ERROR 2025-09-18 20:19:05,397 basehttp 13936 30548 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:19:05,445 basehttp 13936 28724 code 400, message Bad request version ('ÐÙ')
+ERROR 2025-09-18 20:19:05,445 basehttp 13936 28724 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:19:05,446 basehttp 13936 32136 code 400, message Bad request version ('±É;^\x14c\x11Ä:\x11°áU\\Nk%»\x9b¿l\x83§Õ{%\x88\x9b\x8d\x9dÙ!¬<Ö')
+ERROR 2025-09-18 20:19:05,447 basehttp 13936 32136 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:19:05,707 basehttp 13936 21936 code 400, message Bad request version ('¼:ÌÅ\x9aD{¾\x983\x03-<DÙðSÇçÏð\x86v\x8c<\x9fÃ¸aã\x19P\x1aý\x97&=;\x0fñ\x16ñUÜ8§=DÍ\x00\x05\x00\x03\x02h2\x00')
+ERROR 2025-09-18 20:19:05,707 basehttp 13936 21936 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:20:25,192 basehttp 13936 32592 code 400, message Bad request version ('{S¸Mr>\x8f\x9fmìa\x7f\x907Ð\x00')
+ERROR 2025-09-18 20:20:25,193 basehttp 13936 32592 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:20:25,193 basehttp 13936 19480 code 400, message Bad request version ('\x02h2\x08http/1.1\x00\x12\x00\x00\x00\x1b\x00\x03\x02\x00\x02ÿ\x01\x00\x01\x00\x00')
+ERROR 2025-09-18 20:20:25,196 basehttp 13936 19480 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:20:25,458 basehttp 13936 15736 code 400, message Bad request version ('êê\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06E')
+ERROR 2025-09-18 20:20:25,459 basehttp 13936 15736 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:20:25,505 basehttp 13936 24012 code 400, message Bad request version ('zó\x88²Ë\x83#\x88')
+ERROR 2025-09-18 20:20:25,506 basehttp 13936 24012 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:20:25,506 basehttp 13936 5604 code 400, message Bad request version ('µÉÓKp`Õ\x11§\xadyµ\x17\x17')
+ERROR 2025-09-18 20:20:25,507 basehttp 13936 5604 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:20:25,770 basehttp 13936 29120 code 400, message Bad request version ('\x02h2\x08http/1.1\x00\x1b\x00\x03\x02\x00\x02\x003\x04ï\x04íÊÊ\x00\x01\x00\x11ì\x04À¤\x87É*è\x90§\x96X~$eL&,£\x86²[(³±\x07\x959j\x88UÔ¶\x91ØrU²\x98Àæ¬Ò\x8b¾Bó¥L8\x06\x91(\x7fAÃL·I\x9e8')
+ERROR 2025-09-18 20:20:25,771 basehttp 13936 29120 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:21:03,850 basehttp 13936 28936 "GET / HTTP/1.1" 301 0
+INFO 2025-09-18 20:21:04,160 basehttp 13936 31132 code 400, message Bad request version (',%XQ\x00S´\x10±"&þóß~{â1A\x07´:°ã\x88\x00\x99\x82@\x83¨Ù\x00')
+ERROR 2025-09-18 20:21:04,161 basehttp 13936 31132 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:21:04,423 basehttp 13936 27200 code 400, message Bad request version ('ªª\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06e\x9a\x9a\x00\x00\x00+\x00\x07\x06')
+ERROR 2025-09-18 20:21:04,423 basehttp 13936 27200 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:21:04,469 basehttp 13936 20548 code 400, message Bad request version ('\x05\x90')
+ERROR 2025-09-18 20:21:04,469 basehttp 13936 20548 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:21:04,734 basehttp 13936 19160 code 400, message Bad request version ('hÛ¿\x04\x89CÙçA®õ\x9a½\x9a')
+ERROR 2025-09-18 20:21:04,734 basehttp 13936 19160 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:22:05,469 basehttp 13936 1952 "GET / HTTP/1.1" 301 0
+INFO 2025-09-18 20:22:05,782 basehttp 13936 24608 code 400, message Bad request version ('\x08\x81Ä]é\x18§1\x8e¥\x01\x90½\x7fÌVF¹@³')
+ERROR 2025-09-18 20:22:05,782 basehttp 13936 24608 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:22:06,047 basehttp 13936 26612 code 400, message Bad request version ('iX\x80\x9côØMB\x9b¢ú\x11¨ÙüEèÜ')
+ERROR 2025-09-18 20:22:06,047 basehttp 13936 26612 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:22:06,094 basehttp 13936 27936 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06²\x01\x00\x06®\x03\x03¾\x99\x14üryÏg\x01ï´\x9d¨\x02h|é=H¨3Z¡[ÔïP\x16\x87\x81T»')
+ERROR 2025-09-18 20:22:06,095 basehttp 13936 27936 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:22:06,360 basehttp 13936 25444 code 400, message Bad request version ('ù')
+ERROR 2025-09-18 20:22:06,360 basehttp 13936 25444 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:22:17,472 basehttp 13936 5256 "GET /login/ HTTP/1.1" 301 0
+INFO 2025-09-18 20:22:17,779 basehttp 13936 15412 code 400, message Bad request version ('0I\x80Ö¥<Ú\x9e8^\x19"×m\x9eïW\x14¬H"2¦E6á\x00')
+ERROR 2025-09-18 20:22:17,779 basehttp 13936 15412 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:22:18,045 basehttp 13936 15776 code 400, message Bad request version ('hv$h')
+ERROR 2025-09-18 20:22:18,045 basehttp 13936 15776 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:22:18,089 basehttp 13936 30884 code 400, message Bad request version ('\x02h2\x08http/1.1\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00#\x00\x00\x00\x12\x00\x00\x003\x04ï\x04í\x9a\x9a\x00\x01\x00\x11ì\x04À¯¤}|ù\x0f?68@«?ñÛqM)¤Ó:\x9f\x96')
+ERROR 2025-09-18 20:22:18,091 basehttp 13936 30884 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:22:18,356 basehttp 13936 9932 code 400, message Bad request version ('localhost\x00')
+ERROR 2025-09-18 20:22:18,356 basehttp 13936 9932 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:23:20,064 basehttp 13936 32732 code 400, message Bad request version ('Ö¤P!\x8fi\x88T8)')
+INFO 2025-09-18 20:23:20,065 basehttp 13936 27760 code 400, message Bad request version ('ãWÌ\x88£Çq¼ÉJ¡×5Ê')
+ERROR 2025-09-18 20:23:20,065 basehttp 13936 32732 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-18 20:23:20,066 basehttp 13936 27760 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:23:20,329 basehttp 13936 31600 code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+ERROR 2025-09-18 20:23:20,330 basehttp 13936 31600 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:23:20,377 basehttp 13936 24852 code 400, message Bad request version ('ÚÚ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06E\x9a\x9a\x00\x00\x00')
+INFO 2025-09-18 20:23:20,377 basehttp 13936 19508 code 400, message Bad request version ('{¾³dp\x87')
+ERROR 2025-09-18 20:23:20,378 basehttp 13936 24852 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-18 20:23:20,378 basehttp 13936 19508 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:23:20,641 basehttp 13936 20260 code 400, message Bad request version ('bAîv9')
+ERROR 2025-09-18 20:23:20,642 basehttp 13936 20260 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:24:03,028 basehttp 13936 2948 code 400, message Bad request version ('DÍ\x00\x05\x00\x03\x02h2\x00\x17\x00\x00\x00-\x00\x02\x01\x01\x00')
+ERROR 2025-09-18 20:24:03,029 basehttp 13936 2948 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:24:03,292 basehttp 13936 21544 code 400, message Bad request version ('KT\x7f\x9b\x9c8Q\x16$N¹"\x17')
+ERROR 2025-09-18 20:24:03,292 basehttp 13936 21544 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:24:03,337 basehttp 13936 27836 code 400, message Bad request version ('(\x15ÿ¶O`GK0¼8¯\x00\x9b\x05')
+ERROR 2025-09-18 20:24:03,337 basehttp 13936 27836 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:24:03,603 basehttp 13936 27988 code 400, message Bad request syntax ('\x16\x03\x01\x06ò\x01\x00\x06î\x03\x03µj;~Qm\x06)\x96oW')
+ERROR 2025-09-18 20:24:03,604 basehttp 13936 27988 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:24:09,947 basehttp 13936 19608 code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00')
+ERROR 2025-09-18 20:24:09,947 basehttp 13936 19608 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:24:09,948 basehttp 13936 24288 code 400, message Bad request version ('`OéöD')
+ERROR 2025-09-18 20:24:09,949 basehttp 13936 24288 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:24:10,193 basehttp 13936 20068 code 400, message Bad HTTP/0.9 request type ("\x16\x03\x01\x06ò\x01\x00\x06î\x03\x03.\x16Ä>0ý'\x15\x898\x9d")
+ERROR 2025-09-18 20:24:10,194 basehttp 13936 20068 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:24:10,256 basehttp 13936 15868 code 400, message Bad request version ('\x00\x02\x01\x00\x00#\x00\x00\x00')
+ERROR 2025-09-18 20:24:10,257 basehttp 13936 15868 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:24:10,257 basehttp 13936 24032 code 400, message Bad request version ('j\\\x93\x92>ÜÔnð"\x00Ð\x13$sQ\x95ülc*Yr´')
+ERROR 2025-09-18 20:24:10,259 basehttp 13936 24032 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:24:10,503 basehttp 13936 31064 code 400, message Bad request version ('Ee\x08\x07\x06\x95HÃ\x04ð\x9a<\x05\x00\x90^¶ò\x91¿\x19\x92£èx\x861Qdø\x01#\x83')
+ERROR 2025-09-18 20:24:10,504 basehttp 13936 31064 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:24:18,693 basehttp 13936 6136 code 400, message Bad request version ('localhost\x00#\x00\x00DÍ\x00\x05\x00\x03\x02h2\x00+\x00\x07\x06')
+ERROR 2025-09-18 20:24:18,693 basehttp 13936 6136 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:24:18,941 basehttp 13936 23220 code 400, message Bad request version ('zz\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06¥ºº\x00\x00\x00')
+ERROR 2025-09-18 20:24:18,941 basehttp 13936 23220 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:24:19,001 basehttp 13936 25976 code 400, message Bad request version ('\x00\x02\x01\x00\x00#\x00\x00\x00+\x00\x07\x06')
+ERROR 2025-09-18 20:24:19,001 basehttp 13936 25976 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:24:19,249 basehttp 13936 29200 code 400, message Bad request version ('ªª\x00\x00\x00')
+ERROR 2025-09-18 20:24:19,250 basehttp 13936 29200 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:25:36,461 basehttp 13936 27016 "GET / HTTP/1.1" 301 0
+INFO 2025-09-18 20:25:36,468 basehttp 13936 27964 code 400, message Bad request version ('\x02h2\x08http/1.1ÿ\x01\x00\x01\x00\x00')
+ERROR 2025-09-18 20:25:36,468 basehttp 13936 27964 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:25:36,470 basehttp 13936 30016 code 400, message Bad request version ('ªr')
+ERROR 2025-09-18 20:25:36,470 basehttp 13936 30016 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:25:41,362 basehttp 13936 22140 code 400, message Bad request version ('w8y')
+INFO 2025-09-18 20:25:41,363 basehttp 13936 8108 code 400, message Bad request version ('éÈß©À\x9e\\:\x00ð0\x08Wñ\x97¹ÂI,\x95k\x8b\x16\x89ûÔÄ\x14{\x15')
+ERROR 2025-09-18 20:25:41,363 basehttp 13936 22140 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-18 20:25:41,363 basehttp 13936 8108 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:25:41,365 basehttp 13936 17612 code 400, message Bad request version ('Ð¤eY2\x82+\x9aQBJ\x01Mj')
+INFO 2025-09-18 20:25:41,365 basehttp 13936 27908 code 400, message Bad request version ('\x01=5çÊ|§iÎTýtTÌÇÇú¥(ÔZÒ.±G\x14\x02[\x00')
+ERROR 2025-09-18 20:25:41,365 basehttp 13936 17612 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-18 20:25:41,365 basehttp 13936 27908 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:26:16,763 apps 19688 28496 MIS app signals loaded successfully
+INFO 2025-09-18 20:26:17,479 apps 31836 25584 MIS app signals loaded successfully
+INFO 2025-09-18 20:26:17,503 autoreload 31836 25584 Watching for file changes with StatReloader
+INFO 2025-09-18 20:26:41,844 basehttp 31836 13496 code 400, message Bad request syntax ('\x16\x03\x01\x07\x00\x01\x00\x06ü\x03\x03µW\x08F«_Ë:]²\x9csD=+úái\x9fA\x91K')
+ERROR 2025-09-18 20:26:41,845 basehttp 31836 13496 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:26:41,847 basehttp 31836 27116 code 400, message Bad request syntax ('\x16\x03\x01\x07\x00\x01\x00\x06ü\x03\x03»ø\x92í\x7f¸²¿')
+ERROR 2025-09-18 20:26:41,848 basehttp 31836 27116 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:27:01,552 basehttp 31836 21476 "GET / HTTP/1.1" 301 0
+INFO 2025-09-18 20:27:01,569 basehttp 31836 26004 code 400, message Bad request version ('¶0\x146ÚñXã;\\¾³s85ÝÒ')
+ERROR 2025-09-18 20:27:01,573 basehttp 31836 26004 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:27:01,575 basehttp 31836 18808 code 400, message Bad request version ('i\x04\x16ìN\x81J\x15¸óGaH¯\x9f¦i\x12\x01t')
+ERROR 2025-09-18 20:27:01,575 basehttp 31836 18808 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:27:11,956 basehttp 31836 28596 "GET / HTTP/1.1" 301 0
+INFO 2025-09-18 20:27:12,264 basehttp 31836 25548 code 400, message Bad request version ('\x00\x02\x01\x00\x00\x1b\x00\x03\x02\x00\x02\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00\x17\x00\x00\x00')
+ERROR 2025-09-18 20:27:12,264 basehttp 31836 25548 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:27:12,527 basehttp 31836 32616 code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00\x1b\x00\x03\x02\x00\x02\x00')
+ERROR 2025-09-18 20:27:12,527 basehttp 31836 32616 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:27:12,573 basehttp 31836 6492 code 400, message Bad request version ('¾û\x95Áò"IJ')
+ERROR 2025-09-18 20:27:12,574 basehttp 31836 6492 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:27:12,841 basehttp 31836 31868 code 400, message Bad request version ('U\x00ðØ½^')
+ERROR 2025-09-18 20:27:12,842 basehttp 31836 31868 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:30:26,888 basehttp 31836 20492 code 400, message Bad request version ('\x19+À\x84GïÃ\x95iÙ.D¸è\x16võ÷+\x89o\x10õÎt½\x96\x06\x84ýk*\x00ÐÀôï\x1byö\x17L\x84\x8f')
+ERROR 2025-09-18 20:30:26,890 basehttp 31836 20492 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:30:26,891 basehttp 31836 22468 code 400, message Bad request version ('ªª\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93ÊÊ\x00\x00\x00\x17\x00\x00\x00\x1b\x00\x03\x02\x00\x02ÿ\x01\x00\x01\x00\x00')
+ERROR 2025-09-18 20:30:26,892 basehttp 31836 22468 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:32:22,028 apps 24564 21196 MIS app signals loaded successfully
+INFO 2025-09-18 20:32:22,760 apps 16200 8044 MIS app signals loaded successfully
+INFO 2025-09-18 20:32:22,781 autoreload 16200 8044 Watching for file changes with StatReloader
+INFO 2025-09-18 20:37:07,647 apps 16336 3272 MIS app signals loaded successfully
+INFO 2025-09-18 20:37:08,713 apps 16020 4364 MIS app signals loaded successfully
+INFO 2025-09-18 20:37:08,745 autoreload 16020 4364 Watching for file changes with StatReloader
+INFO 2025-09-18 20:37:26,479 basehttp 16020 16616 "GET / HTTP/1.1" 301 0
+INFO 2025-09-18 20:37:26,793 basehttp 16020 16628 code 400, message Bad request version ('Ä\x90é9c®\x1a')
+ERROR 2025-09-18 20:37:26,793 basehttp 16020 16628 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:37:27,060 basehttp 16020 16632 code 400, message Bad request version ("\x98wÝ'ªÕÄAK")
+ERROR 2025-09-18 20:37:27,060 basehttp 16020 16632 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:37:27,111 basehttp 16020 16636 code 400, message Bad request version (';}¢\x12rEsþé}ñÂÉÉ\x91\x82vÃ\x07wYy;Õk\x1b`b\xadQÈä')
+ERROR 2025-09-18 20:37:27,112 basehttp 16020 16636 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:37:27,363 basehttp 16020 16708 code 400, message Bad request version ('localhost\x00\x17\x00\x00DÍ\x00\x05\x00\x03\x02h2\x003\x04ï\x04íúú\x00\x01\x00\x11ì\x04À\x9az\x06\x057SæL\\Ð\x9c5\x04÷Oî\x995á¶bQÇ\x86Z&£ûÚpÑ³|j\x84m\x96£\xadÎW\x19¥õZúù\x88\x84¡±*±~jSÇ¼e|üª\x92ÿ+j\x0e')
+ERROR 2025-09-18 20:37:27,363 basehttp 16020 16708 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:37:33,987 basehttp 16020 12732 code 400, message Bad request version ('\x1a\x1a\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06¥zz\x00\x00\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00\x1b\x00\x03\x02\x00\x02\x00+\x00\x07\x06ºº\x03\x04\x03\x03\x003\x04ï\x04í::\x00\x01\x00\x11ì\x04À\x8d"5\x9f|i\x90\x97&\x93³7H¶h\x06\x18.¥v\x9a6b')
+ERROR 2025-09-18 20:37:33,988 basehttp 16020 12732 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:37:34,238 basehttp 16020 10292 code 400, message Bad request version ('Iüã\x07@Ib¾X\x9fS[s')
+ERROR 2025-09-18 20:37:34,238 basehttp 16020 10292 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:37:34,303 basehttp 16020 13268 code 400, message Bad request version ('\x9aÊ8³Â\x82^Å\x16<,Ð')
+ERROR 2025-09-18 20:37:34,303 basehttp 16020 13268 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:37:34,553 basehttp 16020 12404 code 400, message Bad request syntax ('\x16\x03\x01\x06ò\x01\x00\x06î\x03\x03¬`ðÄò\x0f¨+')
+ERROR 2025-09-18 20:37:34,553 basehttp 16020 12404 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:37:47,589 basehttp 16020 14208 "GET / HTTP/1.1" 301 0
+INFO 2025-09-18 20:37:47,899 basehttp 16020 4320 code 400, message Bad request version ('\x9a\x9a\x00\x00\x00')
+ERROR 2025-09-18 20:37:47,899 basehttp 16020 4320 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:37:48,166 basehttp 16020 5676 code 400, message Bad request version ('"sÏ¶\x152à')
+ERROR 2025-09-18 20:37:48,166 basehttp 16020 5676 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:37:48,213 basehttp 16020 13060 code 400, message Bad request version ('ÉUÂ\x99\x16Q\x06¢KÄ\x80_ßÎ»\x18Ó¥[')
+ERROR 2025-09-18 20:37:48,213 basehttp 16020 13060 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:37:48,480 basehttp 16020 16908 code 400, message Bad request version ('s\x0fü£à')
+ERROR 2025-09-18 20:37:48,480 basehttp 16020 16908 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:38:08,624 basehttp 16020 6116 "GET / HTTP/1.1" 301 0
+INFO 2025-09-18 20:38:08,937 basehttp 16020 1552 code 400, message Bad request syntax ('\x16\x03\x01\x06²\x01\x00\x06®\x03\x03&ÑÒÓ')
+ERROR 2025-09-18 20:38:08,937 basehttp 16020 1552 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:38:09,204 basehttp 16020 1940 code 400, message Bad request version ('UÈ')
+ERROR 2025-09-18 20:38:09,205 basehttp 16020 1940 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:38:09,251 basehttp 16020 16584 code 400, message Bad request version ('ï÷ÞË¿yðÁ')
+ERROR 2025-09-18 20:38:09,252 basehttp 16020 16584 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:38:09,519 basehttp 16020 2520 code 400, message Bad request version ('å°\x01¼\x13\x1bÓA¡ÓP\x16\x8e\x14uÝÜ6ß1M\x82ù¼Qõ«hd§\x8aÕÃ\x01\x01\x01úg\x0euâ\x9f\x13ö2ÍÅ')
+ERROR 2025-09-18 20:38:09,519 basehttp 16020 2520 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:11,739 basehttp 16020 20296 code 400, message Bad request version (';³%k·Ó\x90FK\x80\x05«kâ¨\x18¡\x8b£Ê')
+ERROR 2025-09-18 20:40:11,739 basehttp 16020 20296 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:11,741 basehttp 16020 20304 code 400, message Bad request syntax ('\x16\x03\x01\x06À\x01\x00\x06¼\x03\x03þ¹®ìF\x82\x86$2\xad9u¥\\\x8f')
+ERROR 2025-09-18 20:40:11,741 basehttp 16020 20304 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:14,220 basehttp 16020 4520 code 400, message Bad request version ('\x02h2\x08http/1.1\x00\x1b\x00\x03\x02\x00\x02\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00+\x00\x07\x06::\x03\x04\x03\x03\x00-\x00\x02\x01\x01\x00\x17\x00\x00\x00')
+INFO 2025-09-18 20:40:14,220 basehttp 16020 10872 code 400, message Bad request version ('o&\x8bõÇÉ2!\x00Ðóò\x80\x8d0')
+ERROR 2025-09-18 20:40:14,220 basehttp 16020 4520 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-18 20:40:14,221 basehttp 16020 10872 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:14,223 basehttp 16020 18524 code 400, message Bad request version ('¡OP\x82L3!òÿý6ß\x17HnZ£@#ÝÒ\x14L"ïÔ¬Ç²\x11¬P\x00')
+ERROR 2025-09-18 20:40:14,224 basehttp 16020 18524 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:14,224 basehttp 16020 18436 code 400, message Bad request syntax ('\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x03úìO\x97&\x86éuù9c\x12ºö-6V±=n')
+ERROR 2025-09-18 20:40:14,224 basehttp 16020 18436 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:15,017 basehttp 16020 20520 code 400, message Bad request version ('Øj¤t\x9c¬çrWR\x87\x9a\x14CB·`\x1b')
+INFO 2025-09-18 20:40:15,017 basehttp 16020 20524 code 400, message Bad request syntax ('\x16\x03\x01\x07\x00\x01\x00\x06ü\x03\x03')
+ERROR 2025-09-18 20:40:15,018 basehttp 16020 20520 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-18 20:40:15,018 basehttp 16020 20524 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:15,019 basehttp 16020 20528 code 400, message Bad request syntax ('\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x03:\x87')
+INFO 2025-09-18 20:40:15,020 basehttp 16020 20532 code 400, message Bad request version ('\x02h2\x08http/1.1ÿ\x01\x00\x01\x00\x00')
+ERROR 2025-09-18 20:40:15,020 basehttp 16020 20528 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-18 20:40:15,020 basehttp 16020 20532 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:15,184 basehttp 16020 20600 code 400, message Bad request version ('\x96\x01')
+ERROR 2025-09-18 20:40:15,185 basehttp 16020 20600 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:15,185 basehttp 16020 20604 code 400, message Bad request version ("~\x01q\\\x83ÆB'\x9e9\x02Y&¼jîf±VÓ\x0e\x17dÆ+¥³ÐÄ45r£Çð\x9eá\x16r÷1tV\x99]«Âµ¿¸\x93,")
+ERROR 2025-09-18 20:40:15,186 basehttp 16020 20604 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:15,187 basehttp 16020 20612 code 400, message Bad request version ('/\x03\x8dµ´Æ½Ý±\x03Î2<°\x9b5\\Ë\x08½A§\x7fÐ·')
+ERROR 2025-09-18 20:40:15,188 basehttp 16020 20612 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:15,188 basehttp 16020 20616 code 400, message Bad request version ('û\x11ÀIåB¡\x99Wò')
+ERROR 2025-09-18 20:40:15,190 basehttp 16020 20616 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:15,361 basehttp 16020 20724 code 400, message Bad request version ('mÖ\x922\x8c')
+INFO 2025-09-18 20:40:15,361 basehttp 16020 20728 code 400, message Bad request version ('\x00')
+ERROR 2025-09-18 20:40:15,361 basehttp 16020 20724 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-18 20:40:15,362 basehttp 16020 20728 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:15,363 basehttp 16020 20732 code 400, message Bad request version ('\x04D')
+INFO 2025-09-18 20:40:15,364 basehttp 16020 20736 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06À\x01\x00\x06¼\x03\x03K¦?øX¼T;YJ³\x04\x08-Óû&U\x1a¬~W{nÔQÀ¸Y\x96Çª')
+ERROR 2025-09-18 20:40:15,364 basehttp 16020 20732 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-18 20:40:15,364 basehttp 16020 20736 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:15,582 basehttp 16020 20800 code 400, message Bad request version ('**\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06S')
+ERROR 2025-09-18 20:40:15,583 basehttp 16020 20800 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:15,583 basehttp 16020 20804 code 400, message Bad request version ('\x02h2\x08http/1.1\x00')
+ERROR 2025-09-18 20:40:15,583 basehttp 16020 20804 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:15,585 basehttp 16020 20808 code 400, message Bad request version ('µ!D\x8fõ\x89D\x86BWzÐ\x97§S*Îð:\x93²\x9eºª¶ä5\x11Q¼W=\x00')
+ERROR 2025-09-18 20:40:15,585 basehttp 16020 20808 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:40:15,585 basehttp 16020 20812 code 400, message Bad request version ("w\x96úO¯'ÖøjÎ\x11$ÙÄ\x94\x10J«\x00")
+ERROR 2025-09-18 20:40:15,586 basehttp 16020 20812 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:42:12,758 autoreload 16020 4364 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 20:42:13,903 apps 20660 19356 MIS app signals loaded successfully
+INFO 2025-09-18 20:42:13,929 autoreload 20660 19356 Watching for file changes with StatReloader
+INFO 2025-09-18 20:42:25,251 basehttp 20660 19632 code 400, message Bad request version ("zÒmªz/AIÞã\x8a\x16'é3\x04Ð")
+ERROR 2025-09-18 20:42:25,252 basehttp 20660 19632 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:42:25,498 basehttp 20660 19672 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06Ò\x01\x00\x06Î\x03\x03NÞ¬Õ\x8aJ\x91*3Mì')
+ERROR 2025-09-18 20:42:25,499 basehttp 20660 19672 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:42:25,561 basehttp 20660 19644 code 400, message Bad request version ('úú\x00\x00\x00\x1b\x00\x03\x02\x00\x02\x00')
+ERROR 2025-09-18 20:42:25,561 basehttp 20660 19644 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:42:25,810 basehttp 20660 15940 code 400, message Bad request version ("\x01QA\x8fS\x17\x89¯M'o§ò;Ë@\x96@QÉ\x01ñÀ«\x00\x12\x00\x00\x00")
+ERROR 2025-09-18 20:42:25,810 basehttp 20660 15940 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:42:40,229 basehttp 20660 19744 code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00\x12\x00\x00\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00#\x00\x00\x00-\x00\x02\x01\x01\x003\x04ï\x04í')
+ERROR 2025-09-18 20:42:40,230 basehttp 20660 19744 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:42:40,494 basehttp 20660 22420 code 400, message Bad request version ('¡\x8b$7@\x03Î\x9b-ÿ#O7Ìq6\x81V')
+ERROR 2025-09-18 20:42:40,495 basehttp 20660 22420 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:42:40,540 basehttp 20660 19564 code 400, message Bad request version ('ÊÊ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06')
+ERROR 2025-09-18 20:42:40,540 basehttp 20660 19564 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:42:40,806 basehttp 20660 19560 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x07\x12\x01\x00\x07\x0e\x03\x03å°\x18X\x91·þ¦$[u0\x80ê9\x029d<\x10D_;OK')
+ERROR 2025-09-18 20:42:40,807 basehttp 20660 19560 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:43:17,971 apps 22172 12952 MIS app signals loaded successfully
+INFO 2025-09-18 20:43:18,816 apps 13476 21176 MIS app signals loaded successfully
+INFO 2025-09-18 20:43:18,847 autoreload 13476 21176 Watching for file changes with StatReloader
+INFO 2025-09-18 20:43:38,341 basehttp 13476 7864 "GET / HTTP/1.1" 301 0
+INFO 2025-09-18 20:43:38,344 basehttp 13476 19856 code 400, message Bad request version ('$\x97QìÊ/Áµj\x03Ç{jÊê8Qç1\x8d\x17Ó\x00')
+ERROR 2025-09-18 20:43:38,345 basehttp 13476 19856 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:43:38,346 basehttp 13476 12032 code 400, message Bad request version ('×~W\x96Â¹\\\x03')
+ERROR 2025-09-18 20:43:38,347 basehttp 13476 12032 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:45:06,813 basehttp 13476 21948 code 400, message Bad request version ('°ú')
+ERROR 2025-09-18 20:45:06,813 basehttp 13476 21948 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:45:06,814 basehttp 13476 18456 code 400, message Bad request version ('ì')
+ERROR 2025-09-18 20:45:06,814 basehttp 13476 18456 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:45:10,924 basehttp 13476 1336 code 400, message Bad request version ('[L÷À¸z1º(âu)þ÷\x14¶=+`>Û\x07oÿ\x01\x00\x01\x00DÍ\x00\x05\x00\x03\x02h2\x00')
+ERROR 2025-09-18 20:45:10,924 basehttp 13476 1336 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:45:10,926 basehttp 13476 21836 code 400, message Bad request version ('ÚÚ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93\x8a\x8a\x00\x00\x00')
+ERROR 2025-09-18 20:45:10,926 basehttp 13476 21836 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:50:31,027 basehttp 13476 4532 "GET / HTTP/1.1" 301 0
+INFO 2025-09-18 20:50:31,033 basehttp 13476 22256 code 400, message Bad request version ('Ê5@g¨Ã\\]b\x062À\x87ÑÎ{Ñ\x16Rmöc¢²èU<\x07\\XÍ7\x00"\x13\x01\x13\x03\x13\x02À+À/Ì©Ì¨À,À0À')
+ERROR 2025-09-18 20:50:31,033 basehttp 13476 22256 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:50:31,036 basehttp 13476 22452 code 400, message Bad request version ('Q\x97ú\x1a£¯nî]\x99zóË\x01/|~õH\x97A\x17¸iÖfá\x8bN\x83=v\x00"\x13\x01\x13\x03\x13\x02À+À/Ì©Ì¨À,À0À')
+ERROR 2025-09-18 20:50:31,036 basehttp 13476 22452 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:50:31,048 basehttp 13476 18688 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x02\x90\x01\x00\x02\x8c\x03\x03\x8fÇSÍ')
+ERROR 2025-09-18 20:50:31,049 basehttp 13476 18688 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:50:40,312 basehttp 13476 17900 "GET / HTTP/1.1" 301 0
+INFO 2025-09-18 20:50:40,318 basehttp 13476 21988 code 400, message Bad request version ('\x075\x98ý\x92Uì#lnÈ8\x14K\x15`\x9b©p\x00"\x13\x01\x13\x03\x13\x02À+À/Ì©Ì¨À,À0À')
+ERROR 2025-09-18 20:50:40,318 basehttp 13476 21988 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:50:40,320 basehttp 13476 19084 code 400, message Bad request version ('Ó3ÜÃ¡K(\x868s\x8f\x00"\x13\x01\x13\x03\x13\x02À+À/Ì©Ì¨À,À0À')
+ERROR 2025-09-18 20:50:40,320 basehttp 13476 19084 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:54:24,885 autoreload 13476 21176 C:\Users\safat\Desktop\django_mis_project\django_mis_project\settings.py changed, reloading.
+INFO 2025-09-18 20:54:27,668 apps 17024 19148 MIS app signals loaded successfully
+INFO 2025-09-18 20:54:27,694 autoreload 17024 19148 Watching for file changes with StatReloader
+INFO 2025-09-18 20:55:07,088 basehttp 17024 3740 code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+ERROR 2025-09-18 20:55:07,088 basehttp 17024 3740 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:55:07,091 basehttp 17024 1756 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x03\x83>c!/´\x8c')
+ERROR 2025-09-18 20:55:07,091 basehttp 17024 1756 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:55:37,522 basehttp 17024 19440 code 400, message Bad request version ('úú\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06ejj\x00\x00\x00')
+ERROR 2025-09-18 20:55:37,522 basehttp 17024 19440 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:55:37,773 basehttp 17024 16952 code 400, message Bad request version ("ó\x05DKqÌ'\x12¾\x97")
+ERROR 2025-09-18 20:55:37,774 basehttp 17024 16952 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:55:37,836 basehttp 17024 22384 code 400, message Bad request version ('c')
+ERROR 2025-09-18 20:55:37,836 basehttp 17024 22384 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 20:55:38,088 basehttp 17024 500 code 400, message Bad request version ('4¬!B\x80~é\x06û\x88(F\x9cKT§|701T%ªYÂIuS¥\x87X0=´ª(²Cf\x80ª\x98X\x18¤©Ædsa÷J¿§\x8b\x9f')
+ERROR 2025-09-18 20:55:38,088 basehttp 17024 500 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:15:06,017 apps 3400 22684 MIS app signals loaded successfully
+INFO 2025-09-18 21:15:06,762 apps 22752 6364 MIS app signals loaded successfully
+INFO 2025-09-18 21:15:06,784 autoreload 22752 6364 Watching for file changes with StatReloader
+INFO 2025-09-18 21:15:19,344 basehttp 22752 20284 code 400, message Bad request syntax ('\x16\x03\x01\x06²\x01\x00\x06®\x03\x03\x106\x8c75ï¥')
+ERROR 2025-09-18 21:15:19,345 basehttp 22752 20284 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:15:19,611 basehttp 22752 23532 code 400, message Bad request version ('S')
+ERROR 2025-09-18 21:15:19,611 basehttp 22752 23532 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:15:19,658 basehttp 22752 20820 code 400, message Bad request syntax ('\x16\x03\x01\x06Ò\x01\x00\x06Î\x03\x03Ø}½\x17')
+ERROR 2025-09-18 21:15:19,658 basehttp 22752 20820 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:15:19,923 basehttp 22752 6272 code 400, message Bad request version ('\x80Ôªô,m')
+ERROR 2025-09-18 21:15:19,924 basehttp 22752 6272 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:15:51,254 autoreload 22752 6364 C:\Users\safat\Desktop\django_mis_project\django_mis_project\settings.py changed, reloading.
+INFO 2025-09-18 21:15:52,287 apps 20760 21588 MIS app signals loaded successfully
+INFO 2025-09-18 21:15:52,309 autoreload 20760 21588 Watching for file changes with StatReloader
+INFO 2025-09-18 21:16:02,220 basehttp 20760 22044 code 400, message Bad request version ('\x02h2\x08http/1.1\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00\x12\x00\x00\x00\x17\x00\x00\x003\x04ï\x04í')
+ERROR 2025-09-18 21:16:02,221 basehttp 20760 22044 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:16:02,484 basehttp 20760 5436 code 400, message Bad request version ('ªª\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06eÚÚ\x00\x00\x00-\x00\x02\x01\x01\x00\x12\x00\x00\x00')
+ERROR 2025-09-18 21:16:02,485 basehttp 20760 5436 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:16:02,530 basehttp 20760 11116 code 400, message Bad request version (';\x141¸õ/{Õ\x88ç')
+ERROR 2025-09-18 21:16:02,531 basehttp 20760 11116 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:16:02,797 basehttp 20760 10024 code 400, message Bad request version ('mâ¿ï¼£0I\x0e\x08Õ\x89\x88]4·d°\x00')
+ERROR 2025-09-18 21:16:02,797 basehttp 20760 10024 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:16:21,005 basehttp 20760 6632 code 400, message Bad request version ('ÚÚ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063')
+ERROR 2025-09-18 21:16:21,005 basehttp 20760 6632 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:16:21,008 basehttp 20760 22216 code 400, message Bad request syntax ('\x16\x03\x01\x07\x00\x01\x00\x06ü\x03\x03[9Ý§\x96')
+ERROR 2025-09-18 21:16:21,008 basehttp 20760 22216 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:20:19,270 autoreload 20760 21588 C:\Users\safat\Desktop\django_mis_project\django_mis_project\settings.py changed, reloading.
+INFO 2025-09-18 21:20:20,417 apps 5744 20040 MIS app signals loaded successfully
+INFO 2025-09-18 21:20:20,445 autoreload 5744 20040 Watching for file changes with StatReloader
+INFO 2025-09-18 21:20:22,587 apps 22604 22572 MIS app signals loaded successfully
+INFO 2025-09-18 21:20:23,286 apps 20152 23004 MIS app signals loaded successfully
+INFO 2025-09-18 21:20:23,313 autoreload 20152 23004 Watching for file changes with StatReloader
+INFO 2025-09-18 21:20:34,378 basehttp 20152 14588 code 400, message Bad request version ('mjd\x07v%\x83')
+ERROR 2025-09-18 21:20:34,378 basehttp 20152 14588 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:20:34,381 basehttp 20152 2816 code 400, message Bad request version ('ú«rø\x8abÀ\x13')
+ERROR 2025-09-18 21:20:34,381 basehttp 20152 2816 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:21:33,452 autoreload 20152 23004 C:\Users\safat\Desktop\django_mis_project\django_mis_project\settings.py changed, reloading.
+INFO 2025-09-18 21:21:34,505 apps 21496 11004 MIS app signals loaded successfully
+INFO 2025-09-18 21:21:34,528 autoreload 21496 11004 Watching for file changes with StatReloader
+INFO 2025-09-18 21:21:40,924 apps 13948 15724 MIS app signals loaded successfully
+INFO 2025-09-18 21:21:41,654 apps 19828 12204 MIS app signals loaded successfully
+INFO 2025-09-18 21:21:41,680 autoreload 19828 12204 Watching for file changes with StatReloader
+INFO 2025-09-18 21:21:51,838 basehttp 19828 22780 code 400, message Bad request version ('\x8a\x8a\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06S\x8a\x8a\x00\x00\x00')
+ERROR 2025-09-18 21:21:51,839 basehttp 19828 22780 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:21:51,840 basehttp 19828 16432 code 400, message Bad request version ('[Ï¯4E\x80Ô\x98\x03\x95oÆ\x01nF,\x19·á5\x88h.zøO\x8cª>*\x98\x8d[\x9b\x18ÌáSÃ:+èG{\x9bp@ÎÔF\x98¨;\x1bÓv\x1b<À°À')
+ERROR 2025-09-18 21:21:51,841 basehttp 19828 16432 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:22:40,639 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,643 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,645 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,648 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,651 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,655 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,656 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,658 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,660 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,663 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,665 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,667 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,669 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,671 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,673 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,675 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,677 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,679 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,681 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:40,683 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,708 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,713 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,716 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,722 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,724 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,726 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,728 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,731 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,733 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,736 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,738 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,740 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,741 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,743 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,746 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,748 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,751 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,753 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,755 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:41,757 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,779 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,783 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,785 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,787 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,789 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,793 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,797 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,799 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,803 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,805 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,806 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,808 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,811 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,813 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,815 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,817 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,819 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,821 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,823 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:46,825 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,291 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,295 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,298 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,301 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,304 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,306 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,309 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,312 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,314 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,316 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,318 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,320 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,323 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,326 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,328 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,330 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,331 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,333 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,335 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:49,337 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,366 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,369 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,373 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,376 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,379 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,381 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,384 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,386 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,388 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,391 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,393 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,395 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,397 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,399 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,401 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,402 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,404 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,407 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,409 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:50,411 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,430 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,434 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,437 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,440 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,444 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,446 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,449 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,452 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,455 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,458 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,461 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,463 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,466 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,468 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,472 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,475 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,477 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,479 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,482 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:22:55,484 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,516 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,520 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,523 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,527 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,531 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,534 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,537 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,540 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,543 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,547 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,564 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,568 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,570 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,572 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,575 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,577 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,580 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,583 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,586 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:23:25,588 basehttp 19828 15556 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:25:03,235 autoreload 19828 12204 C:\Users\safat\Desktop\django_mis_project\django_mis_project\settings.py changed, reloading.
+INFO 2025-09-18 21:25:04,386 apps 21496 11004 MIS app signals loaded successfully
+INFO 2025-09-18 21:25:04,412 autoreload 21496 11004 Watching for file changes with StatReloader
+INFO 2025-09-18 21:25:18,010 basehttp 21496 22620 code 400, message Bad request version ('øâ\x1báp\x03^\x04rÐVkÅ\x84m.÷\x00')
+ERROR 2025-09-18 21:25:18,010 basehttp 21496 22620 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:25:18,261 basehttp 21496 16528 code 400, message Bad request version ('\x16Ú\x80e*Kÿàºïª\x98ê«°\\ç\x95\x15ÀÊÓ{\x9d\x14ô\x00\x04\x81%\x86Õ\x7f\x91\x86)/E1¯cÃýû&\x99·\x97ðªGß\x08©É\x13(î¥A\x10ô°\x12\x90j¶\x92\x8d3×µ\x027º¢Tc}Ð\x81[s¥ö')
+ERROR 2025-09-18 21:25:18,262 basehttp 21496 16528 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:25:18,324 basehttp 21496 23364 code 400, message Bad request version ('$!S»¬\x9e¡~\x83åO±ì"½Q@`EMÅ\x17¼0\x04\x15*+ÀBZ\x952\x9bXe\x94p\x9e\x16\x9eÆû\x9ah#\'\x83')
+ERROR 2025-09-18 21:25:18,325 basehttp 21496 23364 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:25:18,572 basehttp 21496 22296 code 400, message Bad request syntax ('\x16\x03\x01\x06Ò\x01\x00\x06Î\x03\x03@')
+ERROR 2025-09-18 21:25:18,573 basehttp 21496 22296 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:25:23,456 basehttp 21496 15160 code 400, message Bad request version ('\x00\x02\x01\x00DÍ\x00\x05\x00\x03\x02h2\x00-\x00\x02\x01\x01\x00\x12\x00\x00\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00#\x00\x00ÿ\x01\x00\x01\x00\x00\x1b\x00\x03\x02\x00\x02\x00')
+ERROR 2025-09-18 21:25:23,457 basehttp 21496 15160 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:25:23,723 basehttp 21496 23124 code 400, message Bad request version ('\x9ff*\x9aÚª\x92wÈäê\x00R#Æ\x18')
+ERROR 2025-09-18 21:25:23,724 basehttp 21496 23124 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:25:23,769 basehttp 21496 13208 code 400, message Bad request version ('\x9ar')
+ERROR 2025-09-18 21:25:23,770 basehttp 21496 13208 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:25:24,037 basehttp 21496 23312 code 400, message Bad request version ('±éâã¸Ê\x81àa\x827è\x14ß\x00')
+ERROR 2025-09-18 21:25:24,037 basehttp 21496 23312 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:27:49,846 autoreload 21496 11004 C:\Users\safat\Desktop\django_mis_project\django_mis_project\settings.py changed, reloading.
+INFO 2025-09-18 21:27:50,996 apps 17360 23456 MIS app signals loaded successfully
+INFO 2025-09-18 21:27:51,024 autoreload 17360 23456 Watching for file changes with StatReloader
+INFO 2025-09-18 21:28:19,282 autoreload 17360 23456 C:\Users\safat\Desktop\django_mis_project\django_mis_project\urls.py changed, reloading.
+INFO 2025-09-18 21:28:20,267 apps 22792 18088 MIS app signals loaded successfully
+INFO 2025-09-18 21:28:20,295 autoreload 22792 18088 Watching for file changes with StatReloader
+INFO 2025-09-18 21:28:33,718 autoreload 22792 18088 C:\Users\safat\Desktop\django_mis_project\django_mis_project\urls.py changed, reloading.
+INFO 2025-09-18 21:28:34,835 apps 19240 20300 MIS app signals loaded successfully
+INFO 2025-09-18 21:28:34,863 autoreload 19240 20300 Watching for file changes with StatReloader
+INFO 2025-09-18 21:29:17,938 apps 5232 19476 MIS app signals loaded successfully
+INFO 2025-09-18 21:29:18,657 apps 1236 7864 MIS app signals loaded successfully
+INFO 2025-09-18 21:29:18,677 autoreload 1236 7864 Watching for file changes with StatReloader
+INFO 2025-09-18 21:29:29,923 basehttp 1236 16048 code 400, message Bad request syntax ('\x16\x03\x01\x06²\x01\x00\x06®\x03\x03,')
+ERROR 2025-09-18 21:29:29,924 basehttp 1236 16048 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:29:30,189 basehttp 1236 23148 code 400, message Bad request version ('iÞú¸ý\x01\x84(Ú\x106')
+ERROR 2025-09-18 21:29:30,190 basehttp 1236 23148 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:29:30,236 basehttp 1236 11968 code 400, message Bad request version ('\x17\x0e@Êô\x13\x89Ï³')
+ERROR 2025-09-18 21:29:30,237 basehttp 1236 11968 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:29:30,501 basehttp 1236 5184 code 400, message Bad request version ('\x0e\x9crm+ÂÅ8\x06\x18A§\x0fÇ\x04ð¹\x82\x95dw')
+ERROR 2025-09-18 21:29:30,501 basehttp 1236 5184 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:32:53,266 autoreload 1236 7864 C:\Users\safat\Desktop\django_mis_project\mis_app\urls.py changed, reloading.
+INFO 2025-09-18 21:32:54,381 apps 22200 21268 MIS app signals loaded successfully
+INFO 2025-09-18 21:32:54,403 autoreload 22200 21268 Watching for file changes with StatReloader
+INFO 2025-09-18 21:33:02,064 apps 23268 19684 MIS app signals loaded successfully
+INFO 2025-09-18 21:33:02,799 apps 20284 18832 MIS app signals loaded successfully
+INFO 2025-09-18 21:33:02,828 autoreload 20284 18832 Watching for file changes with StatReloader
+INFO 2025-09-18 21:33:12,389 basehttp 20284 22940 code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00')
+ERROR 2025-09-18 21:33:12,390 basehttp 20284 22940 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:33:12,653 basehttp 20284 20116 code 400, message Bad request version ('\x00\x02\x01\x00\x00+\x00\x07\x06**\x03\x04\x03\x03DÍ\x00\x05\x00\x03\x02h2\x00-\x00\x02\x01\x01\x00\x1b\x00\x03\x02\x00\x02\x003\x04ï\x04ízz\x00\x01\x00\x11ì\x04À\x14\x84\x02ê')
+ERROR 2025-09-18 21:33:12,654 basehttp 20284 20116 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:33:12,700 basehttp 20284 8316 code 400, message Bad request version ('ºº\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06e')
+ERROR 2025-09-18 21:33:12,701 basehttp 20284 8316 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:33:12,966 basehttp 20284 22848 code 400, message Bad request version ('¸ò(\x94ã¯')
+ERROR 2025-09-18 21:33:12,966 basehttp 20284 22848 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-18 21:33:50,100 basehttp 20284 23464 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:33:50,145 basehttp 20284 23464 "GET /login/?next=/ HTTP/1.1" 200 6952
+WARNING 2025-09-18 21:33:50,491 log 20284 23464 Not Found: /favicon.ico
+WARNING 2025-09-18 21:33:50,492 basehttp 20284 23464 "GET /favicon.ico HTTP/1.1" 404 9625
+INFO 2025-09-18 21:34:06,354 signals 20284 23464 User logged in: safat
+INFO 2025-09-18 21:34:06,369 utils 20284 23464 User safat performed login on user 1
+INFO 2025-09-18 21:34:06,375 basehttp 20284 23464 "POST /login/?next=/ HTTP/1.1" 302 0
+INFO 2025-09-18 21:34:06,453 basehttp 20284 23464 "GET / HTTP/1.1" 200 19166
+INFO 2025-09-18 21:34:18,800 basehttp 20284 23464 "GET /data-management/ HTTP/1.1" 200 40189
+ERROR 2025-09-18 21:34:18,844 views 20284 23464 Failed to create engine for connection 10cbfdd3-f1ff-4698-8917-ef57df52360a: 'ExternalConnection' object has no attribute 'dbtype'
+ERROR 2025-09-18 21:34:18,845 log 20284 23464 Internal Server Error: /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/
+ERROR 2025-09-18 21:34:18,845 basehttp 20284 23464 "GET /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/ HTTP/1.1" 500 40
+WARNING 2025-09-18 21:34:24,865 log 20284 23464 Forbidden (CSRF token missing.): /api/connections/10cbfdd3-f1ff-4698-8917-ef57df52360a/test/
+WARNING 2025-09-18 21:34:24,881 basehttp 20284 23464 "POST /api/connections/10cbfdd3-f1ff-4698-8917-ef57df52360a/test/ HTTP/1.1" 403 2506
+ERROR 2025-09-18 21:34:29,378 log 20284 23464 Internal Server Error: /dashboard-management/
+Traceback (most recent call last):
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\engine.py", line 161, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: mis_app/base.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\mis_app\views.py", line 172, in dashboard_management_view
+    return render(request, 'dashboard_management.html', {'dashboards': dashboards})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\backends\django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\backends\django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: mis_app/base.html
+ERROR 2025-09-18 21:34:29,384 basehttp 20284 23464 "GET /dashboard-management/ HTTP/1.1" 500 139518
+INFO 2025-09-18 21:34:35,256 basehttp 20284 23464 "GET /database-management/ HTTP/1.1" 200 17535
+INFO 2025-09-18 21:34:44,234 basehttp 20284 23464 "GET /database-management/ HTTP/1.1" 200 17535
+INFO 2025-09-18 21:34:45,160 basehttp 20284 23464 "GET /database-management/ HTTP/1.1" 200 17535
+INFO 2025-09-18 21:34:45,429 basehttp 20284 23464 "GET /database-management/ HTTP/1.1" 200 17535
+INFO 2025-09-18 21:34:45,613 basehttp 20284 23464 "GET /database-management/ HTTP/1.1" 200 17535
+INFO 2025-09-18 21:35:31,152 autoreload 20284 18832 C:\Users\safat\Desktop\django_mis_project\mis_app\urls.py changed, reloading.
+INFO 2025-09-18 21:35:32,202 apps 23084 11636 MIS app signals loaded successfully
+INFO 2025-09-18 21:35:32,228 autoreload 23084 11636 Watching for file changes with StatReloader
+INFO 2025-09-18 21:35:37,990 apps 10208 20460 MIS app signals loaded successfully
+INFO 2025-09-18 21:35:38,716 apps 1616 4340 MIS app signals loaded successfully
+INFO 2025-09-18 21:35:38,737 autoreload 1616 4340 Watching for file changes with StatReloader
+INFO 2025-09-18 21:35:55,178 basehttp 1616 1388 "GET / HTTP/1.1" 302 0
+INFO 2025-09-18 21:35:55,194 basehttp 1616 1388 "GET /login/?next=/ HTTP/1.1" 200 6952
+WARNING 2025-09-18 21:35:55,376 log 1616 1388 Not Found: /favicon.ico
+WARNING 2025-09-18 21:35:55,376 basehttp 1616 1388 "GET /favicon.ico HTTP/1.1" 404 9625
+INFO 2025-09-18 21:36:22,226 signals 1616 1388 User logged in: safat
+INFO 2025-09-18 21:36:22,244 utils 1616 1388 User safat performed login on user 1
+INFO 2025-09-18 21:36:22,254 basehttp 1616 1388 "POST /login/?next=/ HTTP/1.1" 302 0
+INFO 2025-09-18 21:36:22,278 basehttp 1616 1388 "GET / HTTP/1.1" 200 19166
+INFO 2025-09-18 21:36:27,448 basehttp 1616 1388 "GET /database-management/ HTTP/1.1" 200 17535
+INFO 2025-09-18 21:42:20,422 autoreload 1616 4340 C:\Users\safat\Desktop\django_mis_project\mis_app\utils.py changed, reloading.
+INFO 2025-09-18 21:42:21,721 apps 19012 15628 MIS app signals loaded successfully
+INFO 2025-09-18 21:42:21,749 autoreload 19012 15628 Watching for file changes with StatReloader
+INFO 2025-09-18 21:42:56,298 autoreload 19012 15628 C:\Users\safat\Desktop\django_mis_project\mis_app\utils.py changed, reloading.
+INFO 2025-09-18 21:42:57,572 apps 22756 19188 MIS app signals loaded successfully
+INFO 2025-09-18 21:42:57,598 autoreload 22756 19188 Watching for file changes with StatReloader
+INFO 2025-09-18 21:43:51,546 autoreload 22756 19188 C:\Users\safat\Desktop\django_mis_project\mis_app\utils.py changed, reloading.
+INFO 2025-09-18 21:43:52,830 apps 21204 1656 MIS app signals loaded successfully
+INFO 2025-09-18 21:43:52,851 autoreload 21204 1656 Watching for file changes with StatReloader
+INFO 2025-09-18 21:44:44,664 autoreload 21204 1656 C:\Users\safat\Desktop\django_mis_project\mis_app\utils.py changed, reloading.
+INFO 2025-09-18 21:44:45,858 apps 21872 23328 MIS app signals loaded successfully
+INFO 2025-09-18 21:44:45,889 autoreload 21872 23328 Watching for file changes with StatReloader
+INFO 2025-09-18 21:47:06,324 autoreload 21872 23328 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 21:47:07,539 apps 9096 19100 MIS app signals loaded successfully
+INFO 2025-09-18 21:47:07,560 autoreload 9096 19100 Watching for file changes with StatReloader
+INFO 2025-09-18 21:48:57,266 apps 17320 22584 MIS app signals loaded successfully
+INFO 2025-09-18 21:48:58,171 apps 21948 23172 MIS app signals loaded successfully
+INFO 2025-09-18 21:48:58,195 autoreload 21948 23172 Watching for file changes with StatReloader
+INFO 2025-09-18 21:49:06,263 basehttp 21948 2232 "GET /database-management/ HTTP/1.1" 200 17535
+WARNING 2025-09-18 21:49:07,340 log 21948 2232 Not Found: /favicon.ico
+WARNING 2025-09-18 21:49:07,340 basehttp 21948 2232 "GET /favicon.ico HTTP/1.1" 404 9625
+INFO 2025-09-18 21:49:11,767 basehttp 21948 2232 "GET / HTTP/1.1" 200 18736
+INFO 2025-09-18 21:49:28,857 basehttp 21948 2232 "GET /database-management/ HTTP/1.1" 200 17535
+INFO 2025-09-18 21:54:01,070 autoreload 21948 23172 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 21:54:02,527 apps 23280 22792 MIS app signals loaded successfully
+INFO 2025-09-18 21:54:02,551 autoreload 23280 22792 Watching for file changes with StatReloader
+INFO 2025-09-18 21:55:11,089 autoreload 23280 22792 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 21:55:12,280 apps 20232 22480 MIS app signals loaded successfully
+INFO 2025-09-18 21:55:12,307 autoreload 20232 22480 Watching for file changes with StatReloader
+INFO 2025-09-18 21:55:48,198 autoreload 20232 22480 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 21:55:49,389 apps 22688 13864 MIS app signals loaded successfully
+INFO 2025-09-18 21:55:49,413 autoreload 22688 13864 Watching for file changes with StatReloader
+INFO 2025-09-18 21:55:59,592 autoreload 22688 13864 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 21:56:00,761 apps 16652 15772 MIS app signals loaded successfully
+INFO 2025-09-18 21:56:00,784 autoreload 16652 15772 Watching for file changes with StatReloader
+INFO 2025-09-18 21:57:02,454 autoreload 16652 15772 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 21:57:03,749 apps 21068 16220 MIS app signals loaded successfully
+INFO 2025-09-18 21:57:03,775 autoreload 21068 16220 Watching for file changes with StatReloader
+INFO 2025-09-18 21:57:18,032 autoreload 21068 16220 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 21:57:19,257 apps 21404 2680 MIS app signals loaded successfully
+INFO 2025-09-18 21:57:19,278 autoreload 21404 2680 Watching for file changes with StatReloader
+INFO 2025-09-18 21:58:30,647 autoreload 21404 2680 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 21:58:32,004 apps 23536 13936 MIS app signals loaded successfully
+INFO 2025-09-18 21:58:32,031 autoreload 23536 13936 Watching for file changes with StatReloader
+INFO 2025-09-18 21:59:15,593 autoreload 23536 13936 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 21:59:16,786 apps 3128 19140 MIS app signals loaded successfully
+INFO 2025-09-18 21:59:16,811 autoreload 3128 19140 Watching for file changes with StatReloader
+INFO 2025-09-18 21:59:26,613 apps 23488 20484 MIS app signals loaded successfully
+INFO 2025-09-18 21:59:27,521 apps 5588 19964 MIS app signals loaded successfully
+INFO 2025-09-18 21:59:27,545 autoreload 5588 19964 Watching for file changes with StatReloader
+INFO 2025-09-18 21:59:34,488 basehttp 5588 17492 "GET / HTTP/1.1" 200 18736
+INFO 2025-09-18 21:59:34,918 basehttp 5588 17492 "GET / HTTP/1.1" 200 18736
+WARNING 2025-09-18 21:59:35,046 log 5588 17492 Not Found: /favicon.ico
+WARNING 2025-09-18 21:59:35,046 basehttp 5588 17492 "GET /favicon.ico HTTP/1.1" 404 9625
+INFO 2025-09-18 21:59:37,098 basehttp 5588 17492 "GET /data-management/ HTTP/1.1" 200 40189
+ERROR 2025-09-18 21:59:39,274 log 5588 17492 Internal Server Error: /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/
+ERROR 2025-09-18 21:59:39,274 basehttp 5588 17492 "GET /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/ HTTP/1.1" 500 276
+ERROR 2025-09-18 21:59:45,259 log 5588 17492 Internal Server Error: /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/
+ERROR 2025-09-18 21:59:45,260 basehttp 5588 17492 "GET /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/ HTTP/1.1" 500 276
+WARNING 2025-09-18 21:59:52,319 log 5588 17492 Forbidden (CSRF token missing.): /api/connections/10cbfdd3-f1ff-4698-8917-ef57df52360a/test/
+WARNING 2025-09-18 21:59:52,336 basehttp 5588 17492 "POST /api/connections/10cbfdd3-f1ff-4698-8917-ef57df52360a/test/ HTTP/1.1" 403 2506
+WARNING 2025-09-18 21:59:56,577 log 5588 17492 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 21:59:56,578 basehttp 5588 17492 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9736
+ERROR 2025-09-18 22:00:54,065 log 5588 17492 Internal Server Error: /user-management/
+Traceback (most recent call last):
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\engine.py", line 161, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: mis_app/base.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\mis_app\views.py", line 169, in user_management_view
+    return render(request, 'user_management.html', {'users': page_obj})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\backends\django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "C:\Users\safat\Desktop\django_mis_project\venv\Lib\site-packages\django\template\backends\django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: mis_app/base.html
+ERROR 2025-09-18 22:00:54,069 basehttp 5588 17492 "GET /user-management/ HTTP/1.1" 500 139825
+WARNING 2025-09-18 22:00:54,110 log 5588 17492 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 22:00:54,111 basehttp 5588 17492 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9736
+WARNING 2025-09-18 22:00:56,207 log 5588 17492 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 22:00:56,208 basehttp 5588 17492 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9736
+WARNING 2025-09-18 22:00:56,245 log 5588 17492 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 22:00:56,247 basehttp 5588 17492 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9736
+INFO 2025-09-18 22:03:49,384 apps 9128 7260 MIS app signals loaded successfully
+INFO 2025-09-18 22:03:50,308 apps 1164 7832 MIS app signals loaded successfully
+INFO 2025-09-18 22:03:50,329 autoreload 1164 7832 Watching for file changes with StatReloader
+INFO 2025-09-18 22:03:57,140 basehttp 1164 23516 "GET /data-management/ HTTP/1.1" 200 40189
+WARNING 2025-09-18 22:03:57,185 log 1164 23516 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 22:03:57,186 basehttp 1164 23516 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9736
+WARNING 2025-09-18 22:03:57,374 log 1164 20700 Not Found: /favicon.ico
+WARNING 2025-09-18 22:03:57,375 basehttp 1164 20700 "GET /favicon.ico HTTP/1.1" 404 9625
+ERROR 2025-09-18 22:03:59,445 log 1164 23516 Internal Server Error: /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/
+ERROR 2025-09-18 22:03:59,445 basehttp 1164 23516 "GET /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/ HTTP/1.1" 500 276
+ERROR 2025-09-18 22:04:09,893 log 1164 23516 Internal Server Error: /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/
+ERROR 2025-09-18 22:04:09,894 basehttp 1164 23516 "GET /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/ HTTP/1.1" 500 276
+WARNING 2025-09-18 22:04:13,358 log 1164 23516 Forbidden (CSRF token missing.): /api/connections/10cbfdd3-f1ff-4698-8917-ef57df52360a/test/
+WARNING 2025-09-18 22:04:13,374 basehttp 1164 23516 "POST /api/connections/10cbfdd3-f1ff-4698-8917-ef57df52360a/test/ HTTP/1.1" 403 2506
+INFO 2025-09-18 22:05:33,271 apps 20144 22596 MIS app signals loaded successfully
+INFO 2025-09-18 22:05:34,158 apps 20352 22956 MIS app signals loaded successfully
+INFO 2025-09-18 22:05:34,185 autoreload 20352 22956 Watching for file changes with StatReloader
+INFO 2025-09-18 22:05:47,060 apps 3360 8420 MIS app signals loaded successfully
+INFO 2025-09-18 22:05:48,032 apps 20464 15724 MIS app signals loaded successfully
+INFO 2025-09-18 22:05:48,058 autoreload 20464 15724 Watching for file changes with StatReloader
+INFO 2025-09-18 22:05:51,564 basehttp 20464 14332 "GET /data-management/ HTTP/1.1" 200 40189
+WARNING 2025-09-18 22:05:51,614 log 20464 14332 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 22:05:51,615 basehttp 20464 14332 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9736
+WARNING 2025-09-18 22:05:52,002 log 20464 4516 Not Found: /favicon.ico
+WARNING 2025-09-18 22:05:52,009 basehttp 20464 4516 "GET /favicon.ico HTTP/1.1" 404 9625
+ERROR 2025-09-18 22:05:54,114 log 20464 14332 Internal Server Error: /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/
+ERROR 2025-09-18 22:05:54,115 basehttp 20464 14332 "GET /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/ HTTP/1.1" 500 276
+WARNING 2025-09-18 22:05:57,524 log 20464 14332 Forbidden (CSRF token missing.): /api/connections/10cbfdd3-f1ff-4698-8917-ef57df52360a/test/
+WARNING 2025-09-18 22:05:57,542 basehttp 20464 14332 "POST /api/connections/10cbfdd3-f1ff-4698-8917-ef57df52360a/test/ HTTP/1.1" 403 2506
+INFO 2025-09-18 22:11:57,786 autoreload 20464 15724 C:\Users\safat\Desktop\django_mis_project\mis_app\urls.py changed, reloading.
+INFO 2025-09-18 22:11:59,101 apps 14676 20004 MIS app signals loaded successfully
+INFO 2025-09-18 22:11:59,126 autoreload 14676 20004 Watching for file changes with StatReloader
+INFO 2025-09-18 22:12:27,307 autoreload 14676 20004 C:\Users\safat\Desktop\django_mis_project\mis_app\urls.py changed, reloading.
+INFO 2025-09-18 22:12:28,652 apps 5616 4184 MIS app signals loaded successfully
+INFO 2025-09-18 22:12:28,680 autoreload 5616 4184 Watching for file changes with StatReloader
+INFO 2025-09-18 22:13:07,827 autoreload 5616 4184 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 22:13:09,085 apps 23120 22840 MIS app signals loaded successfully
+INFO 2025-09-18 22:13:09,118 autoreload 23120 22840 Watching for file changes with StatReloader
+INFO 2025-09-18 22:14:58,923 autoreload 23120 22840 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 22:15:00,306 apps 17744 13896 MIS app signals loaded successfully
+INFO 2025-09-18 22:15:00,329 autoreload 17744 13896 Watching for file changes with StatReloader
+INFO 2025-09-18 22:15:27,595 autoreload 17744 13896 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 22:15:28,943 apps 22804 4732 MIS app signals loaded successfully
+INFO 2025-09-18 22:15:28,980 autoreload 22804 4732 Watching for file changes with StatReloader
+INFO 2025-09-18 22:15:56,238 autoreload 22804 4732 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 22:15:57,476 apps 5392 22820 MIS app signals loaded successfully
+INFO 2025-09-18 22:15:57,502 autoreload 5392 22820 Watching for file changes with StatReloader
+INFO 2025-09-18 22:17:21,723 autoreload 5392 22820 C:\Users\safat\Desktop\django_mis_project\mis_app\models.py changed, reloading.
+INFO 2025-09-18 22:17:23,042 apps 22328 18796 MIS app signals loaded successfully
+INFO 2025-09-18 22:17:23,069 autoreload 22328 18796 Watching for file changes with StatReloader
+INFO 2025-09-18 22:17:38,728 autoreload 22328 18796 C:\Users\safat\Desktop\django_mis_project\mis_app\models.py changed, reloading.
+INFO 2025-09-18 22:17:39,975 apps 13980 12144 MIS app signals loaded successfully
+INFO 2025-09-18 22:17:40,003 autoreload 13980 12144 Watching for file changes with StatReloader
+INFO 2025-09-18 22:19:21,524 apps 3736 20708 MIS app signals loaded successfully
+INFO 2025-09-18 22:19:22,426 apps 14536 23260 MIS app signals loaded successfully
+INFO 2025-09-18 22:19:22,453 autoreload 14536 23260 Watching for file changes with StatReloader
+INFO 2025-09-18 22:19:27,491 basehttp 14536 7132 "GET /data-management/ HTTP/1.1" 200 40189
+WARNING 2025-09-18 22:19:27,543 log 14536 7132 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 22:19:27,544 basehttp 14536 7132 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11516
+WARNING 2025-09-18 22:19:27,825 log 14536 11724 Not Found: /favicon.ico
+WARNING 2025-09-18 22:19:27,825 basehttp 14536 11724 "GET /favicon.ico HTTP/1.1" 404 11405
+ERROR 2025-09-18 22:19:29,920 log 14536 7132 Internal Server Error: /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/
+ERROR 2025-09-18 22:19:29,921 basehttp 14536 7132 "GET /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/ HTTP/1.1" 500 276
+WARNING 2025-09-18 22:19:35,620 log 14536 7132 Bad Request: /api/connections/10cbfdd3-f1ff-4698-8917-ef57df52360a/test/
+WARNING 2025-09-18 22:19:35,621 basehttp 14536 7132 "POST /api/connections/10cbfdd3-f1ff-4698-8917-ef57df52360a/test/ HTTP/1.1" 400 294
+INFO 2025-09-18 22:43:15,055 autoreload 14536 23260 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 22:43:16,447 apps 776 23076 MIS app signals loaded successfully
+INFO 2025-09-18 22:43:16,478 autoreload 776 23076 Watching for file changes with StatReloader
+INFO 2025-09-18 22:45:09,941 apps 23596 24324 MIS app signals loaded successfully
+INFO 2025-09-18 22:45:10,884 apps 7892 4984 MIS app signals loaded successfully
+INFO 2025-09-18 22:45:10,910 autoreload 7892 4984 Watching for file changes with StatReloader
+INFO 2025-09-18 22:45:17,250 basehttp 7892 4836 "GET /data-management/ HTTP/1.1" 200 40187
+WARNING 2025-09-18 22:45:17,296 log 7892 4836 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 22:45:17,297 basehttp 7892 4836 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11516
+WARNING 2025-09-18 22:45:17,493 log 7892 15248 Not Found: /favicon.ico
+WARNING 2025-09-18 22:45:17,494 basehttp 7892 15248 "GET /favicon.ico HTTP/1.1" 404 11405
+ERROR 2025-09-18 22:45:19,587 views 7892 4836 Error retrieving visible tables for connection 10cbfdd3-f1ff-4698-8917-ef57df52360a: (psycopg2.OperationalError) connection to server at "103.205.71.104", port 8313 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+ERROR 2025-09-18 22:45:19,589 log 7892 4836 Internal Server Error: /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/
+ERROR 2025-09-18 22:45:19,590 basehttp 7892 4836 "GET /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/ HTTP/1.1" 500 276
+WARNING 2025-09-18 22:45:24,649 log 7892 4836 Bad Request: /api/connections/10cbfdd3-f1ff-4698-8917-ef57df52360a/test/
+WARNING 2025-09-18 22:45:24,650 basehttp 7892 4836 "POST /api/connections/10cbfdd3-f1ff-4698-8917-ef57df52360a/test/ HTTP/1.1" 400 294
+WARNING 2025-09-18 22:47:38,577 log 7892 4836 Bad Request: /api/connections/10cbfdd3-f1ff-4698-8917-ef57df52360a/test/
+WARNING 2025-09-18 22:47:38,578 basehttp 7892 4836 "POST /api/connections/10cbfdd3-f1ff-4698-8917-ef57df52360a/test/ HTTP/1.1" 400 294
+INFO 2025-09-18 22:53:56,889 autoreload 7892 4984 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 22:53:58,209 apps 21532 15232 MIS app signals loaded successfully
+INFO 2025-09-18 22:53:58,232 autoreload 21532 15232 Watching for file changes with StatReloader
+INFO 2025-09-18 22:54:34,043 autoreload 21532 15232 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 22:54:35,312 apps 23616 3336 MIS app signals loaded successfully
+INFO 2025-09-18 22:54:35,339 autoreload 23616 3336 Watching for file changes with StatReloader
+INFO 2025-09-18 22:55:18,651 autoreload 23616 3336 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 22:55:19,992 apps 936 24176 MIS app signals loaded successfully
+INFO 2025-09-18 22:55:20,018 autoreload 936 24176 Watching for file changes with StatReloader
+INFO 2025-09-18 23:13:52,547 autoreload 936 24176 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 23:13:53,831 apps 23796 3424 MIS app signals loaded successfully
+INFO 2025-09-18 23:13:53,853 autoreload 23796 3424 Watching for file changes with StatReloader
+INFO 2025-09-18 23:14:26,857 apps 24256 22560 MIS app signals loaded successfully
+INFO 2025-09-18 23:14:27,736 apps 24552 23972 MIS app signals loaded successfully
+INFO 2025-09-18 23:14:27,756 autoreload 24552 23972 Watching for file changes with StatReloader
+INFO 2025-09-18 23:14:41,267 basehttp 24552 13952 "GET /data-management/ HTTP/1.1" 200 40187
+WARNING 2025-09-18 23:14:41,312 log 24552 13952 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 23:14:41,314 basehttp 24552 13952 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11516
+WARNING 2025-09-18 23:14:41,518 log 24552 18992 Not Found: /favicon.ico
+WARNING 2025-09-18 23:14:41,518 basehttp 24552 18992 "GET /favicon.ico HTTP/1.1" 404 11405
+INFO 2025-09-18 23:14:42,946 basehttp 24552 18992 "GET /data-management/ HTTP/1.1" 200 40187
+WARNING 2025-09-18 23:14:42,988 log 24552 18992 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 23:14:42,989 basehttp 24552 18992 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11516
+INFO 2025-09-18 23:14:43,101 basehttp 24552 18992 "GET /data-management/ HTTP/1.1" 200 40187
+WARNING 2025-09-18 23:14:43,132 log 24552 18992 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 23:14:43,132 basehttp 24552 18992 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11516
+WARNING 2025-09-18 23:14:43,251 log 24552 17492 Not Found: /favicon.ico
+WARNING 2025-09-18 23:14:43,252 basehttp 24552 17492 "GET /favicon.ico HTTP/1.1" 404 11405
+INFO 2025-09-18 23:14:43,273 basehttp 24552 17492 "GET /data-management/ HTTP/1.1" 200 40187
+WARNING 2025-09-18 23:14:43,313 log 24552 17492 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 23:14:43,314 basehttp 24552 17492 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11516
+ERROR 2025-09-18 23:14:43,567 views 24552 13952 Error retrieving visible tables for connection 10cbfdd3-f1ff-4698-8917-ef57df52360a: (psycopg2.OperationalError) connection to server at "103.205.71.104", port 8313 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+ERROR 2025-09-18 23:14:43,568 log 24552 13952 Internal Server Error: /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/
+INFO 2025-09-18 23:14:43,571 basehttp 24552 13952 - Broken pipe from ('127.0.0.1', 4402)
+INFO 2025-09-18 23:14:43,789 basehttp 24552 10504 "GET /data-management/ HTTP/1.1" 200 40187
+WARNING 2025-09-18 23:14:43,806 log 24552 16540 Not Found: /favicon.ico
+INFO 2025-09-18 23:14:43,807 basehttp 24552 16540 - Broken pipe from ('127.0.0.1', 5710)
+WARNING 2025-09-18 23:14:43,831 log 24552 10504 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 23:14:43,831 basehttp 24552 10504 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11516
+WARNING 2025-09-18 23:14:44,328 log 24552 5812 Not Found: /favicon.ico
+WARNING 2025-09-18 23:14:44,328 basehttp 24552 5812 "GET /favicon.ico HTTP/1.1" 404 11405
+ERROR 2025-09-18 23:14:45,281 views 24552 18992 Error retrieving visible tables for connection 10cbfdd3-f1ff-4698-8917-ef57df52360a: (psycopg2.OperationalError) connection to server at "103.205.71.104", port 8313 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+ERROR 2025-09-18 23:14:45,282 log 24552 18992 Internal Server Error: /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/
+INFO 2025-09-18 23:14:45,284 basehttp 24552 18992 - Broken pipe from ('127.0.0.1', 2340)
+ERROR 2025-09-18 23:14:45,482 views 24552 17492 Error retrieving visible tables for connection 10cbfdd3-f1ff-4698-8917-ef57df52360a: (psycopg2.OperationalError) connection to server at "103.205.71.104", port 8313 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+ERROR 2025-09-18 23:14:45,483 log 24552 17492 Internal Server Error: /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/
+INFO 2025-09-18 23:14:45,485 basehttp 24552 17492 - Broken pipe from ('127.0.0.1', 3043)
+ERROR 2025-09-18 23:14:46,046 views 24552 10504 Error retrieving visible tables for connection 10cbfdd3-f1ff-4698-8917-ef57df52360a: (psycopg2.OperationalError) connection to server at "103.205.71.104", port 8313 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+ERROR 2025-09-18 23:14:46,046 log 24552 10504 Internal Server Error: /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/
+ERROR 2025-09-18 23:14:46,047 basehttp 24552 10504 "GET /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/ HTTP/1.1" 500 276
+ERROR 2025-09-18 23:14:51,389 views 24552 10504 Error retrieving visible tables for connection 10cbfdd3-f1ff-4698-8917-ef57df52360a: (psycopg2.OperationalError) connection to server at "103.205.71.104", port 8313 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+ERROR 2025-09-18 23:14:51,391 log 24552 10504 Internal Server Error: /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/
+ERROR 2025-09-18 23:14:51,392 basehttp 24552 10504 "GET /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/ HTTP/1.1" 500 276
+INFO 2025-09-18 23:16:57,480 autoreload 24552 23972 C:\Users\safat\Desktop\django_mis_project\mis_app\utils.py changed, reloading.
+INFO 2025-09-18 23:16:58,865 apps 16336 23296 MIS app signals loaded successfully
+INFO 2025-09-18 23:16:58,893 autoreload 16336 23296 Watching for file changes with StatReloader
+INFO 2025-09-18 23:17:25,021 autoreload 16336 23296 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 23:17:26,317 apps 19620 21128 MIS app signals loaded successfully
+INFO 2025-09-18 23:17:26,351 autoreload 19620 21128 Watching for file changes with StatReloader
+INFO 2025-09-18 23:17:49,293 autoreload 19620 21128 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 23:17:50,692 apps 23476 8104 MIS app signals loaded successfully
+INFO 2025-09-18 23:17:50,721 autoreload 23476 8104 Watching for file changes with StatReloader
+INFO 2025-09-18 23:18:17,932 autoreload 23476 8104 C:\Users\safat\Desktop\django_mis_project\mis_app\urls.py changed, reloading.
+INFO 2025-09-18 23:18:19,212 apps 3424 23796 MIS app signals loaded successfully
+INFO 2025-09-18 23:18:19,234 autoreload 3424 23796 Watching for file changes with StatReloader
+INFO 2025-09-18 23:22:09,706 apps 15904 19312 MIS app signals loaded successfully
+INFO 2025-09-18 23:22:10,673 signals 15904 19312 Database connection created: Local SQLite Database by safat
+INFO 2025-09-18 23:22:10,680 signals 15904 19312 Background tasks not available for connection testing
+INFO 2025-09-18 23:22:26,124 apps 13692 15724 MIS app signals loaded successfully
+INFO 2025-09-18 23:24:34,485 apps 16688 18764 MIS app signals loaded successfully
+INFO 2025-09-18 23:24:35,354 apps 15164 15328 MIS app signals loaded successfully
+INFO 2025-09-18 23:24:35,375 autoreload 15164 15328 Watching for file changes with StatReloader
+INFO 2025-09-18 23:24:42,909 basehttp 15164 17000 "GET /data-management/ HTTP/1.1" 200 40612
+WARNING 2025-09-18 23:24:42,959 log 15164 17000 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 23:24:42,960 basehttp 15164 17000 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11720
+WARNING 2025-09-18 23:24:43,277 log 15164 10472 Not Found: /favicon.ico
+WARNING 2025-09-18 23:24:43,279 basehttp 15164 10472 "GET /favicon.ico HTTP/1.1" 404 11609
+ERROR 2025-09-18 23:24:43,297 views 15164 17000 Database error for connection 1f960425-1c07-4eca-85c2-0bf08ea9f14b: 'connect_timeout' is an invalid keyword argument for Connection()
+ERROR 2025-09-18 23:24:43,297 log 15164 17000 Internal Server Error: /api/data/visible-tables/1f960425-1c07-4eca-85c2-0bf08ea9f14b/
+ERROR 2025-09-18 23:24:43,298 basehttp 15164 17000 "GET /api/data/visible-tables/1f960425-1c07-4eca-85c2-0bf08ea9f14b/ HTTP/1.1" 500 94
+WARNING 2025-09-18 23:24:47,077 log 15164 17000 Bad Request: /api/data/visible-tables/1f960425-1c07-4eca-85c2-0bf08ea9f14b/
+WARNING 2025-09-18 23:24:47,078 basehttp 15164 17000 "GET /api/data/visible-tables/1f960425-1c07-4eca-85c2-0bf08ea9f14b/ HTTP/1.1" 400 90
+WARNING 2025-09-18 23:24:50,097 log 15164 17000 Bad Request: /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/
+WARNING 2025-09-18 23:24:50,098 basehttp 15164 17000 "GET /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/ HTTP/1.1" 400 90
+WARNING 2025-09-18 23:24:52,235 log 15164 17000 Bad Request: /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/
+WARNING 2025-09-18 23:24:52,236 basehttp 15164 17000 "GET /api/data/visible-tables/10cbfdd3-f1ff-4698-8917-ef57df52360a/ HTTP/1.1" 400 90
+ERROR 2025-09-18 23:24:56,088 views 15164 17000 Connection test failed for pg: (psycopg2.OperationalError) connection to server at "103.205.71.104", port 8313 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+WARNING 2025-09-18 23:24:56,097 log 15164 17000 Bad Request: /api/connections/10cbfdd3-f1ff-4698-8917-ef57df52360a/test/
+WARNING 2025-09-18 23:24:56,098 basehttp 15164 17000 "POST /api/connections/10cbfdd3-f1ff-4698-8917-ef57df52360a/test/ HTTP/1.1" 400 322
+INFO 2025-09-18 23:25:05,757 basehttp 15164 17000 "GET /database-management/ HTTP/1.1" 200 17535
+WARNING 2025-09-18 23:25:05,797 log 15164 17000 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 23:25:05,797 basehttp 15164 17000 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11720
+INFO 2025-09-18 23:25:24,982 basehttp 15164 17000 "GET / HTTP/1.1" 200 18736
+WARNING 2025-09-18 23:25:25,019 log 15164 17000 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 23:25:25,020 basehttp 15164 17000 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11720
+INFO 2025-09-18 23:25:38,614 basehttp 15164 17000 "GET /database-management/ HTTP/1.1" 200 17535
+WARNING 2025-09-18 23:25:38,655 log 15164 17000 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 23:25:38,655 basehttp 15164 17000 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11720
+INFO 2025-09-18 23:32:48,277 autoreload 15164 15328 C:\Users\safat\Desktop\django_mis_project\mis_app\utils.py changed, reloading.
+INFO 2025-09-18 23:32:49,574 apps 20380 21612 MIS app signals loaded successfully
+INFO 2025-09-18 23:32:49,599 autoreload 20380 21612 Watching for file changes with StatReloader
+INFO 2025-09-18 23:36:03,866 autoreload 20380 21612 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 23:36:05,155 apps 20272 19996 MIS app signals loaded successfully
+INFO 2025-09-18 23:36:05,186 autoreload 20272 19996 Watching for file changes with StatReloader
+INFO 2025-09-18 23:36:28,170 autoreload 20272 19996 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 23:36:29,466 apps 22144 3972 MIS app signals loaded successfully
+INFO 2025-09-18 23:36:29,489 autoreload 22144 3972 Watching for file changes with StatReloader
+INFO 2025-09-18 23:36:49,301 autoreload 22144 3972 C:\Users\safat\Desktop\django_mis_project\mis_app\views.py changed, reloading.
+INFO 2025-09-18 23:36:50,562 apps 152 2416 MIS app signals loaded successfully
+INFO 2025-09-18 23:36:50,583 autoreload 152 2416 Watching for file changes with StatReloader
+INFO 2025-09-18 23:37:12,352 autoreload 152 2416 C:\Users\safat\Desktop\django_mis_project\mis_app\urls.py changed, reloading.
+INFO 2025-09-18 23:37:13,590 apps 18912 19212 MIS app signals loaded successfully
+INFO 2025-09-18 23:37:13,613 autoreload 18912 19212 Watching for file changes with StatReloader
+INFO 2025-09-18 23:37:30,836 apps 19760 6964 MIS app signals loaded successfully
+INFO 2025-09-18 23:37:31,774 apps 24064 20392 MIS app signals loaded successfully
+INFO 2025-09-18 23:37:31,801 autoreload 24064 20392 Watching for file changes with StatReloader
+INFO 2025-09-18 23:37:38,327 basehttp 24064 9508 "GET /database-management/ HTTP/1.1" 200 17535
+WARNING 2025-09-18 23:37:38,365 log 24064 9508 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 23:37:38,366 basehttp 24064 9508 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11919
+WARNING 2025-09-18 23:37:38,617 log 24064 9508 Not Found: /favicon.ico
+WARNING 2025-09-18 23:37:38,619 basehttp 24064 9508 "GET /favicon.ico HTTP/1.1" 404 11808
+INFO 2025-09-18 23:37:41,332 basehttp 24064 9508 "GET / HTTP/1.1" 200 18736
+WARNING 2025-09-18 23:37:41,370 log 24064 9508 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 23:37:41,370 basehttp 24064 9508 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11919
+INFO 2025-09-18 23:37:42,603 basehttp 24064 9508 "GET / HTTP/1.1" 200 18736
+WARNING 2025-09-18 23:37:42,639 log 24064 9508 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 23:37:42,640 basehttp 24064 9508 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11919
+INFO 2025-09-18 23:37:42,780 basehttp 24064 9508 "GET / HTTP/1.1" 200 18736
+WARNING 2025-09-18 23:37:42,803 log 24064 4032 Not Found: /favicon.ico
+INFO 2025-09-18 23:37:42,804 basehttp 24064 4032 - Broken pipe from ('127.0.0.1', 1499)
+WARNING 2025-09-18 23:37:42,823 log 24064 9508 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 23:37:42,823 basehttp 24064 9508 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11919
+INFO 2025-09-18 23:37:42,936 basehttp 24064 9508 "GET / HTTP/1.1" 200 18736
+WARNING 2025-09-18 23:37:42,975 log 24064 9508 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 23:37:42,975 basehttp 24064 9508 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11919
+INFO 2025-09-18 23:37:43,096 basehttp 24064 9508 "GET / HTTP/1.1" 200 18736
+WARNING 2025-09-18 23:37:43,131 log 24064 9508 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 23:37:43,132 basehttp 24064 9508 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11919
+WARNING 2025-09-18 23:37:43,324 log 24064 9508 Not Found: /favicon.ico
+WARNING 2025-09-18 23:37:43,324 basehttp 24064 9508 "GET /favicon.ico HTTP/1.1" 404 11808
+INFO 2025-09-18 23:37:45,127 basehttp 24064 9508 "GET /database-management/ HTTP/1.1" 200 17535
+WARNING 2025-09-18 23:37:45,167 log 24064 9508 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-09-18 23:37:45,168 basehttp 24064 9508 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11919

@@ -1,0 +1,190 @@
+/* === Main Page Layout === */
+.report-builder-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 120px); /* Adjust 120px based on your main nav/header height */
+}
+
+.rb-workspace-row {
+    flex-grow: 1; /* Allows the workspace to fill the remaining height */
+    display: flex;
+    overflow: hidden; /* Prevents double scrollbars */
+}
+/* === Sidebar Layout (FIXED) === */
+.rb-sidebar-left {
+    width: 280px;
+    flex-shrink: 0;
+    background-color: #ffffff;
+    border-right: 1px solid #dee2e6;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Add this */
+    overflow-y: auto;
+}
+
+.rb-sidebar-header,
+.rb-sidebar-search {
+    padding: 0.75rem;
+    border-bottom: 1px solid #dee2e6;
+    flex-shrink: 0; /* Prevents the header and search from shrinking */
+}
+
+/* --- THIS IS THE SCROLLABLE SECTION --- */
+.rb-sidebar-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 0;
+    position: relative;
+}
+
+.sidebar-footer {
+    background-color: #fff; /* match sidebar background */
+    position: sticky;
+    bottom: 0;
+    padding-top: 0.1rem;
+    padding-bottom: 0.5rem;
+    border-top: 1px solid #dee2e6;
+    z-index: 2; /* stay above accordion content */
+}
+
+/* === Main Content Area === */
+.rb-main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+/* === Drop Zone & Pill Styles === */
+.drop-zone {
+    min-height: 40px;
+    border: 2px dashed #dee2e6;
+    border-radius: 0.375rem;
+    padding: 10px;
+    background-color: #f8f9fa;
+}
+
+.drop-zone:has(.pill) .drop-zone-placeholder,
+.drop-zone:has(.filter-pill) .drop-zone-placeholder {
+    display: none;
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    background: #e9ecef;
+    border-radius: 1rem;
+    padding: 0.25rem 0.75rem;
+    margin: 0.25rem;
+    cursor: move;
+}
+
+.field-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.35rem 0.75rem;
+    cursor: grab;
+    border: 1px solid #f1f1f1;
+}
+
+.field-item:hover {
+    background-color: #e9ecef;
+}
+
+/* === Other Styles === */
+.available-fields-container {
+    height: 350px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+}
+
+/* Make the accordion scrollable */
+#dataSourceAccordion {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    height: auto; /* Set a specific height to test */
+    border: none; /* Temporary border to see the container */
+}
+
+/* Custom scrollbar */
+#dataSourceAccordion::-webkit-scrollbar {
+    width: 6px;
+}
+
+#dataSourceAccordion::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#dataSourceAccordion::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+
+#dataSourceAccordion::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+.col-lg-9 { /* This is the main content area */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card { /* The main card containing config and results */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-body.border-top { /* This is the results section */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+}
+
+#resultsContainer {
+    height: 100%;
+    overflow-y: auto; /* This makes the table itself scrollable */
+}
+
+/* Sticky table header with per-column filters */
+:root {
+    --rb-header-height: 42px; /* approximate header row height */
+}
+
+#resultsContainer table.rb-results-table thead th {
+    position: sticky;
+    top: 0; /* default for first row, overridden below */
+    z-index: 2;
+    background: var(--bs-card-bg, #fff);
+}
+
+#resultsContainer table.rb-results-table thead tr.rb-header-row th {
+    top: 0;
+    z-index: 3;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+}
+
+/* We removed the second filter row; only header row is sticky */
+
+/* Filter inputs layout */
+#resultsContainer .rb-filter-cell {
+    min-width: 120px;
+}
+
+#resultsContainer .rb-filter-row input.form-control.form-control-sm {
+    height: 28px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+/* Header filter toggle styling */
+#resultsContainer .header-filter-toggle i { font-size: 0.8rem; }
+#resultsContainer th.rb-header-cell { white-space: nowrap; }

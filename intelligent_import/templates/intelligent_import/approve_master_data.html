@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Approve Master Data for {{ session.original_filename }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Approve New Master Data</h2>
+    <p><strong>Import Session:</strong> {{ session.original_filename }}</p>
+    <p>The following new master data values were found in your file. Please approve or reject them.</p>
+
+    {% if candidates %}
+    <form method="post">
+        {% csrf_token %}
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>Proposed Value</th>
+                    <th>Target Table</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for candidate in candidates %}
+                <tr>
+                    <td>{{ candidate.proposed_value }}</td>
+                    <td>{{ candidate.target_master_table }}</td>
+                    <td>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status_{{ candidate.id }}" id="approve_{{ candidate.id }}" value="approved" checked>
+                            <label class="form-check-label" for="approve_{{ candidate.id }}">Approve</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status_{{ candidate.id }}" id="reject_{{ candidate.id }}" value="rejected">
+                            <label class="form-check-label" for="reject_{{ candidate.id }}">Reject</label>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Submit Decisions</button>
+        <a href="{% url 'intelligent_import:dashboard' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+    {% else %}
+    <div class="alert alert-info">
+        <p>No pending master data candidates for this session.</p>
+        <a href="{% url 'intelligent_import:dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

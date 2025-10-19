@@ -1,0 +1,1947 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}User Management - MIS System{% endblock %}
+
+{% block extra_css %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+    :root {
+        --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        --card-border-radius: 12px;
+        --primary-gradient: linear-gradient(135deg, var(--bs-primary), var(--bs-primary-dark, #0056b3));
+        --success-gradient: linear-gradient(135deg, var(--bs-success), var(--bs-success-dark, #198754));
+        --danger-gradient: linear-gradient(135deg, var(--bs-danger), var(--bs-danger-dark, #dc3545));
+    }
+
+    .page-header {
+        background: var(--primary-gradient);
+        color: white;
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+        border-radius: var(--card-border-radius);
+    }
+
+    .stats-card {
+        background: white;
+        border: none;
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--card-shadow);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        overflow: hidden;
+    }
+
+    .stats-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .stats-card .card-body {
+        padding: 1.5rem;
+    }
+
+    .stats-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .user-card {
+        background: white;
+        border: none;
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--card-shadow);
+        transition: all 0.2s ease;
+        margin-bottom: 1rem;
+        cursor: move;
+    }
+
+    .user-card:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .user-card.selected {
+        border: 2px solid var(--bs-primary);
+        box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+    }
+
+    .user-card.dragging {
+        opacity: 0.5;
+        transform: rotate(5deg);
+    }
+
+    .user-avatar-sm {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+
+    .user-status {
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .status-active {
+        background-color: #d1f2eb;
+        color: #0f5132;
+        border: 1px solid #b3e5d1;
+    }
+
+    .status-inactive {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f1aeb5;
+    }
+
+    .status-locked {
+        background-color: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeaa7;
+    }
+
+    .group-zone {
+        min-height: 200px;
+        border: 2px dashed #dee2e6;
+        border-radius: var(--card-border-radius);
+        padding: 1rem;
+        transition: all 0.2s ease;
+        position: relative;
+        background: #f8f9fa;
+    }
+
+    .group-zone.drag-over {
+        border-color: var(--bs-primary);
+        background-color: rgba(13, 110, 253, 0.05);
+        border-style: solid;
+    }
+
+    .group-zone h5 {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .group-color-indicator {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .search-section {
+        background: white;
+        padding: 2rem;
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--card-shadow);
+        margin-bottom: 2rem;
+    }
+
+    .bulk-actions {
+        background: white;
+        padding: 1rem;
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--card-shadow);
+        margin-bottom: 2rem;
+        border-left: 4px solid var(--bs-warning);
+    }
+
+    .bulk-actions.show {
+        display: block !important;
+    }
+
+    .action-button {
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .action-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-create {
+        background: var(--success-gradient);
+        color: white;
+    }
+
+    .btn-import {
+        background: linear-gradient(135deg, #17a2b8, #138496);
+        color: white;
+    }
+
+    .btn-export {
+        background: linear-gradient(135deg, #6f42c1, #5a359a);
+        color: white;
+    }
+
+    .progress-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: none;
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .progress-content {
+        background: white;
+        padding: 2rem;
+        border-radius: var(--card-border-radius);
+        text-align: center;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .mobile-actions {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        .user-card {
+            margin-bottom: 0.5rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+
+        .desktop-actions {
+            display: none;
+        }
+
+        .mobile-actions {
+            display: block;
+        }
+
+        .group-zone {
+            min-height: 150px;
+        }
+
+        .search-section {
+            padding: 1rem;
+        }
+
+        .page-header {
+            padding: 1rem 0;
+        }
+    }
+
+    /* Theme-specific styles */
+    [data-theme="dark"] .user-card,
+    [data-theme="dark"] .stats-card,
+    [data-theme="dark"] .search-section,
+    [data-theme="dark"] .bulk-actions {
+        background: var(--bs-dark);
+        color: var(--bs-light);
+    }
+
+    [data-theme="dark"] .group-zone {
+        background: var(--bs-secondary);
+        border-color: var(--bs-gray-600);
+    }
+
+    [data-theme="ocean_blue"] .page-header {
+        background: linear-gradient(135deg, #006a88, #004d66);
+    }
+
+    [data-theme="royal_purple"] .page-header {
+        background: linear-gradient(135deg, #6b46c1, #553c9a);
+    }
+
+    [data-theme="sunset_orange"] .page-header {
+        background: linear-gradient(135deg, #ea580c, #c2410c);
+    }
+
+    /* Drag and drop visual feedback */
+    .sortable-ghost {
+        opacity: 0.5;
+    }
+
+    .sortable-chosen {
+        transform: scale(1.02);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="mb-0">
+                        <i class="fas fa-users me-3"></i>
+                        User Management
+                    </h1>
+                    <p class="mt-2 mb-0 opacity-75">
+                        Manage users, groups, and permissions with drag-and-drop functionality
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                    {% if can_create_users %}
+                    <button class="action-button btn-create me-2" onclick="showCreateUserModal()">
+                        <i class="fas fa-user-plus"></i>
+                        Create User
+                    </button>
+                    {% endif %}
+                    <button class="action-button btn-import me-2" onclick="showImportModal()">
+                        <i class="fas fa-file-import"></i>
+                        Import Users
+                    </button>
+                    <button class="action-button btn-export" onclick="exportUsers()">
+                        <i class="fas fa-file-export"></i>
+                        Export Data
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6 mb-3">
+            <div class="stats-card card">
+                <div class="card-body text-center">
+                    <div class="stats-icon text-primary">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="mb-1" id="total-users">{{ user_stats.total_users }}</h3>
+                    <p class="text-muted mb-0">Total Users</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-3">
+            <div class="stats-card card">
+                <div class="card-body text-center">
+                    <div class="stats-icon text-success">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h3 class="mb-1" id="active-users">{{ user_stats.active_users }}</h3>
+                    <p class="text-muted mb-0">Active Users</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-3">
+            <div class="stats-card card">
+                <div class="card-body text-center">
+                    <div class="stats-icon text-warning">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3 class="mb-1" id="admin-users">{{ user_stats.admin_users }}</h3>
+                    <p class="text-muted mb-0">Administrators</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-3">
+            <div class="stats-card card">
+                <div class="card-body text-center">
+                    <div class="stats-icon text-danger">
+                        <i class="fas fa-user-lock"></i>
+                    </div>
+                    <h3 class="mb-1" id="locked-users">{{ user_stats.locked_users }}</h3>
+                    <p class="text-muted mb-0">Locked Accounts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search and Filters -->
+    <div class="search-section">
+        <form id="search-form" class="row align-items-end">
+            <div class="col-md-3 mb-3">
+                <label for="search-input" class="form-label">Search Users</label>
+                <input type="text" 
+                       id="search-input" 
+                       class="form-control" 
+                       placeholder="Name, email, or department..."
+                       value="{{ search_form.search.value|default:'' }}">
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="user-type-filter" class="form-label">User Type</label>
+                <select id="user-type-filter" class="form-select">
+                    <option value="">All Types</option>
+                    {% for value, label in search_form.user_type.field.choices %}
+                        {% if value %}
+                        <option value="{{ value }}" {% if search_form.user_type.value == value %}selected{% endif %}>
+                            {{ label }}
+                        </option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="status-filter" class="form-label">Status</label>
+                <select id="status-filter" class="form-select">
+                    <option value="">All Users</option>
+                    <option value="true" {% if search_form.is_active.value == 'true' %}selected{% endif %}>Active</option>
+                    <option value="false" {% if search_form.is_active.value == 'false' %}selected{% endif %}>Inactive</option>
+                </select>
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="group-filter" class="form-label">Group</label>
+                <select id="group-filter" class="form-select">
+                    <option value="">All Groups</option>
+                    {% for group in groups %}
+                    <option value="{{ group.id }}" {% if search_form.group.value == group.id|stringformat:"s" %}selected{% endif %}>
+                        {{ group.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
+                <button type="submit" class="btn btn-primary me-2">
+                    <i class="fas fa-search"></i> Search
+                </button>
+                <button type="button" class="btn btn-outline-secondary" onclick="clearFilters()">
+                    <i class="fas fa-times"></i> Clear
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bulk Actions Bar -->
+    <div class="bulk-actions" id="bulk-actions" style="display: none;">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <span id="selected-count">0</span> users selected
+            </div>
+            <div class="col-md-6 text-md-end">
+                <div class="btn-group" role="group">
+                    <button class="btn btn-sm btn-success" onclick="bulkActivate()">
+                        <i class="fas fa-check"></i> Activate
+                    </button>
+                    <button class="btn btn-sm btn-warning" onclick="bulkDeactivate()">
+                        <i class="fas fa-pause"></i> Deactivate
+                    </button>
+                    <button class="btn btn-sm btn-info" onclick="bulkAssignGroup()">
+                        <i class="fas fa-users"></i> Assign Group
+                    </button>
+                    {% if can_delete_users %}
+                    <button class="btn btn-sm btn-danger" onclick="bulkDelete()">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                    {% endif %}
+                </div>
+                <button class="btn btn-sm btn-secondary ms-2" onclick="clearSelection()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="row">
+        <!-- Users Section -->
+        <div class="col-lg-8">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4>
+                    <i class="fas fa-users text-primary me-2"></i>
+                    Users
+                </h4>
+                <div class="desktop-actions">
+                    <button class="btn btn-sm btn-outline-primary" onclick="selectAll()">
+                        <i class="fas fa-check-square"></i> Select All
+                    </button>
+                </div>
+            </div>
+
+            <!-- Users Grid -->
+            <div class="table-responsive bg-white rounded shadow-sm">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col" class="text-center" style="width: 5%;">
+                                <input class="form-check-input" type="checkbox" id="select-all-users" title="Select All">
+                            </th>
+                            <th scope="col" style="width: 30%;">User</th>
+                            <th scope="col" style="width: 15%;">Department</th>
+                            <th scope="col" style="width: 10%;">Role</th>
+                            <th scope="col" class="text-center" style="width: 10%;">Status</th>
+                            <th scope="col" style="width: 15%;">Groups</th>
+                            <th scope="col" class="text-center" style="width: 15%;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body">
+                        {% for user in users %}
+                        <tr id="user-row-{{ user.id }}">
+                            <td class="text-center">
+                                <input type="checkbox"
+                                    class="form-check-input user-select-checkbox"
+                                    data-user-id="{{ user.id }}"
+                                    {% if user.id == current_user_id %}disabled{% endif %}>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="user-avatar-sm">
+                                        {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 fw-bold">
+                                            {% if user.first_name or user.last_name %}
+                                                {{ user.first_name }} {{ user.last_name }}
+                                            {% else %}
+                                                {{ user.username }}
+                                            {% endif %}
+                                            {% if user.id == current_user_id %}<small class="text-muted fw-normal ms-1">(You)</small>{% endif %}
+                                        </h6>
+                                        <p class="text-muted mb-0 small">{{ user.email }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ user.department|default:"N/A" }}</td>
+                            <td><span class="badge bg-primary rounded-pill">{{ user.user_type }}</span></td>
+                            <td class="text-center">
+                                <span class="user-status status-{{ user.is_active|yesno:'active,inactive' }}">
+                                    {% if user.is_active %}Active{% else %}Inactive{% endif %}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                        Manage Groups
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        {% for group in groups %}
+                                        <li>
+                                            <div class="dropdown-item">
+                                                <div class="form-check">
+                                                    <input class="form-check-input group-check" type="checkbox"
+                                                        value="{{ group.id }}"
+                                                        data-user-id="{{ user.id }}"
+                                                        id="user-{{ user.id }}-group-{{ group.id }}"
+                                                        {% if group in user.user_groups.all %}checked{% endif %}>
+                                                    <label class="form-check-label" for="user-{{ user.id }}-group-{{ group.id }}">
+                                                        {{ group.name }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                        {% if not groups %}
+                                        <li><span class="dropdown-item-text text-muted">No groups available.</span></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button class="btn btn-outline-primary" onclick="editUser('{{ user.id }}')" title="Edit User"><i class="fas fa-edit"></i></button>
+                                    {% if user.user_type == 'Uploader' %}
+                                    <button class="btn btn-outline-success" onclick="openUploadPermissionsModal('{{ user.id }}', '{{ user.get_full_name }}')" title="Upload Permissions">
+                                        <i class="fas fa-upload"></i>
+                                    </button>
+                                    {% endif %}
+                                    <button class="btn btn-outline-info" onclick="viewUserDetails('{{ user.id }}')" title="View Details"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-outline-warning" onclick="resetUserPassword('{{ user.id }}')" title="Reset Password"><i class="fas fa-key"></i></button>
+                                    {% if can_delete_users and user.id != current_user_id %}
+                                    <button class="btn btn-outline-danger" onclick="deleteUser('{{ user.id }}', '{{ user.username }}')" title="Delete User"><i class="fas fa-trash"></i></button>
+                                    {% endif %}
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="7" class="text-center py-5">
+                                <div class="text-center py-5">
+                                    <i class="fas fa-users text-muted" style="font-size: 4rem;"></i>
+                                    <h4 class="text-muted mt-3">No Users Found</h4>
+                                    <p class="text-muted">Try adjusting your search criteria or create a new user.</p>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            {% if users.has_other_pages %}
+            <nav aria-label="User pagination" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    {% if users.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ users.previous_page_number }}">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% for num in users.paginator.page_range %}
+                    {% if users.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                    {% elif num > users.number|add:'-3' and num < users.number|add:'3' %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if users.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ users.next_page_number }}">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+
+        <!-- Groups Section -->
+        <div class="col-lg-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4>
+                    <i class="fas fa-layer-group text-success me-2"></i>
+                    Groups
+                </h4>
+                <button class="btn btn-sm btn-success" onclick="showCreateGroupModal()">
+                    <i class="fas fa-plus"></i> New Group
+                </button>
+            </div>
+
+            <!-- Groups List -->
+            <div id="groups-container">
+                {% for group in groups %}
+                <div class="group-zone" 
+                     data-group-id="{{ group.id }}"
+                     ondrop="dropUser(event, '{{ group.id }}')" 
+                     ondragover="allowDrop(event)"
+                     ondragenter="dragEnter(event)"
+                     ondragleave="dragLeave(event)">
+                    <h5>
+                        <span class="group-color-indicator" style="background-color: {{ group.color }};"></span>
+                        {{ group.name }}
+                        <small class="text-muted">({{ group.users.count }} members)</small>
+                        <button class="btn btn-sm btn-outline-secondary ms-auto" 
+                                onclick="editGroup('{{ group.id }}')"
+                                title="Edit Group">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </h5>
+                    
+                    {% if group.description %}
+                    <p class="small text-muted mb-3">{{ group.description }}</p>
+                    {% endif %}
+
+                    <!-- Group Members -->
+                    <div class="group-members" id="group-{{ group.id }}-members">
+    {% for user in group.users.all %}
+    <div class="d-flex align-items-center p-2 bg-white rounded shadow-sm mb-2" id="group-member-{{ group.id }}-{{ user.id }}">
+                            <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.875rem;">
+                                {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
+                            </div>
+                            <div class="ms-2 flex-grow-1">
+                                <div class="small fw-medium">
+                                    {% if user.first_name or user.last_name %}
+                                        {{ user.first_name }} {{ user.last_name }}
+                                    {% else %}
+                                        {{ user.username }}
+                                    {% endif %}
+                                </div>
+                                <div class="small text-muted">{{ user.user_type }}</div>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger" 
+                                    onclick="removeFromGroup('{{ user.id }}', '{{ group.id }}')"
+                                    title="Remove from group">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        {% empty %}
+                        <div class="text-center text-muted py-3">
+                            <i class="fas fa-users"></i>
+                            <p class="mb-0 small">No members yet</p>
+                            <p class="small">Drag users here to add them</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% empty %}
+                <div class="text-center py-5">
+                    <i class="fas fa-layer-group text-muted" style="font-size: 3rem;"></i>
+                    <h5 class="text-muted mt-3">No Groups Created</h5>
+                    <p class="text-muted">Create groups to organize users and manage permissions.</p>
+                    <button class="btn btn-success" onclick="showCreateGroupModal()">
+                        <i class="fas fa-plus me-2"></i>Create First Group
+                    </button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Progress Overlay -->
+<div class="progress-overlay" id="progress-overlay">
+    <div class="progress-content">
+        <div class="spinner-border text-primary mb-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <h5 id="progress-title">Processing...</h5>
+        <p id="progress-message" class="text-muted">Please wait while we process your request.</p>
+        <div class="progress" style="height: 6px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                 id="progress-bar" 
+                 role="progressbar" 
+                 style="width: 0%"></div>
+        </div>
+    </div>
+</div>
+
+<!-- assign group modal -->
+
+<div class="modal fade" id="bulkAssignGroupModal" tabindex="-1" aria-labelledby="bulkAssignGroupModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bulkAssignGroupModalLabel">Assign Selected Users to Group</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="bulkAssignGroupForm" onsubmit="event.preventDefault(); handleBulkAssign();">
+          <input type="hidden" id="bulk-assign-user-ids">
+          <div class="mb-3">
+            <label for="bulk-assign-group-select" class="form-label">Select Group</label>
+            <select id="bulk-assign-group-select" class="form-select" required>
+              <option value="" selected disabled>Choose a group...</option>
+              {% for group in groups %}
+                <option value="{{ group.id }}">{{ group.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="handleBulkAssign()">Assign to Group</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Include Modals -->
+{% include 'modals/create_user_modal.html' %}
+{% include 'modals/edit_user_modal.html' %}
+{% include 'modals/create_group_modal.html' %}
+{% include 'modals/edit_group_modal.html' %}
+{% include 'modals/import_users_modal.html' %}
+{% include 'modals/bulk_action_modal.html' %}
+{% include 'modals/uploader_permissions_modal.html' %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+
+    let currentUploaderId = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+    // --- FORM SUBMISSION HANDLERS ---
+    // This section ensures that when you click "Save" or "Create" in a modal,
+    // it runs our JavaScript instead of doing a full page reload.
+    
+    document.getElementById('createUserForm')?.addEventListener('submit', (e) => { e.preventDefault(); createUser(); });
+    document.getElementById('editUserForm')?.addEventListener('submit', (e) => { e.preventDefault(); updateUser(); });
+    document.getElementById('createGroupForm')?.addEventListener('submit', (e) => { e.preventDefault(); createGroup(); });
+    document.getElementById('editGroupForm')?.addEventListener('submit', (e) => { e.preventDefault(); updateGroupDetails(); });
+    document.getElementById('addGroupPermissionForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const groupId = document.getElementById('edit_group_id').value;
+        addGroupPermission(groupId);
+    });
+
+    // --- DELEGATED EVENT LISTENERS ---
+    // Handles clicks on dynamically created elements, like the delete permission buttons.
+    
+    document.getElementById('existing-permissions-list')?.addEventListener('click', (e) => {
+        const deleteButton = e.target.closest('.delete-permission-btn');
+        if (deleteButton) {
+            const permissionId = deleteButton.dataset.permissionId;
+            if (confirm('Are you sure you want to remove this permission?')) {
+                deleteGroupPermission(permissionId);
+            }
+        }
+    });
+
+    initializeSelection();
+    initializeGroupManagement();
+    
+    console.log('User Management page initialized.');
+});
+
+// --- USER CRUD FUNCTIONS ---
+
+function showCreateUserModal() {
+    const modal = new bootstrap.Modal(document.getElementById('createUserModal'));
+    const form = document.getElementById('createUserForm');
+    form.reset();
+    clearFormErrors(form); // Clear any previous validation errors
+    modal.show();
+}
+
+function createUser() {
+    const form = document.getElementById('createUserForm');
+    const formData = new FormData(form);
+    showLoading('Creating user...');
+
+    fetch(`{% url 'mis_app:api_users' %}`, {
+        method: 'POST',
+        headers: { 'X-CSRFToken': getCsrfToken() },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => handleApiResponse(data, 'User created successfully!', form))
+    .catch(err => handleApiError('create user', err))
+    .finally(hideLoading);
+}
+
+function editUser(userId) {
+    showLoading('Loading user...');
+    fetch(`/api/users/${userId}/`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                populateEditUserModal(data.user);
+                loadUserDatabasePermissions(userId, data.user.direct_permissions || []);
+                new bootstrap.Modal(document.getElementById('editUserModal')).show();
+            } else {
+                showError('Failed to load user: ' + data.error);
+            }
+        })
+        .catch(err => handleApiError('load user', err))
+        .finally(hideLoading);
+}
+
+async function loadUserDatabasePermissions(userId, userPermissions) {
+    const container = document.getElementById('user-db-permissions-accordion-container');
+    container.innerHTML = `<div class="text-center p-4"><div class="spinner-border spinner-border-sm"></div><span class="ms-2">Loading...</span></div>`;
+
+    try {
+        const response = await fetch("{% url 'mis_app:api_connections' %}");
+        if (!response.ok) throw new Error('Failed to fetch connections.');
+        const connections = await response.json();
+
+        if (connections.length === 0) {
+            container.innerHTML = `<div class="text-center text-muted p-4">No database connections have been configured yet.</div>`;
+            return;
+        }
+
+        const accordionHtml = connections.map((conn) => {
+            const hasConnPerm = userPermissions.some(p => p.resource_type === 'connection' && p.resource_id === conn.id);
+            return `
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="user-heading-${conn.id}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#user-collapse-${conn.id}" aria-expanded="false">
+                            <i class="fas fa-database me-2"></i> ${conn.nickname}
+                        </button>
+                    </h2>
+                    <div id="user-collapse-${conn.id}" class="accordion-collapse collapse" data-connection-id="${conn.id}">
+                        <div class="accordion-body">
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input user-permission-toggle" type="checkbox" role="switch" id="user-conn-perm-${conn.id}"
+                                       data-user-id="${userId}" data-resource-type="connection"
+                                       data-resource-id="${conn.id}" data-resource-name="*"
+                                       ${hasConnPerm ? 'checked' : ''}>
+                                <label class="form-check-label" for="user-conn-perm-${conn.id}"><strong>Allow access to this entire connection</strong></label>
+                            </div>
+                            <hr>
+                            <h6 class="text-muted small">TABLE-LEVEL PERMISSIONS</h6>
+                            <div class="user-table-list-container" style="max-height: 200px; overflow-y: auto;">
+                                <div class="text-center p-2 text-muted small">Click to expand and load tables...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+        container.innerHTML = `<div class="accordion" id="userDbPermissionsAccordion">${accordionHtml}</div>`;
+        
+        const accordionElement = document.getElementById('userDbPermissionsAccordion');
+        if (accordionElement) {
+            accordionElement.addEventListener('show.bs.collapse', function(event) {
+                const collapseElement = event.target;
+                const connectionId = collapseElement.dataset.connectionId;
+                if (connectionId) {
+                    loadTablesForUserConnection(collapseElement, userId, connectionId, userPermissions);
+                }
+            });
+        }
+
+        container.querySelectorAll('.user-permission-toggle').forEach(toggle => {
+            toggle.addEventListener('change', handleUserPermissionChange);
+        });
+
+    } catch (error) {
+        console.error("Error loading user DB permissions:", error);
+        container.innerHTML = `<div class="alert alert-danger">Failed to load permissions. Please try again.</div>`;
+    }
+}
+
+async function loadTablesForUserConnection(accordionCollapseEl, userId, connectionId, userPermissions) {
+    const tableContainer = accordionCollapseEl.querySelector('.user-table-list-container');
+    if (!tableContainer || tableContainer.dataset.loaded === 'true') return;
+    
+    tableContainer.innerHTML = `<div class="text-center p-3"><div class="spinner-border spinner-border-sm me-2"></div>Loading tables...</div>`;
+    tableContainer.dataset.loaded = 'true';
+
+    try {
+        const url = `{% url 'mis_app:api_get_all_connection_tables' '00000000-0000-0000-0000-000000000000' %}`.replace('00000000-0000-0000-0000-000000000000', connectionId);
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Server failed to return tables.');
+        const data = await response.json();
+
+        if (data.success && data.tables && data.tables.length > 0) {
+            const tableHtml = data.tables.map(tableName => {
+                const hasTablePerm = userPermissions.some(p => 
+                    p.resource_type === 'table' && 
+                    p.resource_id === connectionId && 
+                    p.resource_name === tableName
+                );
+                const tableId = `user-table-perm-${connectionId}-${tableName.replace(/[^a-zA-Z0-9]/g, '-')}`;
+                
+                return `
+                    <div class="form-check mb-2">
+                        <input class="form-check-input user-permission-toggle" type="checkbox"
+                               id="${tableId}"
+                               data-user-id="${userId}" 
+                               data-resource-type="table"
+                               data-resource-id="${connectionId}" 
+                               data-resource-name="${tableName}"
+                               ${hasTablePerm ? 'checked' : ''}>
+                        <label class="form-check-label" for="${tableId}">
+                            <i class="fas fa-table me-2 text-muted"></i>${tableName}
+                        </label>
+                    </div>
+                `;
+            }).join('');
+            
+            tableContainer.innerHTML = tableHtml;
+            
+            tableContainer.querySelectorAll('.user-permission-toggle').forEach(toggle => {
+                toggle.addEventListener('change', handleUserPermissionChange);
+            });
+        } else {
+            tableContainer.innerHTML = `<div class="text-center text-muted p-3">
+                <i class="fas fa-info-circle me-2"></i>
+                ${data.error || 'No tables found in this connection.'}
+            </div>`;
+        }
+
+    } catch (error) {
+        console.error(`Error loading tables for ${connectionId}:`, error);
+        tableContainer.innerHTML = `<div class="text-center text-danger p-3">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            Error loading tables: ${error.message}
+        </div>`;
+    }
+}
+
+function handleUserPermissionChange(event) {
+    const toggle = event.target;
+    const payload = {
+        grant: toggle.checked,
+        resource_type: toggle.dataset.resourceType,
+        resource_id: toggle.dataset.resourceId,
+        resource_name: toggle.dataset.resourceName,
+    };
+    const userId = toggle.dataset.userId;
+    const url = `{% url 'mis_app:api_manage_user_database_permission' '00000000-0000-0000-0000-000000000000' %}`.replace('00000000-0000-0000-0000-000000000000', userId);
+    
+    toggle.disabled = true;
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCsrfToken()
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showSuccess(data.message, 1500);
+        } else {
+            showError(data.error || 'Failed to update permission.');
+            toggle.checked = !toggle.checked;
+        }
+    })
+    .catch(err => {
+        showError('An unexpected error occurred.');
+        toggle.checked = !toggle.checked;
+    })
+    .finally(() => {
+        toggle.disabled = false;
+    });
+}
+
+function populateEditUserModal(user) {
+    const form = document.getElementById('editUserForm');
+    clearFormErrors(form);
+    form.querySelector('#edit_user_id').value = user.id;
+    form.querySelector('#edit_username').value = user.username;
+    form.querySelector('#edit_email').value = user.email;
+    form.querySelector('#edit_first_name').value = user.first_name;
+    form.querySelector('#edit_last_name').value = user.last_name;
+    form.querySelector('#edit_user_type').value = user.user_type;
+    form.querySelector('#edit_department').value = user.department;
+    form.querySelector('#edit_is_active').checked = user.is_active;
+}
+
+function updateUser() {
+    const form = document.getElementById('editUserForm');
+    const userId = form.querySelector('#edit_user_id').value;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    // Handle checkbox value
+    data.is_active = form.querySelector('#edit_is_active').checked;
+    showLoading('Updating user...');
+
+    fetch(`/api/users/${userId}/`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCsrfToken() },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => handleApiResponse(data, 'User updated successfully!', form))
+    .catch(err => handleApiError('update user', err))
+    .finally(hideLoading);
+}
+
+function deleteUser(userId, username) {
+    if (!confirm(`Are you sure you want to delete user "${username}"? This cannot be undone.`)) return;
+    showLoading('Deleting user...');
+    fetch(`/api/users/${userId}/`, {
+        method: 'DELETE',
+        headers: { 'X-CSRFToken': getCsrfToken() }
+    })
+    .then(response => response.json())
+    .then(data => handleApiResponse(data, 'User deleted successfully.'))
+    .catch(err => handleApiError('delete user', err))
+    .finally(hideLoading);
+}
+
+// --- GROUP & PERMISSION CRUD FUNCTIONS ---
+
+function showCreateGroupModal() {
+    const modal = new bootstrap.Modal(document.getElementById('createGroupModal'));
+    const form = document.getElementById('createGroupForm');
+    form.reset();
+    clearFormErrors(form);
+    modal.show();
+}
+
+function createGroup() {
+    const form = document.getElementById('createGroupForm');
+    const formData = new FormData(form);
+    showLoading('Creating group...');
+
+    fetch(`{% url 'mis_app:api_groups' %}`, {
+        method: 'POST',
+        headers: { 'X-CSRFToken': getCsrfToken() },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => handleApiResponse(data, 'Group created successfully!', form))
+    .catch(err => handleApiError('create group', err))
+    .finally(hideLoading);
+}
+
+function populateEditGroupModal(group) {
+    const form = document.getElementById('editGroupForm');
+    clearFormErrors(form);
+    form.querySelector('#edit_group_id').value = group.id;
+    form.querySelector('#edit_group_name').value = group.name;
+    form.querySelector('#edit_group_description').value = group.description || '';
+    form.querySelector('#edit_group_color').value = group.color || '#007bff';
+    document.getElementById('edit-group-title-span').textContent = group.name;
+
+    const permissionsList = document.getElementById('existing-permissions-list');
+    permissionsList.innerHTML = '';
+    
+    // *** THIS IS THE FIX: Filter out database permissions from this list ***
+    const appPermissions = group.permissions.filter(p => !['connection', 'table'].includes(p.resource_type));
+
+    if (appPermissions && appPermissions.length > 0) {
+        appPermissions.forEach(perm => {
+            const li = document.createElement('li');
+            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+            li.innerHTML = `
+                <div>
+                    <span class="fw-bold text-capitalize">${perm.resource_type.replace('_', ' ')}:</span>
+                    <span>${perm.resource_name}</span>
+                    <span class="badge bg-secondary ms-2 text-capitalize">${perm.permission_level}</span>
+                </div>
+                <button class="btn btn-sm btn-outline-danger delete-permission-btn" data-permission-id="${perm.id}" title="Remove permission">
+                    <i class="fas fa-trash"></i>
+                </button>
+            `;
+            permissionsList.appendChild(li);
+        });
+    } else {
+        permissionsList.innerHTML = '<li class="list-group-item text-muted">No app-specific permissions assigned.</li>';
+    }
+}
+
+function updateGroupDetails() {
+    const form = document.getElementById('editGroupForm');
+    const groupId = form.querySelector('#edit_group_id').value;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    showLoading('Updating group details...');
+
+    fetch(`/api/groups/${groupId}/`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCsrfToken() },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showSuccess(data.message || 'Group details updated!');
+            document.getElementById('edit-group-title-span').textContent = document.getElementById('edit_group_name').value;
+            // No reload, to allow further permission edits.
+        } else {
+            showError('Update failed: ' + (data.error || JSON.stringify(data.errors)));
+        }
+    })
+    .catch(err => handleApiError('update group', err))
+    .finally(hideLoading);
+}
+
+function addGroupPermission(groupId) {
+    const form = document.getElementById('addGroupPermissionForm');
+    const formData = new FormData(form);
+    showLoading('Adding permission...');
+
+    fetch(`/api/groups/${groupId}/permissions/add/`, {
+        method: 'POST',
+        headers: { 'X-CSRFToken': getCsrfToken() },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showSuccess('Permission added!');
+            form.reset();
+            editGroup(groupId); // Refresh the modal content
+        } else {
+            showError('Failed to add permission: ' + (data.error || JSON.stringify(data.errors)));
+        }
+    })
+    .catch(err => handleApiError('add permission', err))
+    .finally(hideLoading);
+}
+
+function deleteGroupPermission(permissionId) {
+    const groupId = document.getElementById('edit_group_id').value;
+    showLoading('Removing permission...');
+    fetch(`/api/permissions/${permissionId}/delete/`, {
+        method: 'DELETE',
+        headers: { 'X-CSRFToken': getCsrfToken() }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showSuccess('Permission removed!');
+            editGroup(groupId); // Refresh the modal content
+        } else {
+            showError('Failed to remove permission: ' + data.error);
+        }
+    })
+    .catch(err => handleApiError('delete permission', err))
+    .finally(hideLoading);
+}
+
+
+// --- UTILITY & UI FUNCTIONS ---
+
+function getCsrfToken() {
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+}
+
+function showLoading(title = 'Processing...') {
+    const overlay = document.getElementById('progress-overlay');
+    document.getElementById('progress-title').textContent = title;
+    overlay.style.display = 'flex';
+}
+
+function hideLoading() {
+    document.getElementById('progress-overlay').style.display = 'none';
+}
+
+function handleApiResponse(data, successMessage, form = null) {
+    if (data.success) {
+        showSuccess(data.message || successMessage);
+        const modal = form ? bootstrap.Modal.getInstance(form.closest('.modal')) : null;
+        if (modal) modal.hide();
+        setTimeout(() => location.reload(), 1500);
+    } else {
+        if (data.errors && form) {
+            displayFormErrors(form, data.errors);
+            showError('Please correct the errors below.');
+        } else {
+            showError('Operation failed: ' + (data.error || JSON.stringify(data.errors || {})));
+        }
+    }
+}
+
+function handleApiError(action, error) {
+    showError(`An unexpected error occurred during: ${action}.`);
+    console.error(`${action} error:`, error);
+}
+
+function displayFormErrors(form, errors) {
+    clearFormErrors(form);
+    for (const field in errors) {
+        const input = form.querySelector(`[name="${field}"]`);
+        if (input) {
+            input.classList.add('is-invalid');
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'invalid-feedback';
+            errorDiv.textContent = errors[field][0]; // Display the first error
+            input.parentElement.appendChild(errorDiv);
+        }
+    }
+    if (errors.__all__) {
+        showError(errors.__all__[0]);
+    }
+}
+
+function updateBulkActionBar() {
+    const selectedCheckboxes = document.querySelectorAll('.user-select-checkbox:checked');
+    const bulkActionsBar = document.getElementById('bulk-actions');
+    const selectedCountSpan = document.getElementById('selected-count');
+    const selectedCount = selectedCheckboxes.length;
+
+    selectedCountSpan.textContent = selectedCount;
+    if (selectedCount > 0) {
+        bulkActionsBar.style.display = 'block'; // Or 'flex' if it's a flex container
+    } else {
+        bulkActionsBar.style.display = 'none';
+    }
+}
+
+function selectAll() {
+    const selectAllCheckbox = document.getElementById('select-all-users');
+    if (selectAllCheckbox) {
+        // Set the main checkbox to true and trigger its change event
+        // This will run the logic you already have to select all other checkboxes
+        selectAllCheckbox.checked = true;
+        selectAllCheckbox.dispatchEvent(new Event('change'));
+    }
+}
+
+/**
+ * Deselects all checkboxes and hides the bulk action bar.
+ */
+function clearSelection() {
+    document.querySelectorAll('.user-select-checkbox:checked').forEach(cb => cb.checked = false);
+    document.getElementById('select-all-users').checked = false;
+    updateBulkActionBar();
+}
+
+/**
+ * Attaches event listeners to all selection checkboxes to enable bulk actions.
+ */
+function initializeSelection() {
+    // Listener for individual user checkboxes
+    document.querySelectorAll('.user-select-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', updateBulkActionBar);
+    });
+
+    // Listener for the "Select All" checkbox in the table header
+    const selectAllCheckbox = document.getElementById('select-all-users');
+    selectAllCheckbox?.addEventListener('change', (e) => {
+        document.querySelectorAll('.user-select-checkbox:not(:disabled)').forEach(cb => {
+            cb.checked = e.target.checked;
+        });
+        updateBulkActionBar();
+    });
+}
+
+
+// --- GROUP MANAGEMENT ---
+
+/**
+ * Sends an API request to add or remove a user from a specific group.
+ * @param {string} userId - The UUID of the user.
+ * @param {string} groupId - The UUID of the group.
+ * @param {boolean} isAdding - True to add to group, false to remove.
+ */
+function updateUserGroup(userId, groupId, isAdding) {
+    showLoading(isAdding ? 'Adding to group...' : 'Removing from group...');
+
+    // First, fetch the user's current groups to ensure we have the latest state
+    fetch(`/api/users/${userId}/`)
+        .then(response => response.json())
+        .then(data => {
+            if (!data.success) throw new Error(data.error || 'Failed to fetch user details.');
+
+            let currentGroupIds = new Set(data.user.groups.map(g => g.id));
+
+            // Add or remove the group from the set
+            if (isAdding) {
+                currentGroupIds.add(groupId);
+            } else {
+                currentGroupIds.delete(groupId);
+            }
+
+            // Prepare the payload with the complete list of groups for the user
+            const updatedData = { groups: Array.from(currentGroupIds) };
+
+            // Send the updated list back to the server via a PUT request
+            return fetch(`/api/users/${userId}/`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCsrfToken()
+                },
+                body: JSON.stringify(updatedData)
+            });
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showSuccess(`User group updated successfully.`);
+                updateGroupMemberUI(userId, groupId, isAdding);
+            } else {
+                showError(`Failed to update group: ${data.error || JSON.stringify(data.errors)}`);
+                // If the API call fails, revert the checkbox to its previous state
+                const checkbox = document.getElementById(`user-${userId}-group-${groupId}`);
+                if (checkbox) checkbox.checked = !isAdding;
+            }
+        })
+        .catch(err => {
+            handleApiError('update user group', err);
+            const checkbox = document.getElementById(`user-${userId}-group-${groupId}`);
+            if (checkbox) checkbox.checked = !isAdding;
+        })
+        .finally(hideLoading);
+}
+
+/**
+ * Attaches event listeners to all group management checkboxes.
+ */
+function initializeGroupManagement() {
+    document.querySelectorAll('.group-check').forEach(checkbox => {
+        checkbox.addEventListener('change', (e) => {
+            const userId = e.target.dataset.userId;
+            const groupId = e.target.value;
+            const isAdding = e.target.checked;
+            updateUserGroup(userId, groupId, isAdding);
+        });
+    });
+}
+
+function updateGroupMemberUI(userId, groupId, isAdding) {
+    // *** THE FIX IS ON THIS LINE: Changed 'group.id' to 'groupId' ***
+    const groupMembersContainer = document.getElementById(`group-${groupId}-members`);
+    if (!groupMembersContainer) return;
+
+    if (isAdding) {
+        // --- Logic to ADD a user card to the group list ---
+
+        // 1. Get user info from the main table row
+        const userRow = document.getElementById(`user-row-${userId}`);
+        if (!userRow) return;
+
+        const userName = userRow.querySelector('h6').innerText.replace('(You)', '').trim();
+        const userType = userRow.querySelector('.badge').innerText;
+        const userInitials = userRow.querySelector('.user-avatar-sm').innerText;
+        
+        // 2. Remove the "No members yet" placeholder if it exists
+        const placeholder = groupMembersContainer.querySelector('.no-members-placeholder');
+        if (placeholder) placeholder.remove();
+
+        // 3. Create the new user card element
+        const newMemberEl = document.createElement('div');
+        newMemberEl.className = 'd-flex align-items-center p-2 bg-white rounded shadow-sm mb-2';
+        newMemberEl.id = `group-member-${groupId}-${userId}`;
+        newMemberEl.innerHTML = `
+            <div class="user-avatar-sm" style="width: 32px; height: 32px; font-size: 0.875rem;">
+                ${userInitials}
+            </div>
+            <div class="ms-2 flex-grow-1">
+                <div class="small fw-medium">${userName}</div>
+                <div class="small text-muted">${userType}</div>
+            </div>
+            <button class="btn btn-sm btn-outline-danger" 
+                    onclick="removeFromGroup('${userId}', '${groupId}')" 
+                    title="Remove from group">
+                <i class="fas fa-times"></i>
+            </button>
+        `;
+        
+        // 4. Add the new card to the container
+        groupMembersContainer.appendChild(newMemberEl);
+
+    } else {
+        // --- Logic to REMOVE a user card from the group list ---
+        
+        // 1. Find and remove the user's card
+        const memberToRemove = document.getElementById(`group-member-${groupId}-${userId}`);
+        if (memberToRemove) {
+            memberToRemove.remove();
+        }
+
+        // 2. If the group is now empty, add the placeholder back
+        if (groupMembersContainer.children.length === 0) {
+            const placeholderEl = document.createElement('div');
+            placeholderEl.className = 'text-center text-muted py-3 no-members-placeholder';
+            placeholderEl.innerHTML = `
+                <i class="fas fa-users"></i>
+                <p class="mb-0 small">No members yet</p>
+                <p class="small">Drag users here to add them</p>
+            `;
+            groupMembersContainer.appendChild(placeholderEl);
+        }
+    }
+}
+
+/**
+ * Handles the "remove" button click from within a group card.
+ * @param {string} userId - The UUID of the user to remove.
+ * @param {string} groupId - The UUID of the group to remove from.
+ */
+function removeFromGroup(userId, groupId) {
+    // 1. Find the corresponding checkbox in the main user table and uncheck it
+    const checkbox = document.getElementById(`user-${userId}-group-${groupId}`);
+    if (checkbox) {
+        checkbox.checked = false;
+        // 2. Trigger the change event to fire our existing API call
+        checkbox.dispatchEvent(new Event('change'));
+    }
+}
+
+// --- DATABASE PERMISSION MANAGEMENT (REVISED) ---
+
+async function loadTablesForConnection(accordionCollapseEl, groupId, connectionId, groupPermissions) {
+    const tableContainer = accordionCollapseEl.querySelector('.table-list-container');
+    if (!tableContainer || tableContainer.dataset.loaded === 'true') return;
+    
+    tableContainer.innerHTML = `<div class="text-center p-3"><div class="spinner-border spinner-border-sm me-2"></div>Loading tables...</div>`;
+    tableContainer.dataset.loaded = 'true';
+
+    try {
+        const url = `{% url 'mis_app:api_get_all_connection_tables' '00000000-0000-0000-0000-000000000000' %}`.replace('00000000-0000-0000-0000-000000000000', connectionId);
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Server failed to return tables.');
+        const data = await response.json();
+
+        if (data.success && data.tables && data.tables.length > 0) {
+            const tableHtml = data.tables.map(tableName => {
+                const hasTablePerm = groupPermissions.some(p => 
+                    p.resource_type === 'table' && 
+                    p.resource_id === connectionId && 
+                    p.resource_name === tableName
+                );
+                const tableId = `table-perm-${connectionId}-${tableName.replace(/[^a-zA-Z0-9]/g, '-')}`;
+                
+                return `
+                    <div class="form-check mb-2">
+                        <input class="form-check-input permission-toggle" type="checkbox"
+                               id="${tableId}"
+                               data-group-id="${groupId}" 
+                               data-resource-type="table"
+                               data-resource-id="${connectionId}" 
+                               data-resource-name="${tableName}"
+                               ${hasTablePerm ? 'checked' : ''}>
+                        <label class="form-check-label" for="${tableId}">
+                            <i class="fas fa-table me-2 text-muted"></i>${tableName}
+                        </label>
+                    </div>
+                `;
+            }).join('');
+            
+            tableContainer.innerHTML = tableHtml;
+            
+            // Attach event listeners to the new table permission toggles
+            tableContainer.querySelectorAll('.permission-toggle').forEach(toggle => {
+                toggle.addEventListener('change', handlePermissionChange);
+            });
+        } else {
+            tableContainer.innerHTML = `<div class="text-center text-muted p-3">
+                <i class="fas fa-info-circle me-2"></i>
+                ${data.error || 'No tables found in this connection.'}
+            </div>`;
+        }
+
+    } catch (error) {
+        console.error(`Error loading tables for ${connectionId}:`, error);
+        tableContainer.innerHTML = `<div class="text-center text-danger p-3">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            Error loading tables: ${error.message}
+        </div>`;
+    }
+}
+
+/**
+ * Generic event handler for any permission toggle change. Sends API request.
+ * @param {Event} event
+ */
+function handlePermissionChange(event) {
+    const toggle = event.target;
+    const payload = {
+        grant: toggle.checked,
+        resource_type: toggle.dataset.resourceType,
+        resource_id: toggle.dataset.resourceId,
+        resource_name: toggle.dataset.resourceName,
+    };
+    const groupId = toggle.dataset.groupId;
+    const url = `{% url 'mis_app:api_manage_group_database_permission' '00000000-0000-0000-0000-000000000000' %}`.replace('00000000-0000-0000-0000-000000000000', groupId);
+    
+    // Show loading state on the toggle
+    toggle.disabled = true;
+    const originalState = toggle.checked;
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCsrfToken()
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showSuccess(data.message || 'Permission updated successfully!', 2000);
+            // The toggle remains in its new state
+        } else {
+            showError(data.error || 'Failed to update permission.');
+            // Revert the toggle on failure
+            toggle.checked = !originalState;
+        }
+    })
+    .catch(err => {
+        console.error('Permission update error:', err);
+        showError('An unexpected error occurred while updating permission.');
+        // Revert the toggle on error
+        toggle.checked = !originalState;
+    })
+    .finally(() => {
+        toggle.disabled = false;
+    });
+}
+
+
+// --- BULK GROUP ASSIGNMENT ---
+
+/**
+ * Opens the bulk assign group modal and passes the selected user IDs to it.
+ */
+function bulkAssignGroup() {
+    const selectedUserIds = Array.from(document.querySelectorAll('.user-select-checkbox:checked')).map(cb => cb.dataset.userId);
+    if (selectedUserIds.length === 0) {
+        showInfo('Please select users first.');
+        return;
+    }
+    const modal = new bootstrap.Modal(document.getElementById('bulkAssignGroupModal'));
+    document.getElementById('bulk-assign-user-ids').value = JSON.stringify(selectedUserIds);
+    modal.show();
+}
+
+
+/**
+ * Handles the form submission from the bulk assign modal.
+ */
+function handleBulkAssign() {
+    const form = document.getElementById('bulkAssignGroupForm');
+    const userIds = JSON.parse(form.querySelector('#bulk-assign-user-ids').value);
+    const groupId = form.querySelector('#bulk-assign-group-select').value;
+
+    if (!groupId) {
+        showError('Please select a group.');
+        return;
+    }
+
+    const payload = {
+        action: 'assign_group',
+        user_ids: userIds,
+        target_group: groupId
+    };
+
+    showLoading('Assigning users to group...');
+    fetch(`{% url 'mis_app:bulk_user_action' %}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCsrfToken() },
+        body: JSON.stringify(payload)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showSuccess(data.message);
+            bootstrap.Modal.getInstance(document.getElementById('bulkAssignGroupModal')).hide();
+            setTimeout(() => location.reload(), 1500); // Reload to see changes reflected everywhere
+        } else {
+            showError('Failed: ' + data.error);
+        }
+    })
+    .catch(err => handleApiError('bulk assign group', err))
+    .finally(hideLoading);
+}
+
+function editGroup(groupId) {
+    console.log("1. 'editGroup' function called for group:", groupId);
+    showLoading('Loading group details...');
+    fetch(`/api/groups/${groupId}/`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                populateEditGroupModal(data.group);
+                console.log("2. Calling 'loadDatabasePermissions'...");
+                loadDatabasePermissions(groupId, data.group.permissions || []);
+                new bootstrap.Modal(document.getElementById('editGroupModal')).show();
+            } else {
+                showError('Failed to load group details: ' + data.error);
+            }
+        })
+        .catch(err => handleApiError('load group', err))
+        .finally(hideLoading);
+}
+
+
+async function loadDatabasePermissions(groupId, groupPermissions) {
+    console.log("3. 'loadDatabasePermissions' started.");
+    const container = document.getElementById('db-permissions-accordion-container');
+    container.innerHTML = `<div class="text-center p-4"><div class="spinner-border spinner-border-sm"></div><span class="ms-2">Loading...</span></div>`;
+
+    try {
+        const response = await fetch("{% url 'mis_app:api_connections' %}");
+        if (!response.ok) throw new Error('Failed to fetch connections.');
+        const connections = await response.json();
+
+        if (connections.length === 0) {
+            container.innerHTML = `<div class="text-center text-muted p-4">No database connections configured.</div>`;
+            return;
+        }
+
+        // ... (The HTML generation logic is the same, so it's shortened here for clarity)
+        const accordionHtml = connections.map((conn) => {
+            const hasConnPerm = groupPermissions.some(p => p.resource_type === 'connection' && p.resource_id === conn.id);
+            return `
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading-${conn.id}"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-${conn.id}" aria-expanded="false"><i class="fas fa-database me-2"></i> ${conn.nickname}</button></h2>
+                    <div id="collapse-${conn.id}" class="accordion-collapse collapse" data-connection-id="${conn.id}">
+                        <div class="accordion-body">
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input permission-toggle" type="checkbox" role="switch" id="conn-perm-${conn.id}" data-group-id="${groupId}" data-resource-type="connection" data-resource-id="${conn.id}" data-resource-name="*" ${hasConnPerm ? 'checked' : ''}>
+                                <label class="form-check-label" for="conn-perm-${conn.id}"><strong>Allow access to this entire connection</strong></label>
+                            </div><hr><h6 class="text-muted small">TABLE-LEVEL PERMISSIONS</h6>
+                            <div class="table-list-container" style="max-height: 200px; overflow-y: auto;"><div class="text-center p-2 text-muted small">Expand to load tables...</div></div>
+                        </div>
+                    </div>
+                </div>`;
+        }).join('');
+        
+        container.innerHTML = `<div class="accordion" id="dbPermissionsAccordion">${accordionHtml}</div>`;
+        console.log("4. UI rendered. Attempting to attach listeners...");
+
+        // Accordion listener
+        const accordionElement = document.getElementById('dbPermissionsAccordion');
+        if (accordionElement) {
+            accordionElement.addEventListener('show.bs.collapse', function(event) {
+                const collapseElement = event.target;
+                const connectionId = collapseElement.dataset.connectionId;
+                if (connectionId) {
+                    loadTablesForConnection(collapseElement, groupId, connectionId, groupPermissions);
+                }
+            });
+        }
+        
+        // Save button listener
+        const saveBtn = document.getElementById('saveDbPermissionsBtn');
+        if (saveBtn) {
+            console.log("5. Found the save button! Attaching click listener.");
+            saveBtn.addEventListener('click', () => {
+                saveDatabasePermissions(groupId);
+            });
+        } else {
+            console.error("Error: Could not find the button with id='saveDbPermissionsBtn'. Check the modal HTML.");
+        }
+
+    } catch (error) {
+        console.error("Error loading DB permissions:", error);
+        container.innerHTML = `<div class="alert alert-danger">Failed to load permissions.</div>`;
+    }
+
+    // Somewhere near the top-level of user-management JS:
+    let dbPermSaveInFlight = false;
+
+    // Replace your current attach logic with this:
+    function attachDbPermSaveHandler() {
+    const btn = document.getElementById('dbPermSaveBtn');
+    if (!btn) return;
+
+    // Remove all previous listeners by replacing the node (safest).
+    const fresh = btn.cloneNode(true);
+    btn.parentNode.replaceChild(fresh, btn);
+
+    fresh.addEventListener('click', async (e) => {
+        e.preventDefault();
+        if (dbPermSaveInFlight) return;        // de-dupe
+        dbPermSaveInFlight = true;
+        fresh.disabled = true;
+        fresh.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Saving...`;
+
+        try {
+        // <-- your existing saveDatabasePermissions() body here -->
+        await saveDatabasePermissions(); // keep your existing function if you have one
+        } catch (err) {
+        console.error('Save DB perms failed:', err);
+        // optional toast/error UI here
+        } finally {
+        dbPermSaveInFlight = false;
+        fresh.disabled = false;
+        fresh.innerHTML = `Save`;
+        }
+    });
+    }
+
+    // Call this exactly once each time you (re)render the DB permissions UI
+    // (You already log "4. UI rendered. Attempting to attach listeners...")
+    attachDbPermSaveHandler();
+
+}
+
+
+async function saveDatabasePermissions(groupId) {
+    console.log("6. 'saveDatabasePermissions' called. The button click is working!");
+    const saveBtn = document.getElementById('saveDbPermissionsBtn');
+    const statusDiv = document.getElementById('db-permission-status');
+    const permissionsPayload = [];
+    
+    document.querySelectorAll('#db-permissions-accordion-container .permission-toggle:checked').forEach(toggle => {
+        permissionsPayload.push({
+            resource_type: toggle.dataset.resourceType,
+            resource_id: toggle.dataset.resourceId,
+            resource_name: toggle.dataset.resourceName,
+        });
+    });
+
+    console.log("7. Sending payload to server:", permissionsPayload);
+    saveBtn.disabled = true;
+    saveBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Saving...`;
+    statusDiv.innerHTML = '';
+
+    const url = `{% url 'mis_app:api_update_group_database_permissions' '00000000-0000-0000-0000-000000000000' %}`.replace('00000000-0000-0000-0000-000000000000', groupId);
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCsrfToken() },
+            body: JSON.stringify(permissionsPayload)
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Failed to save permissions.');
+        
+        console.log("8. Server responded successfully:", data);
+        statusDiv.innerHTML = `<div class="alert alert-success small p-2">${data.message}</div>`;
+        setTimeout(() => { statusDiv.innerHTML = ''; }, 3000);
+
+    } catch (error) {
+        console.error("9. Error during fetch:", error);
+        statusDiv.innerHTML = `<div class="alert alert-danger small p-2">${error.message}</div>`;
+    } finally {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = `<i class="fas fa-save me-2"></i>Save Database Permissions`;
+    }
+}
+
+async function openUploadPermissionsModal(userId, userName) {
+    currentUploaderId = userId;
+    const modalElement = document.getElementById('uploaderPermissionsModal');
+    const modal = new bootstrap.Modal(modalElement);
+    
+    document.getElementById('uploaderName').textContent = userName;
+    const listContainer = document.getElementById('uploaderConnectionList');
+    listContainer.innerHTML = `<div class="text-center p-3"><div class="spinner-border spinner-border-sm"></div></div>`;
+    
+    // Remove any existing event listeners and reattach
+    const saveBtn = document.getElementById('saveUploadPermissionsBtn');
+    const newSaveBtn = saveBtn.cloneNode(true);
+    saveBtn.parentNode.replaceChild(newSaveBtn, saveBtn);
+    
+    // Attach the event listener properly
+    newSaveBtn.addEventListener('click', saveUploadPermissions);
+    
+    try {
+        const [connectionsRes, userRes] = await Promise.all([
+            fetch("{% url 'mis_app:api_connections' %}"),
+            fetch(`/api/users/${userId}/`)
+        ]);
+        
+        if (!connectionsRes.ok) throw new Error('Failed to fetch connections');
+        if (!userRes.ok) throw new Error('Failed to fetch user data');
+        
+        const connections = await connectionsRes.json();
+        const userData = await userRes.json();
+        
+        if (!userData.success) throw new Error(userData.error);
+
+        // Extract upload permissions - FIXED: Check for both resource_type and permission_level
+        const uploadPermissions = new Set();
+        if (userData.user.direct_permissions) {
+            userData.user.direct_permissions.forEach(p => {
+                 if (p.resource_type === 'connection' && p.permission_level === 'upload' && p.resource_id) {
+                    uploadPermissions.add(p.resource_id);
+                }
+            });
+        }
+
+        if (!connections || connections.length === 0) {
+            listContainer.innerHTML = '<p class="text-muted">No database connections found.</p>';
+            return;
+        }
+
+        listContainer.innerHTML = connections.map(conn => `
+            <div class="form-check mb-2">
+                <input class="form-check-input uploader-perm-check" type="checkbox" 
+                       value="${conn.id}" id="uploader-conn-${conn.id}"
+                       ${uploadPermissions.has(conn.id) ? 'checked' : ''}>
+                <label class="form-check-label" for="uploader-conn-${conn.id}">
+                    <i class="fas fa-database me-2 text-primary"></i>
+                    ${conn.nickname} (${conn.db_type})
+                </label>
+            </div>
+        `).join('');
+
+        modal.show();
+        
+    } catch (error) {
+        console.error('Error loading upload permissions:', error);
+        listContainer.innerHTML = `<div class="alert alert-danger">Error loading permissions: ${error.message}</div>`;
+    }
+}
+
+async function saveUploadPermissions() {
+    if (!currentUploaderId) {
+        showError('No user selected for permission update.');
+        return;
+    }
+    
+    const saveBtn = document.getElementById('saveUploadPermissionsBtn');
+    const originalText = saveBtn.innerHTML;
+    const statusDiv = document.getElementById('uploaderPermissionStatus') || createStatusDiv();
+    
+    // Get selected connection IDs
+    const checkedConnectionIds = Array.from(document.querySelectorAll('.uploader-perm-check:checked')).map(cb => cb.value);
+    
+    if (checkedConnectionIds.length === 0) {
+        if (!confirm('No connections selected. This will remove all upload permissions. Continue?')) {
+            return;
+        }
+    }
+
+    // Show loading state
+    saveBtn.disabled = true;
+    saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving...';
+    statusDiv.innerHTML = '<div class="alert alert-info">Saving permissions...</div>';
+
+    try {
+        const url = `{% url 'mis_app:api_update_user_upload_permissions' '00000000-0000-0000-0000-000000000000' %}`
+            .replace('00000000-0000-0000-0000-000000000000', currentUploaderId);
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json', 
+                'X-CSRFToken': getCsrfToken() 
+            },
+            body: JSON.stringify({ connection_ids: checkedConnectionIds })
+        });
+
+        const data = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(data.error || `HTTP ${response.status}`);
+        }
+
+        if (data.success) {
+            statusDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+            showSuccess('Upload permissions saved successfully!');
+            
+            // Close modal after success
+            setTimeout(() => {
+                const modal = bootstrap.Modal.getInstance(document.getElementById('uploaderPermissionsModal'));
+                modal.hide();
+            }, 1500);
+        } else {
+            throw new Error(data.error || 'Unknown error occurred');
+        }
+
+    } catch (error) {
+        console.error('Error saving upload permissions:', error);
+        statusDiv.innerHTML = `<div class="alert alert-danger">Failed to save: ${error.message}</div>`;
+        showError(`Failed to save upload permissions: ${error.message}`);
+    } finally {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = originalText;
+    }
+}
+
+// Helper function to create status div if it doesn't exist
+function createStatusDiv() {
+    const modalBody = document.querySelector('#uploaderPermissionsModal .modal-body');
+    const statusDiv = document.createElement('div');
+    statusDiv.id = 'uploaderPermissionStatus';
+    modalBody.appendChild(statusDiv);
+    return statusDiv;
+}
+
+function clearFormErrors(form) {
+    form.querySelectorAll('.invalid-feedback').forEach(el => el.remove());
+    form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+}
+
+function showImportModal() {
+    new bootstrap.Modal(document.getElementById('importUsersModal')).show();
+}
+
+// Placeholders for unimplemented features
+function viewUserDetails(userId) { showInfo(`Feature coming soon: View details for user ${userId}`); }
+function resetUserPassword(userId) { showInfo(`Feature coming soon: Reset password for user ${userId}`); }
+
+// Global event delegation for dynamically loaded permission toggles
+document.addEventListener('click', function(event) {
+    // Check if the clicked element or its parent is a permission toggle
+    const toggle = event.target.closest('.permission-toggle');
+    if (toggle && !toggle.hasAttribute('data-listener-attached')) {
+        toggle.setAttribute('data-listener-attached', 'true');
+        toggle.addEventListener('change', handlePermissionChange);
+    }
+});
+</script>
+{% endblock %}

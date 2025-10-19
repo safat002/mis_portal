@@ -1,0 +1,166 @@
+:root {
+  /* Base Colors */
+  --bs-body-bg: #ffffff;
+  --bs-body-color: #212529;
+  --bs-card-bg: #f8f9fa;
+  --bs-navbar-bg: #ffffff;
+  --bs-sidebar-bg: #f8f9fa;
+
+  /* Primary Palette */
+  --bs-primary: #0d6efd;
+  --bs-primary-dark: #0b5ed7;
+  --bs-primary-light: #3d8bfd;
+
+  /* Secondary */
+  --bs-secondary: #6c757d;
+
+  /* Success, Info, Warning, Danger */
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+
+  /* Text */
+  --bs-text-primary: #212529;
+  --bs-text-secondary: #6c757d;
+  --bs-text-muted: #6c757d;
+
+  /* Borders */
+  --bs-border-color: #dee2e6;
+  --bs-border-color-light: #e9ecef;
+
+  /* Shadows & Radius */
+  --bs-box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  --bs-box-shadow-hover: 0 4px 12px rgba(0,0,0,0.15);
+  --bs-border-radius: 0.375rem;
+  --bs-border-radius-lg: 0.5rem;
+
+  /* Forms */
+  --bs-input-bg: #ffffff;
+  --bs-input-border-color: #ced4da;
+  --bs-input-focus-border-color: #86b7fe;
+  --bs-input-focus-box-shadow: 0 0 0 0.25rem rgba(13,110,253,0.25);
+
+  /* Tables */
+  --bs-table-bg: transparent;
+  --bs-table-striped-bg: rgba(0,0,0,0.05);
+  --bs-table-hover-bg: rgba(0,0,0,0.075);
+
+  /* Buttons */
+  --bs-btn-border-radius: 0.375rem;
+  --bs-btn-font-weight: 500;
+
+  /* Mobile Nav */
+  --mobile-nav-bg: #ffffff;
+  --mobile-nav-border: #e9ecef;
+  --mobile-nav-item-color: #6c757d;
+  --mobile-nav-item-active-color: #0d6efd;
+
+  /* Toast */
+  --toast-success-bg: #d1e7dd;
+  --toast-success-color: #0f5132;
+  --toast-error-bg: #f8d7da;
+  --toast-error-color: #842029;
+  --toast-warning-bg: #fff3cd;
+  --toast-warning-color: #664d03;
+  --toast-info-bg: #cff4fc;
+  --toast-info-color: #055160;
+}
+
+/* Body */
+body {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  font-family: Inter, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--bs-navbar-bg);
+  box-shadow: var(--bs-box-shadow);
+  border-bottom: 1px solid var(--bs-border-color-light);
+}
+
+/* Cards */
+.card {
+  background-color: var(--bs-card-bg);
+  border: 1px solid var(--bs-border-color-light);
+  border-radius: var(--bs-border-radius-lg);
+  box-shadow: var(--bs-box-shadow);
+  transition: var(--bs-box-shadow-hover) 0.2s ease;
+}
+.card:hover {
+  box-shadow: var(--bs-box-shadow-hover);
+}
+
+/* Buttons */
+.btn {
+  border-radius: var(--bs-btn-border-radius);
+  font-weight: var(--bs-btn-font-weight);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--bs-box-shadow-hover);
+}
+.btn-primary {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+.btn-primary:hover {
+  background-color: var(--bs-primary-dark);
+  border-color: var(--bs-primary-dark);
+}
+
+/* Forms */
+.form-control {
+  background-color: var(--bs-input-bg);
+  border: 1px solid var(--bs-input-border-color);
+  border-radius: var(--bs-border-radius);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-control:focus {
+  border-color: var(--bs-input-focus-border-color);
+  box-shadow: var(--bs-input-focus-box-shadow);
+}
+
+/* Tables */
+.table {
+  background-color: var(--bs-table-bg);
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: var(--bs-table-striped-bg);
+}
+.table-hover > tbody > tr:hover {
+  background-color: var(--bs-table-hover-bg);
+}
+
+/* Mobile Bottom Nav */
+.mobile-bottom-nav {
+  background-color: var(--mobile-nav-bg);
+  border-top: 1px solid var(--mobile-nav-border);
+}
+.mobile-nav-item {
+  color: var(--mobile-nav-item-color);
+}
+.mobile-nav-item.active {
+  color: var(--mobile-nav-item-active-color);
+}
+
+/* Toast */
+.swal2-toast {
+  background-color: var(--toast-success-bg);
+  color: var(--toast-success-color);
+}
+.swal2-icon.swal2-error {
+  background-color: var(--toast-error-bg);
+  color: var(--toast-error-color);
+}
+.swal2-icon.swal2-warning {
+  background-color: var(--toast-warning-bg);
+  color: var(--toast-warning-color);
+}
+.swal2-icon.swal2-info {
+  background-color: var(--toast-info-bg);
+  color: var(--toast-info-color);
+}

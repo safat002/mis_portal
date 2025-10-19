@@ -1,0 +1,277 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Data Model Designer{% endblock %}
+{% block page_title %}Data Model Designer{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'css/data_model.css' %}" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="data-model-container"
+  data-editable="{% if request.user.user_type == 'Admin' or request.user.user_type == 'Moderator' %}true{% else %}false{% endif %}">
+
+  <header class="data-model-header">
+    <div class="d-flex align-items-center flex-wrap gap-3">
+      <div class="d-flex align-items-center">
+        <label for="connectionSelect" class="form-label me-2 mb-0 fw-semibold text-dark">Connection:</label>
+        <select id="connectionSelect" class="form-select w-auto form-select-sm">
+          <option value="">Select a Connection...</option>
+          {% for conn in connections %}
+          <option value="{{ conn.id }}">{{ conn.nickname }}</option>
+          {% endfor %}
+        </select>
+
+        <button id="testConnectionBtn" class="btn btn-sm btn-outline-primary ms-2" title="Test Connection">
+          <i class="bi bi-plug"></i> Test
+        </button>
+        <span id="connectionStatus" class="ms-3 d-flex align-items-center">
+          <span class="status-indicator status-disconnected me-1"></span>
+          <span class="status-text">Not connected</span>
+        </span>
+      </div>
+
+      <div id="toolbar" class="d-flex align-items-center flex-wrap gap-2">
+        <!-- Undo/redo buttons -->
+        <div class="btn-group" role="group">
+          <button id="undoBtn" class="btn btn-sm btn-outline-secondary" title="Undo (Ctrl+Z)" disabled>
+            <i class="bi bi-arrow-counterclockwise"></i>
+          </button>
+          <button id="redoBtn" class="btn btn-sm btn-outline-secondary" title="Redo (Ctrl+Y)" disabled>
+            <i class="bi bi-arrow-clockwise"></i>
+          </button>
+        </div>
+
+        <div class="vr mx-1"></div>
+
+        <!-- View controls -->
+        <button id="autoArrangeBtn" class="btn btn-sm btn-outline-secondary" title="Auto-Arrange Layout">
+          <i class="bi bi-node-plus"></i> Arrange
+        </button>
+
+        <!-- <div class="btn-group" role="group">
+          <button id="zoomOutBtn" class="btn btn-sm btn-outline-secondary" title="Zoom Out">
+            <i class="bi bi-dash"></i>
+          </button>
+          <button id="resetZoomBtn" class="btn btn-sm btn-outline-secondary" title="Reset Zoom">
+            <span class="zoom-level">100%</span>
+          </button>
+          <button id="zoomInBtn" class="btn btn-sm btn-outline-secondary" title="Zoom In">
+            <i class="bi bi-plus"></i>
+          </button>
+        </div> -->
+        <!-- zoom slider -->
+        <div class="btn-group ms-2" role="group">
+          <input type="range" id="zoomSlider" class="form-range" min="20" max="300" value="100" style="width: 100px;"
+            title="Zoom Level">
+        </div>
+
+        <button id="centerCanvasBtn" class="btn btn-sm btn-outline-secondary" title="Center View">
+          <i class="bi bi-fullscreen"></i>
+        </button>
+
+        <div class="vr mx-1"></div>
+
+        <!-- Export buttons -->
+        <div class="btn-group" role="group">
+          <button id="exportPngBtn" class="btn btn-sm btn-outline-primary" title="Export as PNG">
+            <i class="bi bi-image"></i> PNG
+          </button>
+          <button id="exportPdfBtn" class="btn btn-sm btn-outline-primary" title="Export as PDF">
+            <i class="bi bi-filetype-pdf"></i> PDF
+          </button>
+        </div>
+
+        <div class="vr mx-1"></div>
+
+        <!-- Search input -->
+        <div class="input-group input-group-sm" style="width: 220px">
+          <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+          <input type="text" id="canvasSearch" class="form-control border-start-0" placeholder="Search canvas..." />
+        </div>
+
+        <!-- Validate button -->
+        <button id="validateBtn" class="btn btn-sm btn-outline-success" title="Validate model">
+          <i class="bi bi-shield-check"></i> Validate
+        </button>
+
+        {% if request.user.user_type == 'Admin' or request.user.user_type == 'Moderator' %}
+        <button id="saveModelBtn" class="btn btn-sm btn-primary">
+          <i class="bi bi-save me-1"></i>Save Model
+        </button>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <main class="data-model-workspace">
+    <aside id="sourceTablesSidebar">
+      <div class="sidebar-header d-flex justify-content-between align-items-center">
+        <h6 class="mb-0">Available Tables</h6>
+        <button id="toggleSidebar" class="btn btn-sm btn-link p-0">
+          <i class="bi bi-chevron-double-left"></i>
+        </button>
+      </div>
+      <div class="sidebar-search-controls">
+        <div class="input-group input-group-sm flex-grow-1">
+          <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+          <input type="search" id="tableSearch" class="form-control" placeholder="Search tables...">
+          <button id="sortTableBtn" class="btn btn-sm btn-outline-secondary" title="Sort tables">
+            <i class="bi bi-sort-alpha-down"></i>
+          </button>
+        </div>
+      </div>
+      <div id="tableList" class="list-group list-group-flush sidebar-content">
+        <div class="p-3 text-muted small text-center">Please select a connection.</div>
+      </div>
+    </aside>
+
+    <div id="canvas" class="data-model-canvas">
+      <div id="canvas-content" class="canvas-content">
+        <div id="canvas-placeholder" class="placeholder-text">
+          <i class="bi bi-diagram-3 fs-1 text-light"></i>
+          <p class="mt-2">Select a database connection to begin modeling.</p>
+          <small class="text-muted">Drag tables from the sidebar to get started</small>
+        </div>
+        <!-- Table cards will be appended here dynamically -->
+      </div>
+
+      <div id="connContextMenu" class="dropdown-menu shadow" style="position: absolute; display: none">
+        <button class="dropdown-item" id="ctxEditJoin">
+          <i class="bi bi-pencil-square me-2"></i>Edit Join
+        </button>
+        <button class="dropdown-item" id="ctxConfirmSuggested" style="display: none">
+          <i class="bi bi-check2-circle me-2"></i>Confirm Suggested
+        </button>
+        <div class="dropdown-divider"></div>
+        <button class="dropdown-item text-danger" id="ctxDeleteJoin">
+          <i class="bi bi-trash3 me-2"></i>Delete Join
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <div class="modal fade" id="joinModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Join Properties</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Source Field</label>
+            <div class="form-control bg-light" id="sourceField"></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Target Field</label>
+            <div class="form-control bg-light" id="targetField"></div>
+          </div>
+          <hr />
+          <div class="mb-3">
+            <label for="joinType" class="form-label fw-semibold">Join Type</label>
+            <select id="joinType" class="form-select">
+              <option value="INNER">Inner Join</option>
+              <option value="LEFT">Left Join</option>
+              <option value="RIGHT">Right Join</option>
+              <option value="FULL">Full Outer Join</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="cardinality" class="form-label fw-semibold">Cardinality</label>
+            <select id="cardinality" class="form-select">
+              <option value="one-to-one">One-to-One (1:1)</option>
+              <option value="one-to-many">One-to-Many (1:N)</option>
+              <option value="many-to-one">Many-to-One (N:1)</option>
+              <option value="many-to-many">Many-to-Many (N:M)</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="deleteJoinBtn" class="btn btn-danger me-auto">
+            <i class="bi bi-trash3 me-1"></i>Delete Join
+          </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" id="saveJoinBtn" class="btn btn-primary">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Join wizard template -->
+<template id="joinWizardTemplate">
+  <div class="join-wizard-content">
+    <div class="existing-joins-container mb-3"></div>
+    <div class="join-wizard-body"></div>
+    <div class="join-wizard-footer">
+      <button type="button" class="btn btn-sm btn-outline-primary add-join-row-btn">
+        <i class="bi bi-plus-lg me-1"></i> Add Join
+      </button>
+      <div>
+        <button type="button" class="btn btn-sm btn-outline-secondary cancel-join-btn me-2">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-sm btn-primary apply-joins-btn">
+          Apply Joins
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- Suggest joins modal -->
+<div class="modal fade" id="suggestJoinsModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Suggested Joins</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-info">
+          <i class="bi bi-info-circle me-2"></i> These are automatically detected possible joins based on column names
+          and types.
+        </div>
+        <div id="suggestedJoinsList" class="mt-3">
+          <!-- Suggested joins will be populated here -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="applyAllSuggested">Apply All</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- <template id="joinWizardTemplate">
+  <div class="join-wizard-content">
+    <div class="join-wizard-body"></div>
+    <div class="join-wizard-footer">
+      <button type="button" class="btn btn-sm btn-outline-secondary add-join-row-btn"><i class="bi bi-plus-lg"></i>
+        Add</button>
+      <div>
+        <button type="button" class="btn btn-sm btn-secondary cancel-join-btn">Cancel</button>
+        <button type="button" class="btn btn-sm btn-primary apply-joins-btn ms-2">Apply</button>
+      </div>
+    </div>
+  </div>
+</template> -->
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{# Loads all the required libraries from your local static folder #}
+<script src="{% static 'js/vendor/jsplumb.min.js' %}"></script>
+<script src="{% static 'js/vendor/dagre.min.js' %}"></script>
+<script src="{% static 'js/vendor/html2canvas.min.js' %}"></script>
+<script src="{% static 'js/vendor/jspdf.umd.min.js' %}"></script>
+
+<script src="{% static 'js/data_model.js' %}"></script>
+{% endblock %}
