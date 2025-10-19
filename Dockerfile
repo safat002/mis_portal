@@ -16,8 +16,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy project
 COPY . /app/
 
+# Run collectstatic
+RUN python manage.py collectstatic --noinput
+
 # Expose the port the app runs on
 EXPOSE 8000
 
-# Run the application
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Run the application using the correct project name
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "django_mis_project.wsgi:application"]
